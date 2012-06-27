@@ -1,4 +1,4 @@
-<h2>{{year}}</h2>
+<h3>{{year}}</h3>
 {{#months}}
   <h3>{{month}}</h3>
   <ul>

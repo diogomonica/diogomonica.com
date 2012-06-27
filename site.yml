@@ -1,10 +1,10 @@
-title : Blog Title
-tagline: Blog Tagline
+title : Diogo Mónica's Personal Website
+tagline:
 author :
-  name : Firstname Lastname
-  email : blah@email.test
-  github : username
-  twitter : username
+  name : Diogo Mónica
+  email : diogo.monica@gmail.com
+  github : diogomonica
+  twitter : diogomonica
   feedburner : feedname
 
 navigation :
@@ -13,4 +13,3 @@ navigation :
   - categories.html
   - pages.html
   - about.md
-  

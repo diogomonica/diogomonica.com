@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="canonical" href="http://diogomonica.com/"/>
+
+    <!--<title>{{ page.title }}</title>-->
+
+      <!--{{# page.description }}-->
+        <!--<meta name="description" content="{{ . }}">-->
+      <!--{{/ page.description }}-->
+        <!--<meta name="author" content="{{ site.author.name }}">-->
+
+        <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+        <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <!-- Le styles -->
+        {{{ assets }}} 
+
+        <!-- Le fav and touch icons -->
+      <!-- Update these with your own images
+        <link rel="shortcut icon" href="images/favicon.ico">
+        <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+      -->
+  </head>
+
+  <body>
+    <div class="grid leadin">
+      <div class="wrap">
+        <img src="{{urls.theme_media}}/diogo_grid_70.jpg" alt="Diogo Monica's Picture" width="300" height="300"/>
+        <div class="home">
+          <a href="/"><img src="{{urls.theme_media}}/home.png" height="70" width="70" alt="Home" /></a>
+        </div>
+        <ul class="text-block">
+          <li><h1>I'm a <strong>Security Engineer</strong> @Square</li></h1> 
+          <li><h1>and a <strong>PhD Candidate</strong> @IST.</h1></li>
+          <li><h1>Follow <strong><a
+                href="https://twitter.com/diogomonica">@diogomonica</a></strong> on twitter</h1></li>
+          <li><h1>or checkout my <strong><a href="/archive">posts</a></strong>.</h1></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="wrap feature">
+        {{{ content }}}
+    </div>
+
+    {{{ google_prettify }}}
+    {{{ analytics }}}
+
+  </body>
+</html>

@@ -2,6 +2,14 @@
 description:
 ---
 
+<h2 class="icon icon-about">Post {{ page.title }} </h2>
+
 {{# db.posts.collated }}
   {{> posts_collate }}
 {{/ db.posts.collated }}
+
+<hr>
+
+<div class="right">
+  <p>&copy; {{ site.author.name }} 2012 </p>
+</div>
