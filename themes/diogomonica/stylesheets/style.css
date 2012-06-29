@@ -62,10 +62,10 @@ a:hover {
 }
 p {
   line-height: 2em;
-  margin-bottom: 2em;
+  margin-bottom: 0em;
 }
 p + p {
-  margin-top: 2em;
+  margin-top: 1em;
 }
 .clear {
   clear: both;
