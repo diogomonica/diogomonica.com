@@ -40,6 +40,26 @@ label {
 .feature {
   font-size: 21px;
 }
+ux.highlight {
+    background-color: #ffffaa;
+}
+ux.usablue {
+    color: #002C77;
+}
+
+ux.usared {
+    color: #CC0C2F;
+}
+
+ux.ptgreen {
+    color: #006600
+    }
+ux.ptred{
+	color: #FF0000;
+}
+ux.ptyellow{
+	color: #FFFF00;
+}
 
 div.signature{
     position:absolute;
@@ -51,6 +71,7 @@ div.signature{
 
 div.right {
     text-align: right;
+    padding-bottom: 40px;
 }
 
 
