@@ -43,7 +43,7 @@ and add the following two lines to **the top** of your ssh config (~/.ssh/config
 
 <pre>
 ControlMaster auto
-ControlPath   /home/USERNAME/.ssh/tmp/%h_%p_%r
+ControlPath   /Users/USERNAME/.ssh/tmp/%h_%p_%r
 </pre>
 
 I hope these small tricks save you as much time as they have saved me.
