@@ -62,11 +62,8 @@ ux.ptyellow{
 }
 
 div.signature{
-    position:absolute;
-    right:0;
-    text-align: center;
+    text-align: right;
     padding-bottom: 40px;
-    
 }
 
 div.right {
@@ -98,8 +95,9 @@ p + p {
 .wrap,
 #footer,
 hr {
-  width: 1008px;
+  max-width: 1008px;
   margin: 0 auto;
+  padding: 0 20px;
   position: relative;
 }
 .grid {
@@ -138,32 +136,99 @@ a {
 ---------------------------------------------------*/
 .leadin {
   margin-bottom: 20px;
+  overflow: hidden;
 }
 .leadin .wrap {
-  height: 200px;
+  /*height: 200px;*/
 }
-.leadin .text-block {
-  position: relative;
-  left: 120px;
+@media (min-width: 6000px) {
+  .leadin .text-block {
+    position: relative;
+    padding-left: 120px;
+  }
 }
-.leadin img {
-  position: absolute;
-  right: 0px;
+
+
+.leadin .awesome {
+  display: none;
 }
-.leadin li {
-  list-style: none;
-  margin: 9px 8px;
+@media (min-width: 800px) {
+  .leadin .awesome {
+    display: block;
+    float: right;
+  }
 }
-.leadin h1 {
-  background: #fff;
-  display: inline;
+
+.footer {
+  text-align: right;
+  padding: 32px 20px;
+  margin-top: 50px;
+}
+.footer .awesome {
+  margin-bottom: 60px;
+}
+@media (min-width: 800px) {
+  .footer .awesome {
+    display: none;
+  }
+}
+
+
+.short-bio {
+  font-size: 18px;
+}
+@media (min-width: 480px) {
+  .short-bio {
+    font-size: 24px;
+  }
+}
+@media (min-width: 550px) {
+  .short-bio {
+    font-size: 30px;
+  }
+}
+@media (min-width: 800px) {
+  .short-bio {
+    padding-top: 60px;
+  }
+}
+
+.short-bio .short-bio-line {
+  background: white;
   padding: 4px 8px;
 }
+@media (min-width: 800px) {
+  .short-bio .short-bio-line {
+    white-space: nowrap;
+  }
+}
+.short-bio-block + .short-bio-block {
+  margin-top: 10px;
+}
+
 .leadin .home {
   position: absolute;
-  padding-left: 65px;
-  padding-top: 60px;
+  bottom: -10px;
+  right: 20px;
 }
+.leadin .home img {
+  height: 30px;
+}
+@media (min-width: 550px) {
+  .leadin .home img {
+    height: 50px;
+  }
+}
+@media (min-width: 800px) {
+  .leadin .home {
+    top: 0;
+    left: 20px;
+    bottom: auto;
+    right: auto;
+  }
+}
+
+
 
 /* MISC */
 .icon {
@@ -173,4 +238,17 @@ a {
 }
 .icon-about {
   background-position: 0 -220px;
+}
+
+
+.prettyprint {
+  overflow: scroll;
+}
+
+.post-title {
+  font-weight: bold;
+}
+.post-content ul,
+.post-content ol {
+  margin-left: 2em;
 }
