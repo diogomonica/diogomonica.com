@@ -2,7 +2,8 @@
 title: The dangers of pastebin-like websites
 date: '2011-05-07'
 summary: 'Services like pastebin.com are useful for sharing and discussing code. However, people trust the generated URLs to be unknown to anyone else, other than the people we want to share them with. This false sense of security brings us to this post: sensitive information being shared with the world, unintentionally.'
-categories:
+tags: [ wifi, sniffer, osx ]
+categories: security
 ---
 
 Services like pastebin.com are useful for sharing and discussing code. However, people trust the generated URLs to be unknown to anyone else, other than the people we want to share them with. This false sense of security brings us to this post: sensitive information being shared with the world, unintentionally.
@@ -28,7 +29,7 @@ action='https://www.molten-wow.com/'</code></pre>
 
 Accessing the website we notice that it has a private area for registered users... Will the same username/password combination give us a local account? Nah, too easy. Oh wait...
 
-![Oops](http://posterous.com/getfile/files.posterous.com/temp-2010-12-28/EwCIAuEGemxqAgHsjFJyHjwFkaGHoeqcussDyFDhncinqGtwJHCoinqElcIq/Picture_3.png.scaled500.png)
+![Oops](https://posterous.com/getfile/files.posterous.com/temp-2010-12-28/EwCIAuEGemxqAgHsjFJyHjwFkaGHoeqcussDyFDhncinqGtwJHCoinqElcIq/Picture_3.png.scaled500.png)
 
 So in less than one minute we have the website URL, the username/password of the database, we know the structure of the database, we have a user account which is likely owned by one of the website administrators and a piece of hand-made PHP code, which is a very good place start to find vulnerabilities. This website is asking to be pwned. 
 

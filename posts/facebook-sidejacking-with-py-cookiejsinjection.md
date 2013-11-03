@@ -7,7 +7,8 @@ summary: "I've just released a tool called py-cookieJsInjection on github (see P
 py-cookieJsInjection is a python script that sniffs cookies from the network, and outputs Javascript code that can be used to inject the cookies into any browser.
 
 It can be used to sniff and replicate any cookies going on the wire or to filter out specific information, such as Facebook profiles"
-categories:
+tags: [ facebook, python, sidejacking, cookie ]
+categories: code
 ---
 
 I've just released a tool called py-cookieJsInjection on github (see Part II of this post here).
@@ -19,7 +20,7 @@ It can be used to sniff and replicate any cookies going on the wire or to filter
 glow$ sudo python cookieJsInjection.py en1 -facebook
 </pre>
 
-<img src="http://media.tumblr.com/tumblr_leml9t3nfp1qevk7j.png" style="float:left;margin:0px 30px 0px 0px;" />
+<img src="https://media.tumblr.com/tumblr_leml9t3nfp1qevk7j.png" style="float:left;margin:0px 30px 0px 0px;" />
 
 
 Afterwards, you just copy & paste the Javascript injection code given, onto the URL bar, press enter and go to facebook.com.

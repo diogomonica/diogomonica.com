@@ -2,6 +2,8 @@
 title: Hush OS X Terminal, hush
 date: '2012-07-20'
 summary: "I've been noticing for a while a huge delay when opening new tabs on iTerm (or terminal.app). This would range from 3 to 7 seconds when opening a new tab. It was driving me nuts."
+tags: [ terminal, osx ]
+categories: protip
 ---
 
 I've been noticing for a while a huge delay when opening new tabs and windows on iTerm (or terminal.app). This would range from 3 to 7 seconds when opening a new tab. It was driving me nuts.

@@ -4,6 +4,8 @@ date: '2012-07-10'
 summary: "There have been hundreds of articles about the recent password hash leaks from Linked-in and eHarmony. 
 
 One particular detail that most of these articles seem to have in common is the fact that they point at the inexistence of a 'salt' as the security mistake that made this leak particularly damaging…"
+tags: [ salt, linkedin, bcrypt ]
+categories: crypto
 ---
 
 There have been hundreds of articles about the recent password hash leaks from [Linked-in](http://www.tomshardware.com/news/LinkedIn-Password-Breach-hack-eharmony,15963.html) and [eHarmony](http://www.networkworld.com/news/2012/070612-eharmony-data-breach-260709.html). One particular detail that most of these articles seem to have in common is the fact that they point at the inexistence of a "salt" as **the** security mistake that made this leak particularly damaging. While it is true that the salt is a very important component of any good password hashing algorithm, there are a multitude of other potential issues that have to be taken into consideration.

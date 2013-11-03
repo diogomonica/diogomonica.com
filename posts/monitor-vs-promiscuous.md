@@ -3,7 +3,8 @@ title: Monitor VS Promiscuous
 date: '2011-01-06'
 description: Differences between Monitor VS Promiscuous mode in wireless NICs
 summary: One of the confusions I see often in wireless sniffing related discussions, is the difference between Monitor and Promiscuous mode.
-categories:
+tags: [ wifi, sniffer, osx ]
+categories: code
 ---
 
 One of the confusions I see often in wireless sniffing related discussions, is the difference between Monitor and Promiscuous mode.

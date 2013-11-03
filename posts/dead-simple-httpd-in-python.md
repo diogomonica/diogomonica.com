@@ -2,7 +2,8 @@
 title: Dead Simple HTTPd in Python
 date: '2011-04-11'
 description:
-categories:
+tags: [ python ]
+categories: code
 ---
 
 Sometimes, this is all you need:

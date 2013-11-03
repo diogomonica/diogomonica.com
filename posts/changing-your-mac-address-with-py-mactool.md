@@ -2,14 +2,15 @@
 title: Change your MAC with py-MACtool
 date: '2011-01-16'
 summary: "I've had to change my MAC address for countless reasons. Either because I was doing some penetration testing, or just to debug some network errors..."
-categories:
+tags: [ mactool, mac, python ]
+categories: code
 ---
 
 I've had to change my MAC address for countless reasons. Either because I was doing some penetration testing, or just to debug some network errors.
 
 The most recent motive for changing my MAC Address was: fun. I had set up airdrop-ng (<http://www.aircrack-ng.org/doku.php?id=airdrop-ng>) to drop all wireless clients from my university wireless network, except the ones whose MAC address begins with DE:AD:BE:EF. Obviously, I configured the MAC addresses of all my hosts to begin with that prefix.
 
-<img src="http://media.tumblr.com/tumblr_lf4fkqSO761qevk7j.png" style="float:left;margin:0px 30px 0px 0px;" />
+<img src="https://media.tumblr.com/tumblr_lf4fkqSO761qevk7j.png" style="float:left;margin:0px 30px 0px 0px;" />
 
 However, when changing from OS X to Linux, the command-line syntax changes. And that gave me the idea of doing a simple script that I could call, independently of the host I was in. Also, I wanted the ability to generate a random MAC Address, or a random MAC address from a specific Manufacturer.
 

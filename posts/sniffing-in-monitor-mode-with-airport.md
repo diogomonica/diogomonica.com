@@ -2,12 +2,14 @@
 title: Sniffing in Monitor Mode with Airport
 date: '2011-04-10'
 summary: "Sniffing in OS X has been a reality for quite some time, thanks to the effort of people like the guys from Kismet and KisMAC..."
-categories:
+tags: [ statebird, bot, ruby ]
+tags: [ wifi, sniffer, osx ]
+categories: code
 ---
 
 Sniffing in OS X has been a reality for quite some time, thanks to the effort of people like the guys from Kismet (<https://www.kismetwireless.net/>) and KisMAC (<http://trac.kismac-ng.org/>).
 
-<img src="http://2.bp.blogspot.com/_Za6UPEUpjR4/TRjc5y3WUDI/AAAAAAAABJo/qHwe92cFBpo/s320/how_to_hack_wifi.jpg" style="float:right;margin:0px 30px 0px 0px;" />
+<img src="https://2.bp.blogspot.com/_Za6UPEUpjR4/TRjc5y3WUDI/AAAAAAAABJo/qHwe92cFBpo/s320/how_to_hack_wifi.jpg" style="float:right;margin:0px 30px 0px 0px;" />
 
 In the old days (Old OSX versions), they used undocumented IOCTLs and modifications to parameters in the kernel module bundles, to be able to set the airport in monitor mode.
 
@@ -28,15 +30,15 @@ After this, you can sniff any channel in monitor mode, with your airport card:
 
 <pre>airport sniff CHANNEL</pre>
 
-<img src="http://media.tumblr.com/tumblr_lewz1r7BZM1qevk7j.png" style="float:right;margin:30px 30px 30px 30px;" />
+<img src="https://media.tumblr.com/tumblr_lewz1r7BZM1qevk7j.png" style="float:right;margin:30px 30px 30px 30px;" />
 
 After executing this command, your wireless card is in monitor mode sniffing the channel you specified. There should be an eye on the airport symbol:
 
-<img src="http://media.tumblr.com/tumblr_lesa46fufK1qevk7j.png" style="float:left;margin:0px 30px 0px 0px;" />
+<img src="https://media.tumblr.com/tumblr_lesa46fufK1qevk7j.png" style="float:left;margin:0px 30px 0px 0px;" />
 
 From this moment on, airport will save all the packets seen in specified channel, to a randomly created file in /tmp. The file name has the following template: airportSniffXXXXXX.cap. However, the tool does not give any easy way of accessing the data, since the file is only output when the process is killed.
 
-<img src="http://media.tumblr.com/tumblr_lewz4yQRmw1qevk7j.png" style="float:right;margin:0px 30px 0px 0px;" />
+<img src="https://media.tumblr.com/tumblr_lewz4yQRmw1qevk7j.png" style="float:right;margin:0px 30px 0px 0px;" />
 
 
 So what I wanted to do was to use a packet manipulation tool, like scapy, on the data output from airport. However, given that the data is only output from airport when the process exits, this is what I did:

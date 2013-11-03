@@ -3,7 +3,8 @@ title: Packet Inter Arrival Time With Scapy
 date: '2011-02-01'
 description:
 summary: I wanted to capture, for statistical purposes, the inter-arrival time of packets sent from a remote machine.
-categories:
+tags: [ python, scapy, pcap ]
+categories: code
 ---
 
 I wanted to capture, for statistical purposes, the inter-arrival time of packets sent from a remote machine. 

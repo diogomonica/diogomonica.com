@@ -1,14 +1,2 @@
----
-# Usage: http://ruhoh.com/usage/configure/ 
-
-RuhohSpec: '1.0'
-theme : diogomonica
-production_url : http://diogomonica.com
-
-posts:
-  permalink: /:categories/:title/
-  summary_lines: 20
-  latest: 10
-
-pages:
-  permalink: 'pretty'
+"theme-bootstrap-2":
+  "use" : "theme"

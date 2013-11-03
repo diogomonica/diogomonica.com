@@ -2,6 +2,9 @@
 title: Weird packet of the day #1
 date: '2013-07-14'
 summary: "Once in a while I open wireshark and just look at my baseline traffic. It's useful for when I actually want to find something weird to quickly distinguish between what's normal and what looks fishy."
+tags: [ sleuthing, networking ]
+categories: protip
+
 ---
 
 Once in a while I open wireshark and just look at my baseline traffic. It's useful for when I actually want to find something weird to quickly distinguish between what's normal and what looks fishy.
@@ -10,7 +13,7 @@ Once in a while I open wireshark and just look at my baseline traffic. It's usef
 
 One of the quickest ways of discarding normal traffic is by looking at the destination hosts and ports. This is one of those cases where both the destination reverse lookup and the port looked weird to me.
 
-<img src="http://s22.postimg.org/sqgishxyp/Screen_Shot_2013_07_14_at_12_42_34_PM.png" style="center" width="1000" height="350"/>
+<img src="https://s22.postimg.org/sqgishxyp/Screen_Shot_2013_07_14_at_12_42_34_PM.png" style="center" width="1000" height="350"/>
 
 Well, hpvirtgrp sounds like it should be something along the lines of HP Virtual Machine Group Management. I'm pretty sure there should be no HP-related traffic coming from my host, specially to some random domain on the internet.
 

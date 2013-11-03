@@ -2,6 +2,8 @@
 title: "Raising the dead - Undeleting files in ext4"
 date: '2012-08-05'
 summary: "Chances are that you have, at least once in your life, deleted files that you had no backups of. This is the story of how I partially recovered some of my files after deleting them on a Linux ext4 filesystem."
+tags: [ ext4, unix ]
+categories: protip
 ---
 
 Chances are that you have, at least once in your life, deleted files that you had no backups of. This is how I **partially** recovered some of my files after deleting them on a Linux ext4 filesystem.

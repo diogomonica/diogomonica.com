@@ -2,7 +2,8 @@
 title: Merging multiple .pcap files
 date: '2011-01-27'
 summary: Today I needed to merge 40 ~600Mb .pcap files into one humongous capture file...
-categories:
+tags: [ pcap, tcpdump ]
+categories: code
 ---
 
 Today I needed to merge 40 ~600Mb .pcap files into one humongous capture file.
