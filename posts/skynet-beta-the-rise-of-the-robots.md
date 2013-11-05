@@ -14,6 +14,8 @@ Each Beam robot boasts two wide-angle HD cameras, a 6-microphone array that canc
 
 The first thing that I thought when I used them the first time was how amazing the video/sounds quality was. The second was, <ux class="highlight"><b>can I hack it?</b></ux>
 
+<ux class="highlight">TL;DR:</b></ux> The beam client application didn't validate the remote server's certificate leading to the ability of an attacker stealing credentials by using a MITM attack. [Get the PoC code here](https://gist.github.com/diogomonica/a24a7285f31804d37144).
+
 # The perfect trojan-horse
 
 What could be better than having an employee as an insider at a company? Having an insider robot, of course. Particularly one that has 2 HD cameras, a microphone and wheels to stroll around the office at 3am.
@@ -38,7 +40,7 @@ Inspecting the network communication using wireshark, it becomes obvious that th
 
 <img src="{{urls.media}}/skynet-beta-the-rise-of-the-robots/beam_tls_hello.png" style="display: block;margin-left: auto;margin-right: auto" />
 
-The application communicates with two different remote-servers: xmpp.suitabletech.com and suitabletech.com. Initially, several plain-text XMPP messages are exchanged, but then the client sends a STARTTLS connection and after the TLS negotiation all data begins being sent encrypted. This seems like a solid design.
+The application communicates with two different remote-servers: xmpp.suitabletech.com and suitabletech.com. Initially, several plain-text XMPP messages are exchanged, but then the client sends a STARTTLS connection and after the TLS negotiation all data is sent encrypted. This seems like a solid design.
 
 I ran the Beam application directly from the command-line and I got some very useful debugging information. Of particular relevance was this warning line:
 
