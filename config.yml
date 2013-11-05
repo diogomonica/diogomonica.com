@@ -1,2 +1,8 @@
+production_url : 'https://diogomonica.com'
+
 "theme-bootstrap-2":
   "use" : "theme"
+
+posts :
+  summary_lines : 10
+  "sort" : ["date", "desc"]
