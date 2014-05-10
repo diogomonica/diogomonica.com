@@ -6,9 +6,3 @@ production_url : 'https://diogomonica.com'
 posts :
   summary_lines : 10
   "sort" : ["date", "desc"]
-
-widgets :
-  analytics :
-    use : google
-    # -- config for google --
-    tracking_id : 'UA-7039913-2'
