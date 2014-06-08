@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ page.title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {{# page.description }}
+    <meta name="description" content="{{ . }}">
+  {{/ page.description }}
+    <meta name="author" content="{{ data.author.name }}">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    {{# stylesheets.load }}
+      bootstrap.min.css
+      style.css
+      diogo_style.css
+      google_prettify/sons-of-obsidian.css
+    {{/ stylesheets.load }}
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="grid leadin">
+      <div class="wrap">
+        <img class="awesome" src="{{urls.media}}/diogo_grid_70.jpg" alt="Diogo Monica's Picture" width="300" height="300"/>
+        <a class="home" href="/"><img src="{{urls.media}}/home.png" alt="Home" /></a>
+        <h1 class="short-bio">
+          <div class="short-bio-block"><span class="short-bio-line">I'm a <strong>Security Engineer</strong> @Square</span></div>
+          <div class="short-bio-block"><span class="short-bio-line">and a <strong>PhD Candidate</strong> @IST.</span></div>
+          <div class="short-bio-block"><span class="short-bio-line">Follow <strong><a href="https://twitter.com/diogomonica">@diogomonica</a></strong> on twitter</span></div>
+          <div class="short-bio-block"><span class="short-bio-line">or learn a little bit more <strong><a href="/about">about me</a></strong>.</span></div>
+        </h1>
+      </div>
+    </div>
+
+    <div class="container-narrow">
+
+      <div class="content">
+        {{{ content }}}
+      </div>
+
+      <hr>
+      <div class="footer">
+        <p>&copy; {{ data.author.name }} 2013
+        </p>
+      </div>
+
+    </div> <!-- /container -->
+
+    <!-- Google Prettify -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js"></script>
+    <script>
+      var pres = document.getElementsByTagName("pre");
+      for (var i=0; i < pres.length; ++i) {
+        pres[i].className = "prettyprint linenums";
+      }
+      prettyPrint();
+    </script>
+    <!-- end Google Prettify -->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-7039913-2', 'diogomonica.com');
+  ga('require', 'displayfeatures');
+  ga('send', 'pageview');
+</script>    
+  </body>
+</html>
