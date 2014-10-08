@@ -4,5 +4,5 @@ production_url : 'https://diogomonica.com'
   "use" : "theme"
 
 posts :
-  summary_lines : 10
+  summary_lines : 5
   "sort" : ["date", "desc"]

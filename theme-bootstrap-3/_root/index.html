@@ -10,13 +10,14 @@ description: Welcome to Diogo Mónica's Personal Website
   {{{ summary }}}
 
   <div class="more">
-    <a href="{{url}}" class="btn btn-small">read more..</a>
+    <a href="{{url}}" class="btn btn-primary btn-sm" role="button">read more..</a> 
+
   </div>
 </div>
 {{/ posts.paginator }}
 
-<div class="pagination">
-  <ul>
+<div>
+  <ul class="pagination pagination-sm">
   {{#posts.paginator_navigation}}
     {{#is_active_page}}
       <li class="active"><a href="{{url}}">{{name}}</a></li>
