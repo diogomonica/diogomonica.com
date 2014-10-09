@@ -38,7 +38,7 @@ body {
   Generic
 ---------------------------------------------------*/
 a:hover {
-  color: #ff0000;
+  color: #404040;
 }
 p {
   line-height: 1.6em;
@@ -58,11 +58,6 @@ hr {
   margin: 0 auto;
   padding: 0 20px;
   position: relative;
-}
-@media (max-width: 800px) {
-  .content {
-    padding: 0 30px;
-  }
 }
 .grid {
   background: url(../media/linen.jpg) #eeeeee 50% 0%;
@@ -94,6 +89,23 @@ a {
 .footer {
   text-align: right;
   margin-bottom: 30px;
+}
+
+/*---------------------------------------------------
+  Layout - Mobile stuff
+---------------------------------------------------*/
+@media (max-width: 800px) {
+  .content {
+    padding: 0 30px;
+  }
+  .post > h3.title span.date { 
+    font-size: 10px;
+    display: block;
+  }
+  .page-header > h1.title span.date { 
+    font-size: 10px;
+    display: block;
+  }
 }
 
 .short-bio {
@@ -151,6 +163,13 @@ a {
   }
 }
 
+.page-header > h1.title span.date { 
+  position:absolute;
+  padding-top: 5px;
+  right:260px;
+  font-size:0.7em;
+}
+
 /* Custom container */
 .container-narrow {
   margin: auto;
@@ -162,21 +181,22 @@ a {
 
 /* posts index */
 .post > h3.title {
-  position:relative;
-  padding-top:10px;
   font-weight: bold;
 }
 .post > h3.title span.date { 
-  position:absolute;
-  right:0;
-  font-size:0.9em;
+  position:absolute;  
+  right:35px;
+  padding-top: 5px;
+  font-size:0.7em;
 }
+
 .post > .more {
   margin:10px 0;
   text-align:left;
 }
 
 /* tag_box */
+/*
 .tag_box {
   list-style:none;
   margin:0;
@@ -212,3 +232,4 @@ a {
   border:1px solid #4C964D;
   color:#FFF;
 }
+*/

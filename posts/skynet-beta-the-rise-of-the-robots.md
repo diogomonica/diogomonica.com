@@ -6,7 +6,7 @@ tags: [ beam, java, python, TLS, mitm]
 categories: sleuthing
 ---
 
-<img src="{{urls.media}}/skynet-beta-the-rise-of-the-robots/beam_robot.jpg" width="250" style="float:right;max-width:100%;height:auto;"/>
+<img src="{{urls.media}}/skynet-beta-the-rise-of-the-robots/beam_robot.jpg" width="250" style="float:right;max-width:25%;height:auto;"/>
 
 At work we bought a few telepresence robots from [SuitableTech](https://suitabletech.com/) called Beam. The Beam robots allow anyone from a remote location to have face-to-face interaction with the people at our HQ.
 
