@@ -54,6 +54,24 @@ ol#footnotes:before {content: "———"; letter-spacing: -4px;margin-left: -1.
 ol p, ul p {margin-bottom: 0px;}
 li {margin-bottom: 0.75em;margin-top: 0.75em;}
 
+img { 
+  max-width:100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+
+}
+
+img.shadow { 
+  border: solid 1px #CCC; 
+  -moz-box-shadow: 1px 1px 5px #999; 
+  -webkit-box-shadow: 1px 1px 5px #999; 
+  box-shadow: 1px 1px 5px #999; 
+}
+
+ux.highlight {
+     background-color: #ffffaa;
+}
 
 @keyframes highfade {
     0% {
