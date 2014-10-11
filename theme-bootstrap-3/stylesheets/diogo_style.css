@@ -192,12 +192,16 @@ hr {
 
 }
 .short-bio {
-  font-size: 18px;
   font-weight: bold;
+}
+@media (max-width: 480px) {
+  .short-bio {
+    font-size: 16px;
+  }
 }
 @media (min-width: 480px) {
   .short-bio {
-    font-size: 24px;
+    font-size: 20px;
   }
 }
 @media (min-width: 550px) {
