@@ -6,3 +6,9 @@ production_url : 'https://diogomonica.com'
 posts :
   summary_lines : 5
   "sort" : ["date", "desc"]
+
+plugins:
+  sitemap:
+    file_name: sitemap.xml
+    changefreq: daily
+    priority: 0.7
