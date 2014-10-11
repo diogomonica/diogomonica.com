@@ -173,7 +173,7 @@ hr {
 ---------------------------------------------------*/
 @media (max-width: 800px) {
   .content {
-    padding: 0 30px;
+    padding: 0 13px;
   }
   .post > h3.title span.date { 
     font-size: 10px;
