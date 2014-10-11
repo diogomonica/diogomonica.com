@@ -26,7 +26,7 @@ In this post I’m going to make the following arguments:
 
 Every time someone writes about the topic of passwords the XKCD comic shown above up makes an appearance.
 
-The reality is that the number of passwords you should memorize is pretty small, and there is no need of teaching users how to choose good passwords. Everyone knows what a good password looks like, we just can't memorize unique, strong passwords, for every single on-line service out there.
+The fact is that the number of passwords you should memorize is pretty small, and there is no need of teaching users how to choose good passwords. Everyone knows what a good password looks like, we just can't memorize unique, strong passwords, for every single on-line service out there.
 
 With the advent of password managers, the large majority of all passwords should just be randomly generated, and replaced with a single password that provides access to all the others. This solves both the strength and memorability problems for 95% of your passwords.
 
