@@ -16,4 +16,4 @@ Anyway, the point of this post is to share a Security oriented presentation that
 
 ## The presentation
 
-<iframe src="https://www.slideshare.net/slideshow/embed_code/34457245" width="597" height="486" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px 1px 0; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/diogomonica/multipath-tcp-the-path-to-multipath-34457245" title="MultiPath TCP - The path to multipath" target="_blank">MultiPath TCP - The path to multipath</a> </strong> from <strong><a href="https://www.slideshare.net/diogomonica" target="_blank">Diogo Mónica</a></strong> </div>
+<iframe src="https://www.slideshare.net/slideshow/embed_code/34457245" width="597" height="486" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px 1px 0; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> 
