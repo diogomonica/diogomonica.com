@@ -9,7 +9,7 @@ categories: code
 
 Sniffing in OS X has been a reality for quite some time, thanks to the effort of people like the guys from Kismet (<https://www.kismetwireless.net/>) and KisMAC (<http://trac.kismac-ng.org/>).
 
-<img src="https://2.bp.blogspot.com/_Za6UPEUpjR4/TRjc5y3WUDI/AAAAAAAABJo/qHwe92cFBpo/s320/how_to_hack_wifi.jpg" style="float:right;margin:0px 30px 0px 0px;" />
+<img src="https://2.bp.blogspot.com/_Za6UPEUpjR4/TRjc5y3WUDI/AAAAAAAABJo/qHwe92cFBpo/s320/how_to_hack_wifi.jpg" width="180px" style="float:left;margin:0px 30px 0px 0px;" />
 
 In the old days (Old OSX versions), they used undocumented IOCTLs and modifications to parameters in the kernel module bundles, to be able to set the airport in monitor mode.
 

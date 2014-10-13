@@ -29,8 +29,8 @@ img {max-width: 100%;}
 
 p {margin:0 0 1.5em;}
 
-a:focus, a:hover {color:#404040;}
-a {color:#1d9c6b;text-decoration}
+a:focus, a:hover {color:#77C4A6; text-decoration: none;}
+a {color:#1d9c6b;}
 blockquote {margin:1.5em;color:#404040;}
 strong, dfn {font-weight:bold;}
 em, dfn {font-style:italic;}
@@ -172,15 +172,16 @@ hr {
 ---------------------------------------------------*/
 @media (max-width: 800px) {
   .content {
-    padding: 0 13px;
+    padding: 10px 13px 0;
   }
-  .post > h3.title span.date { 
-    font-size: 10px;
-    display: block;
+  .content .page-header {
+    margin: 10px;
   }
-  .page-header > h1.title span.date { 
-    font-size: 10px;
-    display: block;
+  .content .page-header .title {
+    width: 100%;
+  }
+  .content .page-header .date {
+    position: relative;
   }
 }
 
@@ -251,6 +252,20 @@ hr {
     right: auto;
   }
 }
+.page-header {
+  position: relative;
+  overflow: auto;
+}
+.page-header .title {
+  float:left;
+  width: 700px;
+}
+.page-header .date {
+  float: right;
+  position: absolute;
+  bottom: 10px;
+  width: 100px;
+}
 
 .page-header > h1.title span.date { 
   position:absolute;
@@ -280,8 +295,8 @@ hr {
 }
 
 .post > .more {
-  margin:10px 0;
-  text-align:left;
+  margin:10px 50px;
+  text-align:right;
 }
 
 /* tag_box */
