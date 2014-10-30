@@ -19,7 +19,7 @@ In this post I’m going to make the following arguments:
 
 - Choosing a password should be something you do very infrequently.
 - Our focus should be on protecting passwords against informed statistical attacks and not brute-force attacks.
-- When you do have to choose a password, one of the most important selection criteria should be how many other people have also chosen that same password.
+- When you do have to choose a password, one of the most important selection criterion should be how many other people have also chosen that same password.
 - One of the most impactful things that we can do as a security community is to change password strength meters and disallow the use of common passwords.
 
 ## Users should not be choosing passwords
@@ -50,7 +50,7 @@ Without stealing the password hash, attackers are limited to trying username/pas
 
 This means that we should stop blindly classifying password strength based on the number of bits of entropy<sup><a id="ffn3" href="#fn3" class="footnote">3</a></sup>, and should consider first and foremost how dictionary-attack resistant the passwords is.
 
-## A better password validation criteria
+## A better password validation criterion
 
 Password validation heuristic rules, (e.g. minimum length, forceful use of alphanumeric characters, etc) are largely ineffective and are often counterproductive.
 
@@ -58,7 +58,7 @@ These heuristics are inadvertently leading users to the repeated use of very com
 
 This leads to the repeated use of what are, in fact, very weak passwords, highly vulnerable to statistical guessing attacks (a dictionary based attack ordered by decreasing probability of occurrence). 
 
-When coupled with the predominance of dictionary based attacks and leaks of large password data sets, this situation has led, in later years, to the idea that the most useful criterion on which to classify the strength of a candidate password, is the frequency with which it has appeared in the past.
+When coupled with the predominance of dictionary based attacks and leaks of large password data sets, this situation has led, in later years, to the idea that the single most useful criterion on which to classify the strength of a candidate password, is the frequency with which it has appeared in the past.
 
 <div class="image_cont">
 <img src="{{urls.media}}/password-security-why-the-horse-battery-staple-is-not-correct/distribution1.png" width="300" style="display:inline" />
