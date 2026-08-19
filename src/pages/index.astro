@@ -4,6 +4,8 @@ import {
   BLOG,
   BIO,
   DISPLAY,
+  HERO_LEDE,
+  HERO_ROLES,
   PATENTS,
   PATENT_FIGURES,
   PERSON,
@@ -11,7 +13,6 @@ import {
   PHOTO_ALT,
   RESEARCH,
   RESEARCH_FIGURES,
-  ROLES,
   TALKS,
   WEBSITE,
   WRITING,
@@ -33,8 +34,6 @@ const jsonLd = {
 const roleHrefs: Record<string, string> = {
   "General Partner, Haun Ventures": "https://www.haun.co/team/diogo-monica",
   "Co-founder and Executive Chairman, Anchorage Digital": "https://www.anchorage.com",
-  "Chairman, NEAR Foundation": "https://near.foundation",
-  "Director, Erebor": "https://www.haun.co/writing/erebor",
 };
 ---
 <Base title={DISPLAY} description={BIO} path="/" jsonLd={jsonLd}>
@@ -49,14 +48,14 @@ const roleHrefs: Record<string, string> = {
     />
     <div>
       <h1 class="wordmark">Diogo<span class="wordmark-dim"> Mónica</span></h1>
-      <p class="lede">{BIO}</p>
+      <p class="lede">{HERO_LEDE}</p>
       <p class="bio">
         Previously I led security at Docker and platform security at Square.
         Before joining tech, I spent a while getting a PhD in Computer Science
         at Instituto Superior Técnico. Oh, and I love angel investing.
       </p>
       <ul class="roles">
-        {ROLES.map((role) => (
+        {HERO_ROLES.map((role) => (
           <li>
             <a href={roleHrefs[role]}>{role}</a>
           </li>

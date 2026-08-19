@@ -17,6 +17,11 @@ export const ROLES = [
 export const BIO =
   "General Partner at Haun Ventures. Co-founder and Executive Chairman of Anchorage Digital. Chairman of the NEAR Foundation. Director at Erebor.";
 
+export const HERO_LEDE =
+  "General Partner at Haun Ventures. Co-founder and Executive Chairman of Anchorage Digital.";
+
+export const HERO_ROLES = ROLES.slice(0, 2);
+
 export const SAME_AS = [
   "https://x.com/diogomonica",
   "https://www.linkedin.com/in/diogomonica",
