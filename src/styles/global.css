@@ -295,7 +295,7 @@ h2 {
 .talk-card:hover { color: var(--fg); border-color: var(--muted); }
 .talk-thumb {
   display: block;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 4 / 3;
   background: var(--bg-elev);
   overflow: hidden;
 }
