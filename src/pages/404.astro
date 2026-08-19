@@ -1,0 +1,15 @@
+---
+import Base from "../layouts/Base.astro";
+import { BLOG } from "../lib/site";
+---
+<Base title="Not found" description="This page does not exist." path="/404">
+  <section class="lost">
+    <p class="lost-code">404</p>
+    <h1 class="wordmark">Not<span class="wordmark-dim"> found</span></h1>
+    <p>That URL is not on this site. Essays live on the blog.</p>
+    <p class="lost-links">
+      <a href="/">Home</a>
+      <a href={BLOG}>Blog</a>
+    </p>
+  </section>
+</Base>

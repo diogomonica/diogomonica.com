@@ -1,0 +1,86 @@
+---
+import "../styles/global.css";
+import BrandMark from "../components/BrandMark.astro";
+import { BLOG, BIO, DISPLAY, PHOTO, SAME_AS, SITE } from "../lib/site";
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  jsonLd?: object;
+}
+
+const { title, description, path, jsonLd } = Astro.props;
+const url = new URL(path, SITE).href;
+const ogImage = new URL(PHOTO, SITE).href;
+const pageTitle = path === "/" ? `${DISPLAY} — ${BIO}` : `${title} · ${DISPLAY}`;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#0d0d0d" />
+  <style is:inline>
+    html{background:#0d0d0d;color-scheme:dark}
+  </style>
+  <title>{pageTitle}</title>
+  <meta name="description" content={description} />
+  <meta name="author" content={DISPLAY} />
+  <link rel="canonical" href={url} />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta property="og:site_name" content={DISPLAY} />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={url} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:alt" content="Portrait of Diogo Mónica" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@diogomonica" />
+  <meta name="twitter:creator" content="@diogomonica" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+  {SAME_AS.map((href) => <link rel="me" href={href} />)}
+  {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/" aria-label={DISPLAY}>
+        <BrandMark />
+        <span class="sr-only">{DISPLAY}</span>
+      </a>
+      <nav class="top-nav" aria-label="Site">
+        <a href="/" aria-current={path === "/" ? "page" : undefined}>Home</a>
+        <a class="nav-primary" href={BLOG}>Blog</a>
+        <a rel="me" href="https://x.com/diogomonica">X</a>
+        <a rel="me" href="https://www.linkedin.com/in/diogomonica">LinkedIn</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="wrap"><slot /></main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <span class="footer-brand">
+        <BrandMark class="footer-mark" />
+        <span>© {DISPLAY}</span>
+      </span>
+      <nav aria-label="Identity">
+        <a href={BLOG}>Blog</a>
+        <a rel="me" href="https://x.com/diogomonica">@diogomonica</a>
+        <a rel="me" href="https://www.linkedin.com/in/diogomonica">LinkedIn</a>
+        <a rel="me" href="https://en.wikipedia.org/wiki/Diogo_Mónica">Wikipedia</a>
+        <a rel="me" href="https://www.wikidata.org/wiki/Q111948997">Wikidata</a>
+        <a rel="me" href="https://www.haun.co/team/diogo-monica">Haun</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
