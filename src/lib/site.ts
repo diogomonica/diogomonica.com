@@ -209,10 +209,46 @@ export const RESEARCH = [
 ];
 
 export const TALKS = [
-  { title: "Bitcoin ETFs", href: "https://www.youtube.com/watch?v=Uaz9Ahbqngw" },
-  { title: "Regulatory clarity in crypto", href: "https://www.youtube.com/watch?v=QVB0qd67JpY" },
-  { title: "Institutions coming to crypto", href: "https://www.youtube.com/watch?v=sbBgQCGqxZk" },
-  { title: "A Docker image walks into a notary", href: "https://www.youtube.com/watch?v=JvjdfQC8jxM" },
-  { title: "Heart & Hustle of Portugal", href: "https://www.youtube.com/watch?v=YundCatIPec" },
-  { title: "Bitcoin going mainstream", href: "https://www.youtube.com/watch?v=MHcD27Q0Dm4" },
+  {
+    title: "Bitcoin ETFs",
+    href: "https://www.youtube.com/watch?v=Uaz9Ahbqngw",
+    image: "/assets/talks/talk-1.jpg",
+    width: 1280,
+    height: 720,
+  },
+  {
+    title: "Regulatory clarity in crypto",
+    href: "https://www.youtube.com/watch?v=QVB0qd67JpY",
+    image: "/assets/talks/talk-2.jpg",
+    width: 1280,
+    height: 720,
+  },
+  {
+    title: "Institutions coming to crypto",
+    href: "https://www.youtube.com/watch?v=sbBgQCGqxZk",
+    image: "/assets/talks/talk-3.jpg",
+    width: 640,
+    height: 480,
+  },
+  {
+    title: "A Docker image walks into a notary",
+    href: "https://www.youtube.com/watch?v=JvjdfQC8jxM",
+    image: "/assets/talks/talk-4.jpg",
+    width: 1280,
+    height: 720,
+  },
+  {
+    title: "Heart & Hustle of Portugal",
+    href: "https://www.youtube.com/watch?v=YundCatIPec",
+    image: "/assets/talks/talk-5.jpg",
+    width: 1280,
+    height: 720,
+  },
+  {
+    title: "Bitcoin going mainstream",
+    href: "https://www.youtube.com/watch?v=MHcD27Q0Dm4",
+    image: "/assets/talks/talk-6.jpg",
+    width: 640,
+    height: 480,
+  },
 ];

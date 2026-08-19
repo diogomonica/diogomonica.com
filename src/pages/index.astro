@@ -161,13 +161,25 @@ const roleHrefs: Record<string, string> = {
   <section class="section" id="speaking" aria-labelledby="speaking-heading">
     <h2 id="speaking-heading">I talk about stuff</h2>
     <p>
-      Talks on crypto, security, financial regulation, venture capital, startups,
-      and financial literacy. Appearances are also collected on the
-      <a href={`${BLOG}/media-timeline/`}>blog media timeline</a>.
+      I speak regularly on the topics of crypto, security, financial regulations, venture capital, startups, and financial literacy.
     </p>
-    <ul class="plain-list">
+    <ul class="talk-grid">
       {TALKS.map((item) => (
-        <li><a href={item.href}>{item.title}</a></li>
+        <li>
+          <a class="talk-card" href={item.href}>
+            <span class="talk-thumb">
+              <img
+                src={item.image}
+                alt=""
+                width={item.width}
+                height={item.height}
+                loading="lazy"
+                decoding="async"
+              />
+            </span>
+            <span class="talk-title">{item.title}</span>
+          </a>
+        </li>
       ))}
     </ul>
     <a class="more" href="https://www.youtube.com/results?search_query=diogo+monica">More talks</a>
