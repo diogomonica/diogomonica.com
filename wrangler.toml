@@ -1,0 +1,13 @@
+# Cloudflare Pages project for diogomonica.com
+#
+# Dashboard / Pages Git integration:
+#   Framework preset: Astro
+#   Build command:    npm run build
+#   Output directory: dist
+#   Node.js version:  22
+#
+# Local: npm run build && npx wrangler pages dev dist
+
+name = "diogomonica-com"
+compatibility_date = "2026-08-19"
+pages_build_output_dir = "./dist"

@@ -1,0 +1,146 @@
+---
+import Base from "../layouts/Base.astro";
+import {
+  BLOG,
+  BIO,
+  DEGREES,
+  DISPLAY,
+  PATENTS,
+  PERSON,
+  PHOTO,
+  PHOTO_ALT,
+  RESEARCH,
+  ROLES,
+  TALKS,
+  WEBSITE,
+  WRITING,
+} from "../lib/site";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [PERSON, WEBSITE],
+};
+
+const roleHrefs: Record<string, string> = {
+  "General Partner, Haun Ventures": "https://www.haun.co/team/diogo-monica",
+  "Co-founder and Executive Chairman, Anchorage Digital": "https://www.anchorage.com",
+  "Chairman, NEAR Foundation": "https://near.foundation",
+  "Director, Erebor": "https://www.haun.co/writing/erebor",
+};
+---
+<Base title={DISPLAY} description={BIO} path="/" jsonLd={jsonLd}>
+  <section class="hero">
+    <img
+      class="portrait"
+      src={PHOTO}
+      alt={PHOTO_ALT}
+      width="1200"
+      height="1400"
+      decoding="async"
+    />
+    <div>
+      <h1 class="wordmark">Diogo<span class="wordmark-dim"> Mónica</span></h1>
+      <p class="lede">{BIO}</p>
+      <p class="bio">
+        Previously I led security at Docker and platform security at Square.
+        Before joining tech, I spent a while getting a PhD in Computer Science
+        at Instituto Superior Técnico. Oh, and I love angel investing.
+      </p>
+      <ul class="roles">
+        {ROLES.map((role) => (
+          <li>
+            <a href={roleHrefs[role]}>{role}</a>
+          </li>
+        ))}
+      </ul>
+      <p class="identity-links">
+        <a href={BLOG}>blog.diogomonica.com</a>
+        <a rel="me" href="https://x.com/diogomonica">@diogomonica</a>
+        <a rel="me" href="https://www.linkedin.com/in/diogomonica">LinkedIn</a>
+        <a rel="me" href="https://en.wikipedia.org/wiki/Diogo_Mónica">Wikipedia</a>
+      </p>
+    </div>
+  </section>
+
+  <aside class="blog-banner">
+    <p>Essays, archive, and the press media kit live on the blog. This page is the short hub.</p>
+    <a href={BLOG}>Read the blog</a>
+  </aside>
+
+  <section class="section" id="writing" aria-labelledby="writing-label">
+    <p class="section-label" id="writing-label">Writing</p>
+    <h2>Haun notes, plus the long archive</h2>
+    <p>
+      Recent Haun writing is listed here. Everything else — security, infrastructure,
+      and digital assets — is on <a href={BLOG}>blog.diogomonica.com</a>.
+    </p>
+    <ul class="link-list">
+      {WRITING.map((item) => (
+        <li>
+          <time datetime={item.date}>{item.label}</time>
+          <div>
+            <a href={item.href}>{item.title}</a>
+            <p>{item.excerpt}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+    <a class="more" href={BLOG}>All essays on the blog</a>
+  </section>
+
+  <section class="section" id="patents" aria-labelledby="patents-label">
+    <p class="section-label" id="patents-label">Patents</p>
+    <h2>I build stuff</h2>
+    <p>
+      Patents on payment architectures, payment hardware, private key management,
+      digital-asset custody, cryptographic systems, and blockchain.
+    </p>
+    <ul class="plain-list">
+      {PATENTS.map((item) => (
+        <li><a href={item.href}>{item.title}</a></li>
+      ))}
+    </ul>
+    <a class="more" href="https://patents.justia.com/search?q=diogo+monica">All patents</a>
+  </section>
+
+  <section class="section" id="research" aria-labelledby="research-label">
+    <p class="section-label" id="research-label">Research</p>
+    <h2>I research stuff</h2>
+    <p>
+      Papers on security, distributed systems, botnets, intrusion detection,
+      quorum systems, and passwords.
+    </p>
+    <ul class="plain-list">
+      {RESEARCH.map((item) => (
+        <li><a href={item.href}>{item.title}</a></li>
+      ))}
+    </ul>
+    <a class="more" href="https://www.researchgate.net/profile/Diogo-Monica">ResearchGate profile</a>
+  </section>
+
+  <section class="section" id="speaking" aria-labelledby="speaking-label">
+    <p class="section-label" id="speaking-label">Speaking</p>
+    <h2>I talk about stuff</h2>
+    <p>
+      Talks on crypto, security, financial regulation, venture capital, startups,
+      and financial literacy. Appearances are also collected on the
+      <a href={`${BLOG}/media-timeline/`}>blog media timeline</a>.
+    </p>
+    <ul class="plain-list">
+      {TALKS.map((item) => (
+        <li><a href={item.href}>{item.title}</a></li>
+      ))}
+    </ul>
+    <a class="more" href="https://www.youtube.com/results?search_query=diogo+monica">More talks</a>
+  </section>
+
+  <section class="section" id="education" aria-labelledby="education-label">
+    <p class="section-label" id="education-label">Education</p>
+    <h2>Instituto Superior Técnico</h2>
+    <ul class="plain-list">
+      {DEGREES.map((degree) => (
+        <li>{degree.years} — {degree.line}</li>
+      ))}
+    </ul>
+  </section>
+</Base>

@@ -1,2 +1,4 @@
-compiled/*
-sync.sh
+node_modules/
+dist/
+.astro/
+.DS_Store
