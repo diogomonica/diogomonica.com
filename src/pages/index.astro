@@ -6,15 +6,25 @@ import {
   DEGREES,
   DISPLAY,
   PATENTS,
+  PATENT_FIGURES,
   PERSON,
   PHOTO,
   PHOTO_ALT,
   RESEARCH,
+  RESEARCH_FIGURES,
   ROLES,
   TALKS,
   WEBSITE,
   WRITING,
 } from "../lib/site";
+
+function splitList<T>(items: T[]) {
+  const mid = Math.ceil(items.length / 2);
+  return [items.slice(0, mid), items.slice(mid)];
+}
+
+const patentCols = splitList(PATENTS);
+const researchCols = splitList(RESEARCH);
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -67,9 +77,8 @@ const roleHrefs: Record<string, string> = {
     <a href={BLOG}>Read the blog</a>
   </aside>
 
-  <section class="section" id="writing" aria-labelledby="writing-label">
-    <p class="section-label" id="writing-label">Writing</p>
-    <h2>Haun notes, plus the long archive</h2>
+  <section class="section" id="writing" aria-labelledby="writing-heading">
+    <h2 id="writing-heading">Haun notes, plus the long archive</h2>
     <p>
       Recent Haun writing is listed here. Everything else — security, infrastructure,
       and digital assets — is on <a href={BLOG}>blog.diogomonica.com</a>.
@@ -88,39 +97,70 @@ const roleHrefs: Record<string, string> = {
     <a class="more" href={BLOG}>All essays on the blog</a>
   </section>
 
-  <section class="section" id="patents" aria-labelledby="patents-label">
-    <p class="section-label" id="patents-label">Patents</p>
-    <h2>I build stuff</h2>
+  <section class="section" id="patents" aria-labelledby="patents-heading">
+    <h2 id="patents-heading">I build stuff</h2>
     <p>
-      Patents on payment architectures, payment hardware, private key management,
-      digital-asset custody, cryptographic systems, and blockchain.
+      I have several patents on payment architectures, payment hardware, private key management, digital asset custody, cryptographic systems, and blockchain.
     </p>
-    <ul class="plain-list">
-      {PATENTS.map((item) => (
-        <li><a href={item.href}>{item.title}</a></li>
+    <ul class="figure-row">
+      {PATENT_FIGURES.map((figure) => (
+        <li class="figure-card">
+          <img
+            src={figure.src}
+            alt={figure.alt}
+            width={figure.width}
+            height={figure.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </li>
       ))}
     </ul>
+    <div class="split-list">
+      {patentCols.map((col) => (
+        <ul class="plain-list">
+          {col.map((item) => (
+            <li><a href={item.href}>{item.title}</a></li>
+          ))}
+        </ul>
+      ))}
+    </div>
     <a class="more" href="https://patents.justia.com/search?q=diogo+monica">All patents</a>
   </section>
 
-  <section class="section" id="research" aria-labelledby="research-label">
-    <p class="section-label" id="research-label">Research</p>
-    <h2>I research stuff</h2>
+  <section class="section" id="research" aria-labelledby="research-heading">
+    <h2 id="research-heading">I research stuff</h2>
     <p>
-      Papers on security, distributed systems, botnets, intrusion detection,
-      quorum systems, and passwords.
+      I've published several papers on the topics of security, distributed systems, botnets, intrusion detection systems, quorum systems, and passwords.
     </p>
-    <ul class="plain-list">
-      {RESEARCH.map((item) => (
-        <li><a href={item.href}>{item.title}</a></li>
+    <ul class="figure-row">
+      {RESEARCH_FIGURES.map((figure) => (
+        <li class="figure-card">
+          <img
+            src={figure.src}
+            alt={figure.alt}
+            width={figure.width}
+            height={figure.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </li>
       ))}
     </ul>
+    <div class="split-list">
+      {researchCols.map((col) => (
+        <ul class="plain-list">
+          {col.map((item) => (
+            <li><a href={item.href}>{item.title}</a></li>
+          ))}
+        </ul>
+      ))}
+    </div>
     <a class="more" href="https://www.researchgate.net/profile/Diogo-Monica">ResearchGate profile</a>
   </section>
 
-  <section class="section" id="speaking" aria-labelledby="speaking-label">
-    <p class="section-label" id="speaking-label">Speaking</p>
-    <h2>I talk about stuff</h2>
+  <section class="section" id="speaking" aria-labelledby="speaking-heading">
+    <h2 id="speaking-heading">I talk about stuff</h2>
     <p>
       Talks on crypto, security, financial regulation, venture capital, startups,
       and financial literacy. Appearances are also collected on the
@@ -134,9 +174,8 @@ const roleHrefs: Record<string, string> = {
     <a class="more" href="https://www.youtube.com/results?search_query=diogo+monica">More talks</a>
   </section>
 
-  <section class="section" id="education" aria-labelledby="education-label">
-    <p class="section-label" id="education-label">Education</p>
-    <h2>Instituto Superior Técnico</h2>
+  <section class="section" id="education" aria-labelledby="education-heading">
+    <h2 id="education-heading">Instituto Superior Técnico</h2>
     <ul class="plain-list">
       {DEGREES.map((degree) => (
         <li>{degree.years} — {degree.line}</li>

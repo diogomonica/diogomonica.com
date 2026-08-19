@@ -141,6 +141,22 @@ export const WRITING = [
   },
 ];
 
+export const PATENT_FIGURES = [
+  { src: "/assets/figures/patent-1.png", alt: "Patent diagram 1", width: 934, height: 672 },
+  { src: "/assets/figures/patent-2.png", alt: "Patent diagram 2", width: 1024, height: 732 },
+  { src: "/assets/figures/patent-3.png", alt: "Patent diagram 3", width: 980, height: 1264 },
+  { src: "/assets/figures/patent-4.png", alt: "Patent diagram 4", width: 1024, height: 762 },
+  { src: "/assets/figures/patent-5.png", alt: "Patent diagram 5", width: 1058, height: 606 },
+];
+
+export const RESEARCH_FIGURES = [
+  { src: "/assets/figures/research-1.png", alt: "Research diagram 1", width: 1398, height: 1106 },
+  { src: "/assets/figures/research-2.png", alt: "Research diagram 2", width: 680, height: 560 },
+  { src: "/assets/figures/research-3.png", alt: "Research diagram 3", width: 682, height: 494 },
+  { src: "/assets/figures/research-4.png", alt: "Research diagram 4", width: 454, height: 432 },
+  { src: "/assets/figures/research-5.png", alt: "Research diagram 5", width: 998, height: 854 },
+];
+
 export const PATENTS = [
   { title: "Digital Asset Custodial System", href: "https://patents.justia.com/patent/10586227" },
   {
