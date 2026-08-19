@@ -3,7 +3,6 @@ import Base from "../layouts/Base.astro";
 import {
   BLOG,
   BIO,
-  DEGREES,
   DISPLAY,
   PATENTS,
   PATENT_FIGURES,
@@ -172,14 +171,5 @@ const roleHrefs: Record<string, string> = {
       ))}
     </ul>
     <a class="more" href="https://www.youtube.com/results?search_query=diogo+monica">More talks</a>
-  </section>
-
-  <section class="section" id="education" aria-labelledby="education-heading">
-    <h2 id="education-heading">Instituto Superior Técnico</h2>
-    <ul class="plain-list">
-      {DEGREES.map((degree) => (
-        <li>{degree.years} — {degree.line}</li>
-      ))}
-    </ul>
   </section>
 </Base>
