@@ -231,10 +231,17 @@ h2 {
 .section {
   margin: 0 0 2.1rem;
 }
+.section + .section {
+  margin-top: 0.4rem;
+  padding-top: 2.35rem;
+  border-top: 1px solid var(--line);
+}
 .section h2 {
-  font-size: clamp(1.45rem, 3.2vw, 2rem);
-  margin: 0 0 0.55rem;
+  font-size: clamp(1.9rem, 4.2vw, 2.55rem);
+  margin: 0 0 0.7rem;
   font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
 }
 .section p {
   margin: 0 0 0.85rem;
