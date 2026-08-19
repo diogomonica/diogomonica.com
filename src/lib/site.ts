@@ -227,8 +227,8 @@ export const TALKS = [
     title: "Institutions coming to crypto",
     href: "https://www.youtube.com/watch?v=sbBgQCGqxZk",
     image: "/assets/talks/talk-3.jpg",
-    width: 640,
-    height: 480,
+    width: 1280,
+    height: 720,
   },
   {
     title: "A Docker image walks into a notary",
@@ -248,7 +248,7 @@ export const TALKS = [
     title: "Bitcoin going mainstream",
     href: "https://www.youtube.com/watch?v=MHcD27Q0Dm4",
     image: "/assets/talks/talk-6.jpg",
-    width: 640,
-    height: 480,
+    width: 1280,
+    height: 720,
   },
 ];

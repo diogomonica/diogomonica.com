@@ -372,33 +372,6 @@ h2 {
 }
 .more:hover { color: var(--muted); }
 
-.blog-banner {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.85rem 1.25rem;
-  margin: 0 0 2.1rem;
-  padding: 1rem 1.1rem;
-  background: var(--bg-card);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-}
-.blog-banner p {
-  margin: 0;
-  color: var(--muted);
-  max-width: 46ch;
-}
-.blog-banner a {
-  background: var(--accent);
-  color: var(--accent-ink);
-  text-decoration: none;
-  font-weight: 600;
-  padding: 0.42rem 0.85rem;
-  border-radius: 999px;
-}
-.blog-banner a:hover { color: var(--accent-ink); opacity: 0.88; }
-
 .lost {
   min-height: 50vh;
   display: grid;
