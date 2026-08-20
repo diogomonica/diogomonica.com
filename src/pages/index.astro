@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import OptimizedImage from "../components/OptimizedImage.astro";
 import {
   BLOG,
   BIO,
@@ -8,8 +9,8 @@ import {
   HERO_ROLES,
   PATENTS,
   PERSON,
-  PHOTO,
   PHOTO_ALT,
+  PHOTO_IMAGE,
   PATENT_FIGURES,
   RESEARCH,
   RESEARCH_FIGURES,
@@ -33,13 +34,12 @@ const roleHrefs: Record<string, string> = {
 ---
 <Base title={DISPLAY} description={BIO} path="/" jsonLd={jsonLd}>
   <section class="hero">
-    <img
+    <OptimizedImage
       class="portrait"
-      src={PHOTO}
+      src={PHOTO_IMAGE}
       alt={PHOTO_ALT}
-      width="1200"
-      height="1400"
-      decoding="async"
+      sizes="(min-width: 800px) 15.5rem, min(16rem, calc(100vw - 2rem))"
+      priority
     />
     <div>
       <h1 class="wordmark">Diogo<span class="wordmark-dim"> Mónica</span></h1>
@@ -85,7 +85,7 @@ const roleHrefs: Record<string, string> = {
     <ul class="figure-row" aria-hidden="true">
       {PATENT_FIGURES.map((item) => (
         <li>
-          <img src={item.src} alt="" width="640" height="480" loading="lazy" decoding="async" />
+          <OptimizedImage src={item.src} alt="" sizes="(min-width: 800px) 168px, calc(50vw - 1.5rem)" />
         </li>
       ))}
     </ul>
@@ -106,7 +106,7 @@ const roleHrefs: Record<string, string> = {
     <ul class="figure-row" aria-hidden="true">
       {RESEARCH_FIGURES.map((item) => (
         <li>
-          <img src={item.src} alt="" width="640" height="480" loading="lazy" decoding="async" />
+          <OptimizedImage src={item.src} alt="" sizes="(min-width: 800px) 168px, calc(50vw - 1.5rem)" />
         </li>
       ))}
     </ul>
@@ -128,7 +128,7 @@ const roleHrefs: Record<string, string> = {
       {TALKS.map((item) => (
         <li>
           <a href={item.href} rel="noopener noreferrer">
-            <img src={item.image} alt="" width="1280" height="720" loading="lazy" decoding="async" />
+            <OptimizedImage src={item.image} alt="" sizes="(min-width: 800px) 280px, min(880px, calc(100vw - 2rem))" />
             <span>{item.title}</span>
           </a>
         </li>

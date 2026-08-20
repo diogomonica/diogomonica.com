@@ -1,0 +1,44 @@
+---
+import { Picture } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  sizes: string;
+  class?: string;
+  widths?: number[];
+  quality?: number;
+  priority?: boolean;
+}
+
+const {
+  src,
+  alt,
+  sizes,
+  class: className,
+  widths = [320, 480, 640],
+  quality = 80,
+  priority = false,
+} = Astro.props;
+
+const maxWidth = Math.min(src.width, widths[widths.length - 1]);
+const srcsetWidths = [...new Set([...widths.filter((width) => width < src.width), maxWidth])].sort(
+  (a, b) => a - b,
+);
+const width = srcsetWidths[srcsetWidths.length - 1];
+---
+<Picture
+  src={src}
+  alt={alt}
+  widths={srcsetWidths}
+  width={width}
+  sizes={sizes}
+  formats={["avif", "webp"]}
+  quality={quality}
+  class={className}
+  priority={priority}
+  loading={priority ? "eager" : "lazy"}
+  decoding="async"
+  fetchpriority={priority ? "high" : undefined}
+/>
