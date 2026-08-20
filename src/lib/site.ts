@@ -17,6 +17,11 @@ export const ROLES = [
 export const BIO =
   "General Partner at Haun Ventures. Co-founder and Executive Chairman of Anchorage Digital. Chairman of the NEAR Foundation. Director at Erebor.";
 
+export const HERO_LEDE =
+  "General Partner at Haun Ventures. Co-founder and Executive Chairman of Anchorage Digital.";
+
+export const HERO_ROLES = ROLES.slice(0, 2);
+
 export const SAME_AS = [
   "https://x.com/diogomonica",
   "https://www.linkedin.com/in/diogomonica",
@@ -193,10 +198,27 @@ export const RESEARCH = [
 ];
 
 export const TALKS = [
-  { title: "Bitcoin ETFs", href: "https://www.youtube.com/watch?v=Uaz9Ahbqngw" },
-  { title: "Regulatory clarity in crypto", href: "https://www.youtube.com/watch?v=QVB0qd67JpY" },
-  { title: "Institutions coming to crypto", href: "https://www.youtube.com/watch?v=sbBgQCGqxZk" },
-  { title: "A Docker image walks into a notary", href: "https://www.youtube.com/watch?v=JvjdfQC8jxM" },
-  { title: "Heart & Hustle of Portugal", href: "https://www.youtube.com/watch?v=YundCatIPec" },
-  { title: "Bitcoin going mainstream", href: "https://www.youtube.com/watch?v=MHcD27Q0Dm4" },
+  { title: "Bitcoin ETFs", href: "https://www.youtube.com/watch?v=Uaz9Ahbqngw", image: "/assets/talks/talk-1.jpg" },
+  { title: "Regulatory clarity in crypto", href: "https://www.youtube.com/watch?v=QVB0qd67JpY", image: "/assets/talks/talk-2.jpg" },
+  { title: "Institutions coming to crypto", href: "https://www.youtube.com/watch?v=sbBgQCGqxZk", image: "/assets/talks/talk-3.jpg" },
+  { title: "A Docker image walks into a notary", href: "https://www.youtube.com/watch?v=JvjdfQC8jxM", image: "/assets/talks/talk-4.jpg" },
+  { title: "Heart & Hustle of Portugal", href: "https://www.youtube.com/watch?v=YundCatIPec", image: "/assets/talks/talk-5.jpg" },
+  { title: "Bitcoin going mainstream", href: "https://www.youtube.com/watch?v=MHcD27Q0Dm4", image: "/assets/talks/talk-6.jpg" },
+];
+
+
+export const PATENT_FIGURES = [
+  { src: "/assets/figures/patent-1.png", alt: "Patent figure: signal waveform" },
+  { src: "/assets/figures/patent-2.png", alt: "Patent figure: device screen dimensions" },
+  { src: "/assets/figures/patent-3.png", alt: "Patent figure: card reader on a phone" },
+  { src: "/assets/figures/patent-4.png", alt: "Patent figure: hardware component" },
+  { src: "/assets/figures/patent-5.png", alt: "Patent figure: custodial system with HSM" },
+];
+
+export const RESEARCH_FIGURES = [
+  { src: "/assets/figures/research-1.png", alt: "Research figure: intrusion detection scatter plot" },
+  { src: "/assets/figures/research-2.png", alt: "Research figure: Evil Twin attack" },
+  { src: "/assets/figures/research-3.png", alt: "Research figure: self-organizing map" },
+  { src: "/assets/figures/research-4.png", alt: "Research figure: botnet command and control" },
+  { src: "/assets/figures/research-5.png", alt: "Research figure: quorum of honest and malicious nodes" },
 ];

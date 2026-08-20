@@ -173,6 +173,25 @@ h2 {
   letter-spacing: -0.03em;
 }
 
+.section h2 {
+  font-size: clamp(1.9rem, 4.2vw, 2.55rem);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+  margin: 0 0 0.85rem;
+  color: var(--fg);
+}
+
+.section {
+  padding-top: 2.1rem;
+  border-top: 1px solid var(--line);
+}
+
+.section:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
 .hero {
   display: grid;
   gap: 1.5rem;
@@ -203,16 +222,6 @@ h2 {
   font-size: 1.02rem;
   line-height: 1.6;
 }
-.identity-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem 0.95rem;
-  margin: 0;
-  font-size: 0.92rem;
-}
-.identity-links a { color: var(--fg); text-decoration: none; }
-.identity-links a:hover { color: var(--muted); }
-
 .roles {
   display: grid;
   gap: 0.45rem;
@@ -376,4 +385,91 @@ h2 {
 
 @media (prefers-reduced-motion: reduce) {
   * { scroll-behavior: auto !important; }
+}
+
+
+.figure-row {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: .65rem;
+  margin: 0 0 1.15rem;
+  padding: 0;
+  list-style: none;
+}
+.figure-row li {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+}
+.figure-row img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #fff;
+}
+.plain-list.cols {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+@media (min-width: 800px) {
+  .plain-list.cols {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2rem;
+  }
+  .plain-list.cols li:nth-child(odd):last-child {
+    border-bottom: 1px solid var(--line);
+  }
+}
+@media (max-width: 799px) {
+  .figure-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .figure-row li:last-child {
+    grid-column: 1 / -1;
+    max-width: 50%;
+    justify-self: center;
+  }
+}
+
+
+.talk-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: .85rem;
+  margin: 0 0 .4rem;
+  padding: 0;
+  list-style: none;
+}
+.talk-grid a {
+  display: block;
+  text-decoration: none;
+  color: var(--fg);
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.talk-grid a:hover { color: var(--muted); }
+.talk-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: #111;
+}
+.talk-grid span {
+  display: block;
+  padding: .7rem .85rem .85rem;
+  font-weight: 600;
+  letter-spacing: -.02em;
+}
+@media (min-width: 800px) {
+  .talk-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
