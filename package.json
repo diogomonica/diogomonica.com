@@ -9,6 +9,6 @@
   },
   "dependencies": {
     "@fontsource-variable/geist": "^5.3.0",
-    "astro": "^5.13.0"
+    "astro": "^7.1.1"
   }
 }
