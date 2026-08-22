@@ -363,6 +363,30 @@ h2 {
   padding: 0.4rem 0.8rem;
   border-radius: 999px;
 }
+.lost-recover {
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.lost-recover li {
+  padding: 0.28rem 0;
+}
+.lost-recover a {
+  color: var(--muted);
+  font-size: 0.88rem;
+  word-break: break-all;
+}
+.lost-recover a:hover { color: var(--fg); }
+
+.page .section h2 {
+  font-size: clamp(1.35rem, 3vw, 1.8rem);
+}
+.page .plain-list span {
+  display: block;
+  color: var(--faint);
+  font-size: 0.82rem;
+  margin-bottom: 0.15rem;
+}
 
 @media (min-width: 800px) {
   .hero {

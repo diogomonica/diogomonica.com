@@ -7,6 +7,9 @@
 #   Node.js version:  22
 #
 # Local: npm run build && npx wrangler pages dev dist
+#
+# Agent Markdown: functions/_middleware.ts negotiates Accept on the
+# static HTML. Keep output = "static" in astro.config.mjs.
 
 name = "diogomonica-com"
 compatibility_date = "2026-08-19"
