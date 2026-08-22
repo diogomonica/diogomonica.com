@@ -1,5 +1,6 @@
 import { execFileSync } from "node:child_process";
 import { existsSync } from "node:fs";
+import path from "node:path";
 import { describe, expect, it, beforeAll } from "vitest";
 import { DIST, previewFetch, visibleText } from "./helpers/preview";
 import { RECOVERY_HREFS } from "../src/lib/identity";
@@ -76,17 +77,19 @@ describe("homepage negotiation", () => {
 });
 
 describe("trust pages", () => {
-  it.each(["/about", "/contact", "/privacy"] as const)("%s is real HTML over 500 characters", async (path) => {
-    const res = await previewFetch(path, { headers: { Accept: BROWSER_ACCEPT } });
+  it.each(["/about", "/contact", "/privacy"] as const)("%s is real HTML over 500 characters", async (pagePath) => {
+    expect(existsSync(path.join(DIST, `${pagePath.slice(1)}.html`))).toBe(true);
+    const res = await previewFetch(pagePath, { headers: { Accept: BROWSER_ACCEPT } });
     expect(res.status).toBe(200);
     expect(res.headers.get("content-type")).toMatch(/text\/html/);
+    expect(res.headers.get("location")).toBeNull();
     const html = await res.text();
     const text = visibleText(html);
     expect(text.length).toBeGreaterThanOrEqual(500);
     expect(html).toContain("Diogo Mónica");
     expect(html).toContain("Diogo Monica");
     expect(html).toContain(`rel="canonical"`);
-    expect(html).toContain(`https://diogomonica.com${path}`);
+    expect(html).toContain(`https://diogomonica.com${pagePath}`);
   });
 
   it("negotiates Markdown for trust pages", async () => {
