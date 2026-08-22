@@ -1,0 +1,61 @@
+---
+import Base from "../layouts/Base.astro";
+import { DISPLAY, NAME, SITE, webPageJsonLd } from "../lib/site";
+
+const description =
+  "Privacy policy for diogomonica.com: a personal hub with no product accounts. Standard Cloudflare hosting logs, no sale of data.";
+---
+<Base title="Privacy" description={description} path="/privacy" jsonLd={webPageJsonLd("/privacy", "Privacy", description)}>
+  <article class="page">
+    <h1 class="wordmark">Privacy</h1>
+    <p class="lede">
+      Honest policy for a personal site. {SITE} is a hub for {DISPLAY}
+      (also written {NAME}), not a product.
+    </p>
+    <p class="bio">
+      There are no user accounts, logins, or customer dashboards on this site.
+      It does not sell a service, open a bank relationship, or manage an
+      investment account. If you came here from a company product, that product
+      has its own policy.
+    </p>
+
+    <section class="section" aria-labelledby="collect-heading">
+      <h2 id="collect-heading">What is collected</h2>
+      <p>
+        When you visit, the host — Cloudflare Pages and Cloudflare's edge —
+        records standard request logs. Those typically include IP address,
+        User-Agent, referrer, requested URL, and timestamps. This hub does not
+        run a first-party product analytics account, does not operate a mailing
+        list, and does not ask you to create a profile.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="sale-heading">
+      <h2 id="sale-heading">No sale of data</h2>
+      <p>
+        Information from these hosting logs is not sold. There is no advertising
+        pixel program on this hub and no on-site checkout. The site exists so
+        people and agents can identify {DISPLAY} and find the blog.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="cookies-heading">
+      <h2 id="cookies-heading">Cookies</h2>
+      <p>
+        The hub is static HTML plus a small edge function that serves Markdown
+        to agents when they ask for it. It does not set an account session
+        cookie. Cloudflare may set strictly necessary cookies for security or
+        performance as part of standard hosting.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="privacy-contact-heading">
+      <h2 id="privacy-contact-heading">How to reach us</h2>
+      <p>
+        Questions about this policy go through the public channels on
+        <a href="/contact">/contact</a>.
+        Do not send sensitive personal data in social DMs.
+      </p>
+    </section>
+  </article>
+</Base>

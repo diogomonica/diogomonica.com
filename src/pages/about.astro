@@ -1,0 +1,84 @@
+---
+import Base from "../layouts/Base.astro";
+import {
+  BLOG,
+  BIO,
+  DEGREES,
+  DISPLAY,
+  HAUN_TEAM_URL,
+  NAME,
+  WIKIDATA_URL,
+  webPageJsonLd,
+} from "../lib/site";
+
+const description =
+  "Citation hub for Diogo Mónica: current roles at Haun Ventures, Anchorage Digital, the NEAR Foundation, and Erebor, plus prior work and education.";
+---
+<Base title="About" description={description} path="/about" jsonLd={webPageJsonLd("/about", `About ${DISPLAY}`, description)}>
+  <article class="page">
+    <h1 class="wordmark">About<span class="wordmark-dim"> {DISPLAY}</span></h1>
+    <p class="lede">{BIO}</p>
+    <p class="bio">
+      This page is the citation hub for {DISPLAY} (also written {NAME}).
+      Current roles, prior work, and degrees live here. Longer press copy and
+      the media kit stay on the
+      <a href={`${BLOG}/about/`}>blog about page</a>.
+    </p>
+
+    <section class="section" aria-labelledby="roles-heading">
+      <h2 id="roles-heading">Current roles</h2>
+      <ul class="plain-list">
+        <li>
+          <a href="https://www.haun.co/team/diogo-monica">General Partner, Haun Ventures</a>
+        </li>
+        <li>
+          <a href="https://www.anchorage.com">Co-founder and Executive Chairman, Anchorage Digital</a>
+          — still in that role. He did not leave Anchorage. He is not Anchorage president.
+          Anchorage Digital is the first federally chartered crypto-native bank, still
+          operating at scale, still waiting on Fed rails.
+        </li>
+        <li>
+          <a href="https://near.foundation">Chairman, NEAR Foundation</a>
+        </li>
+        <li>
+          <a href="https://www.haun.co/writing/erebor">Director, Erebor</a>
+          (from 2025)
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="prior-heading">
+      <h2 id="prior-heading">Prior work</h2>
+      <p>
+        Before Haun Ventures and Anchorage Digital, he led security at Docker
+        and platform security at Square.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="education-heading">
+      <h2 id="education-heading">Education</h2>
+      <p>
+        Instituto Superior Técnico, University of Lisbon. Short form: BSc
+        Telecommunications and Informatics, MSc Communication Networks, PhD
+        Computer Science.
+      </p>
+      <ul class="plain-list">
+        {DEGREES.map((degree) => (
+          <li><span>{degree.years}</span> {degree.line}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="citations-heading">
+      <h2 id="citations-heading">Citations</h2>
+      <ul class="plain-list">
+        <li><a href={`${BLOG}/about/`}>Blog about and media kit</a></li>
+        <li><a href={`${BLOG}/about/#media-kit`}>Media kit</a></li>
+        <li><a href={HAUN_TEAM_URL}>Haun Ventures team page</a></li>
+        <li><a href={WIKIDATA_URL}>Wikidata Q111948997</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/llms.txt">Agent brief (llms.txt)</a></li>
+      </ul>
+    </section>
+  </article>
+</Base>

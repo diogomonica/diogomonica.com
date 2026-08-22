@@ -1,59 +1,7 @@
-import { BLOG, BIO, DISPLAY, NAME, ROLES, SITE } from "../lib/site";
-
-const NL = String.fromCharCode(10);
+import { renderLlmsTxt } from "../lib/llms";
 
 export function GET() {
-  const text = [
-    "# " + DISPLAY,
-    "",
-    "> " + BIO,
-    "",
-    "## Canonical identity",
-    "",
-    "- Name: " + DISPLAY,
-    "- alternateName: " + NAME,
-    "- Roles: " + ROLES.join("; "),
-    "- Education: BSc Telecommunications and Informatics, MSc Communication Networks, PhD Computer Science, Instituto Superior Técnico, University of Lisbon. Press media kit: " + BLOG + "/about/#media-kit",
-    "- Home: " + SITE + "/",
-    "- Blog: " + BLOG + "/",
-    "- About: " + BLOG + "/about/",
-    "- Media: " + BLOG + "/media-timeline/",
-    "- RSS: " + BLOG + "/rss.xml",
-    "- Sitemap: " + SITE + "/sitemap.xml",
-    "- Haun Ventures: https://www.haun.co/team/diogo-monica",
-    "- Wikidata: https://www.wikidata.org/wiki/Q111948997",
-    "- Google Knowledge Graph: /g/11q96pmchp",
-    "",
-    "## Site",
-    "",
-    "- This apex site is a short personal hub. It is not a second blog.",
-    "- Home: " + SITE + "/",
-    "- Essays and the full archive: " + BLOG + "/",
-    "- About and media kit: " + BLOG + "/about/",
-    "- Media timeline: " + BLOG + "/media-timeline/",
-    "- RSS: " + BLOG + "/rss.xml",
-    "",
-    "## Roles",
-    "",
-    "- General Partner, Haun Ventures",
-    "- Co-founder and Executive Chairman, Anchorage Digital (continues in that role; previously held CEO responsibilities)",
-    "- Chairman, NEAR Foundation",
-    "- Director, Erebor (from 2025)",
-    "",
-    "## Writing",
-    "",
-    "- Essays live on the blog. Start at " + BLOG + "/",
-    "- Haun: Finisterra — https://www.haun.co/writing/finisterra",
-    "- Haun: BVNK — https://www.haun.co/writing/bvnk",
-    "- Haun: Stablecoins: A Quiet Revolution — https://www.haun.co/writing/stablecoins-a-quiet-revolution",
-    "- Haun: Chaos Labs — https://www.haun.co/writing/chaos-labs",
-    "",
-    "## Notes",
-    "",
-    "- Continues as Co-founder and Executive Chairman of Anchorage Digital. Previously held CEO responsibilities.",
-    "- Anchorage Digital is a federally chartered crypto-native bank, still operating at scale, still waiting on Fed rails.",
-    "",
-  ].join(NL);
-
-  return new Response(text, { headers: { "Content-Type": "text/plain; charset=utf-8" } });
+  return new Response(renderLlmsTxt(), {
+    headers: { "Content-Type": "text/plain; charset=utf-8" },
+  });
 }

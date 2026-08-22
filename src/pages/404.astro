@@ -1,6 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
-import { BLOG } from "../lib/site";
+import { BLOG, RECOVERY_HREFS } from "../lib/identity";
 ---
 <Base title="Not found" description="This page does not exist." path="/404">
   <section class="lost">
@@ -11,5 +11,10 @@ import { BLOG } from "../lib/site";
       <a href="/">Home</a>
       <a href={BLOG}>Blog</a>
     </p>
+    <ul class="lost-recover">
+      {RECOVERY_HREFS.map((href) => (
+        <li><a href={href}>{href}</a></li>
+      ))}
+    </ul>
   </section>
 </Base>

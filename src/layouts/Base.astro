@@ -59,6 +59,7 @@ const pageTitle = path === "/" ? `${DISPLAY} — ${BIO}` : `${title} · ${DISPLA
       </a>
       <nav class="top-nav" aria-label="Site">
         <a href="/" aria-current={path === "/" ? "page" : undefined}>Home</a>
+        <a href="/about" aria-current={path === "/about" ? "page" : undefined}>About</a>
         <a class="nav-primary" href={BLOG}>Blog</a>
         <a rel="me" href="https://x.com/diogomonica">X</a>
         <a rel="me" href="https://www.linkedin.com/in/diogomonica">LinkedIn</a>
@@ -73,6 +74,9 @@ const pageTitle = path === "/" ? `${DISPLAY} — ${BIO}` : `${title} · ${DISPLA
         <span>© {DISPLAY}</span>
       </span>
       <nav aria-label="Identity">
+        <a href="/about" aria-current={path === "/about" ? "page" : undefined}>About</a>
+        <a href="/contact" aria-current={path === "/contact" ? "page" : undefined}>Contact</a>
+        <a href="/privacy" aria-current={path === "/privacy" ? "page" : undefined}>Privacy</a>
         <a href={BLOG}>Blog</a>
         <a rel="me" href="https://x.com/diogomonica">@diogomonica</a>
         <a rel="me" href="https://www.linkedin.com/in/diogomonica">LinkedIn</a>

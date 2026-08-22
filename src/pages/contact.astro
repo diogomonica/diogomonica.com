@@ -1,0 +1,59 @@
+---
+import Base from "../layouts/Base.astro";
+import {
+  BLOG,
+  DISPLAY,
+  LINKEDIN_URL,
+  NAME,
+  SUBMIT_DECK_PATH,
+  X_URL,
+  webPageJsonLd,
+} from "../lib/site";
+
+const description =
+  "How to reach Diogo Mónica on public X and LinkedIn. This personal hub has no email address and no contact form.";
+---
+<Base title="Contact" description={description} path="/contact" jsonLd={webPageJsonLd("/contact", `Contact ${DISPLAY}`, description)}>
+  <article class="page">
+    <h1 class="wordmark">Contact<span class="wordmark-dim"> {DISPLAY}</span></h1>
+    <p class="lede">
+      Public channels only. This site does not publish an email address and
+      does not host a mailer.
+    </p>
+    <p class="bio">
+      {DISPLAY} (also written {NAME}) is reachable on the profiles he actually
+      uses. This apex is a short personal hub, not a company support desk and
+      not an inbox. For essays, the archive, and press assets, start on the
+      <a href={BLOG}>blog</a>.
+    </p>
+
+    <section class="section" aria-labelledby="channels-heading">
+      <h2 id="channels-heading">Public profiles</h2>
+      <ul class="plain-list">
+        <li><a rel="me" href={X_URL}>X — @diogomonica</a></li>
+        <li><a rel="me" href={LINKEDIN_URL}>LinkedIn — diogomonica</a></li>
+        <li><a href={BLOG}>Blog — essays, archive, media kit</a></li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="founders-heading">
+      <h2 id="founders-heading">Founders</h2>
+      <p>
+        An existing deck path is already on this hub at
+        <a href={SUBMIT_DECK_PATH}>{SUBMIT_DECK_PATH}</a>.
+        Use that URL rather than inventing a new intake. It currently lands on
+        the hub home.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="not-heading">
+      <h2 id="not-heading">What this is not</h2>
+      <p>
+        Do not treat this page as customer support for Anchorage Digital or
+        Haun Ventures. Use those organizations' official channels for product,
+        banking, or fund questions. There is no email form here, and a public
+        social profile is not a confidential intake.
+      </p>
+    </section>
+  </article>
+</Base>
