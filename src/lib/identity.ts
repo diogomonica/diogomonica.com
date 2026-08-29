@@ -169,32 +169,34 @@ export const RECOVERY_HREFS = [
 
 export const WRITING = [
   {
+    date: "2026-08-28",
+    label: "August 28, 2026",
+    title: "How to get your GrokBot to receive emails instantly",
+    excerpt:
+      "Wake a GrokBot on inbound mail with a webhook, a cheap Replit proxy, and a fetch of that one email.",
+    href: "https://blog.diogomonica.com/2026/08/28/how-to-get-your-grokbot-to-receive-emails-instantly/",
+  },
+  {
+    date: "2026-07-02",
+    label: "July 2, 2026",
+    title: "Jota",
+    excerpt: "We're proud to lead Jota's Series A and to make Haun Ventures' first investment in Brazil.",
+    href: "https://blog.diogomonica.com/2026/07/02/jota/",
+  },
+  {
+    date: "2026-02-08",
+    label: "February 8, 2026",
+    title: "Erebor",
+    excerpt:
+      "Congratulations to Erebor on opening today as the first new OCC-chartered bank specifically engineered to serve the innovation economy.",
+    href: "https://blog.diogomonica.com/2026/02/08/erebor/",
+  },
+  {
     date: "2025-02-27",
     label: "February 27, 2025",
     title: "Investing in Finisterra",
     excerpt: "Leading the seed investment in Finisterra Labs, the makers of Baselight.",
-    href: "https://www.haun.co/writing/finisterra",
-  },
-  {
-    date: "2024-12-17",
-    label: "December 17, 2024",
-    title: "Leading the Series B for BVNK",
-    excerpt: "Leading the Series B for BVNK.",
-    href: "https://www.haun.co/writing/bvnk",
-  },
-  {
-    date: "2024-11-12",
-    label: "November 12, 2024",
-    title: "Stablecoins: A Quiet Revolution",
-    excerpt: "Stablecoins as product-market fit in crypto and a force in global finance.",
-    href: "https://www.haun.co/writing/stablecoins-a-quiet-revolution",
-  },
-  {
-    date: "2024-08-15",
-    label: "August 15, 2024",
-    title: "Investing in Chaos Labs",
-    excerpt: "Leading the Series A for Chaos Labs.",
-    href: "https://www.haun.co/writing/chaos-labs",
+    href: "https://blog.diogomonica.com/2025/02/27/finisterra/",
   },
 ];
 
