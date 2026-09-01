@@ -2,11 +2,11 @@
 import Base from "../layouts/Base.astro";
 import OptimizedImage from "../components/OptimizedImage.astro";
 import {
+  ANCHORAGE_URL,
   BLOG,
   BIO,
   DISPLAY,
-  HERO_LEDE,
-  HERO_ROLES,
+  HAUN_TEAM_URL,
   ORGANIZATIONS,
   PATENTS,
   PERSON,
@@ -24,13 +24,6 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [PERSON, WEBSITE, ...ORGANIZATIONS],
 };
-
-const roleHrefs: Record<string, string> = {
-  "General Partner, Haun Ventures": "https://www.haun.co/team/diogo-monica",
-  "Co-founder and Executive Chairman, Anchorage Digital": "https://www.anchorage.com",
-  "Chairman, NEAR Foundation": "https://near.foundation",
-  "Director, Erebor": "https://www.haun.co/writing/erebor",
-};
 ---
 <Base title={DISPLAY} description={BIO} path="/" jsonLd={jsonLd}>
   <section class="hero">
@@ -43,19 +36,14 @@ const roleHrefs: Record<string, string> = {
     />
     <div>
       <h1 class="wordmark">Diogo<span class="wordmark-dim"> Mónica</span></h1>
-      <p class="lede">{HERO_LEDE}</p>
+      <p class="lede">
+        General Partner at <a href={HAUN_TEAM_URL}>Haun Ventures</a>. Co-founder and Executive Chairman of <a href={ANCHORAGE_URL}>Anchorage Digital</a>.
+      </p>
       <p class="bio">
         Previously I led security at Docker and platform security at Square.
         Before joining tech, I spent a while getting a PhD in Computer Science
         at Instituto Superior Técnico. Oh, and I love angel investing.
       </p>
-      <ul class="roles">
-        {HERO_ROLES.map((role) => (
-          <li>
-            <a href={roleHrefs[role]}>{role}</a>
-          </li>
-        ))}
-      </ul>
     </div>
   </section>
 

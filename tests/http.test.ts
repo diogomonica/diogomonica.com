@@ -3,7 +3,7 @@ import { existsSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it, beforeAll } from "vitest";
 import { DIST, previewFetch, visibleText } from "./helpers/preview";
-import { RECOVERY_HREFS } from "../src/lib/identity";
+import { ANCHORAGE_URL, HAUN_TEAM_URL, RECOVERY_HREFS } from "../src/lib/identity";
 
 const BROWSER_ACCEPT =
   "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8";
@@ -59,10 +59,16 @@ describe("homepage negotiation", () => {
     expect(res.headers.get("vary")?.toLowerCase()).toContain("accept");
     const html = await res.text();
     const hero = html.split('<section class="hero">')[1]?.split('id="writing"')[0] ?? "";
+    expect(hero).toContain(`href="${HAUN_TEAM_URL}"`);
+    expect(hero).toContain(`href="${ANCHORAGE_URL}"`);
     expect(hero).toContain("Haun Ventures");
     expect(hero).toContain("Anchorage Digital");
+    expect(hero).not.toContain('class="roles"');
     expect(hero).not.toContain("NEAR Foundation");
     expect(hero).not.toContain("Erebor");
+    const heroVisible = visibleText(hero);
+    expect(heroVisible.match(/Haun Ventures/g)).toHaveLength(1);
+    expect(heroVisible.match(/Anchorage Digital/g)).toHaveLength(1);
 
     expect(html).toContain(">Latest posts<");
     expect(html).toContain(">I build stuff<");

@@ -21,8 +21,6 @@ export const BIO =
 export const HERO_LEDE =
   "General Partner at Haun Ventures. Co-founder and Executive Chairman of Anchorage Digital.";
 
-export const HERO_ROLES = ROLES.slice(0, 2);
-
 export const X_URL = "https://x.com/diogomonica";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/diogomonica";
 export const WIKIPEDIA_URL = "https://en.wikipedia.org/wiki/Diogo_Mónica";

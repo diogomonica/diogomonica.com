@@ -212,6 +212,14 @@ h2 {
   font-size: 1.08rem;
   line-height: 1.6;
 }
+.lede a {
+  color: var(--fg);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+.lede a:hover { color: var(--muted); }
 .bio {
   margin: 0 0 1rem;
   max-width: 62ch;
@@ -219,20 +227,6 @@ h2 {
   font-size: 1.02rem;
   line-height: 1.6;
 }
-.roles {
-  display: grid;
-  gap: 0.45rem;
-  margin: 0 0 1.1rem;
-  padding: 0;
-  list-style: none;
-}
-.roles a {
-  color: var(--fg);
-  font-weight: 600;
-  text-decoration: none;
-}
-.roles a:hover { color: var(--muted); }
-.roles span { color: var(--muted); }
 
 .section {
   margin: 0 0 2.1rem;
