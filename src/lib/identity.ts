@@ -169,6 +169,14 @@ export const RECOVERY_HREFS = [
 
 export const WRITING = [
   {
+    date: "2026-08-31",
+    label: "August 31, 2026",
+    title: "Unicorns as a media product",
+    excerpt:
+      "A working paper puts numbers on the $1B Schelling point: media spike up, VC network quality down.",
+    href: "https://blog.diogomonica.com/2026/08/31/unicorns-as-a-media-product/",
+  },
+  {
     date: "2026-08-28",
     label: "August 28, 2026",
     title: "How to get your GrokBot to receive emails instantly",
@@ -190,13 +198,6 @@ export const WRITING = [
     excerpt:
       "Congratulations to Erebor on opening today as the first new OCC-chartered bank specifically engineered to serve the innovation economy.",
     href: "https://blog.diogomonica.com/2026/02/08/erebor/",
-  },
-  {
-    date: "2025-02-27",
-    label: "February 27, 2025",
-    title: "Investing in Finisterra",
-    excerpt: "Leading the seed investment in Finisterra Labs, the makers of Baselight.",
-    href: "https://blog.diogomonica.com/2025/02/27/finisterra/",
   },
 ];
 
