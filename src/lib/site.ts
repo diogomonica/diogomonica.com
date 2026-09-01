@@ -27,7 +27,6 @@ export {
   EREBOR_URL,
   HAUN_TEAM_URL,
   HERO_LEDE,
-  HERO_ROLES,
   IST,
   LINKEDIN_URL,
   NAME,
