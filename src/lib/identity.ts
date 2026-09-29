@@ -167,6 +167,14 @@ export const RECOVERY_HREFS = [
 
 export const WRITING = [
   {
+    date: "2026-09-28",
+    label: "September 28, 2026",
+    title: "AI Escapes: Super Intelligence or Super Incompetence?",
+    excerpt:
+      "Model escapes look like Jack Sparrow’s palm tree scene: capable agents, loose ropes, and captors who never watched the tree.",
+    href: "https://blog.diogomonica.com/2026/09/28/ai-escapes-super-intelligence-or-super-incompetence/",
+  },
+  {
     date: "2026-08-31",
     label: "August 31, 2026",
     title: "Unicorns as a media product",
@@ -188,14 +196,6 @@ export const WRITING = [
     title: "Jota",
     excerpt: "We're proud to lead Jota's Series A and to make Haun Ventures' first investment in Brazil.",
     href: "https://blog.diogomonica.com/2026/07/02/jota/",
-  },
-  {
-    date: "2026-02-08",
-    label: "February 8, 2026",
-    title: "Erebor",
-    excerpt:
-      "Congratulations to Erebor on opening today as the first new OCC-chartered bank specifically engineered to serve the innovation economy.",
-    href: "https://blog.diogomonica.com/2026/02/08/erebor/",
   },
 ];
 
