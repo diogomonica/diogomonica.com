@@ -9,7 +9,8 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@fontsource-variable/geist": "^5.3.0",
+    "@fontsource-variable/fraunces": "^5.3.0",
+    "@fontsource-variable/source-sans-3": "^5.3.1",
     "astro": "^7.2.4",
     "sharp": "^0.35.3"
   },

@@ -7,14 +7,16 @@ import {
   BIO,
   DISPLAY,
   HAUN_TEAM_URL,
+  HERO_POSTER,
+  HERO_SVG,
   ORGANIZATIONS,
   PATENTS,
+  PATENT_ART,
   PERSON,
   PHOTO_ALT,
   PHOTO_IMAGE,
-  PATENT_FIGURES,
   RESEARCH,
-  RESEARCH_FIGURES,
+  RESEARCH_ART,
   TALKS,
   WEBSITE,
   WRITING,
@@ -24,18 +26,23 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [PERSON, WEBSITE, ...ORGANIZATIONS],
 };
+
+const heroLabel =
+  "A magnetic-stripe card swipes through a phone-mounted reader. Track digits scramble into encrypted blocks, a lock closes, and a protected packet reaches the phone.";
 ---
 <Base title={DISPLAY} description={BIO} path="/" jsonLd={jsonLd}>
+  <link slot="head" rel="preload" href={HERO_SVG} as="image" type="image/svg+xml" />
   <section class="hero">
-    <OptimizedImage
-      class="portrait"
-      src={PHOTO_IMAGE}
-      alt={PHOTO_ALT}
-      sizes="(min-width: 800px) 15.5rem, min(16rem, calc(100vw - 2rem))"
-      priority
-    />
-    <div>
-      <h1 class="wordmark">Diogo<span class="wordmark-dim"> Mónica</span></h1>
+    <div class="hero-copy">
+      <OptimizedImage
+        class="portrait"
+        src={PHOTO_IMAGE}
+        alt={PHOTO_ALT}
+        sizes="(min-width: 900px) 7.5rem, 6.25rem"
+        widths={[240, 360, 480]}
+        priority
+      />
+      <h1 class="wordmark">Diogo<br /><em>Mónica</em></h1>
       <p class="lede">
         General Partner at <a href={HAUN_TEAM_URL}>Haun Ventures</a>. Co-founder and Executive Chairman of <a href={ANCHORAGE_URL}>Anchorage Digital</a>.
       </p>
@@ -45,10 +52,26 @@ const jsonLd = {
         at Instituto Superior Técnico. Oh, and I love angel investing.
       </p>
     </div>
+    <div class="hero-art">
+      <object
+        class="hero-svg"
+        type="image/svg+xml"
+        data={HERO_SVG}
+        aria-label={heroLabel}
+        width="1200"
+        height="640"
+      >
+        <img
+          src={HERO_POSTER}
+          alt="Phone-mounted card reader beside a small server, shown in a verified state."
+          width="1200"
+          height="640"
+        />
+      </object>
+    </div>
   </section>
 
-
-  <section class="section" id="writing" aria-labelledby="writing-heading">
+  <section class="section chapter" id="writing" aria-labelledby="writing-heading">
     <h2 id="writing-heading">Latest posts</h2>
     <ul class="link-list">
       {WRITING.map((item) => (
@@ -61,40 +84,45 @@ const jsonLd = {
         </li>
       ))}
     </ul>
-    <a class="more" href={BLOG}>All essays on the blog</a>
+    <a class="more" href={BLOG}>All essays on the blog <span aria-hidden="true">→</span></a>
   </section>
 
-  <section class="section" id="patents" aria-labelledby="patents-heading">
+  <section class="section chapter" id="patents" aria-labelledby="patents-heading">
     <h2 id="patents-heading">I build stuff</h2>
     <p>
       I have several patents on payment architectures, payment hardware, private key management,
       digital asset custody, cryptographic systems, and blockchain.
     </p>
-    <ul class="figure-row" aria-hidden="true">
-      {PATENT_FIGURES.map((item) => (
+    <ul class="build-grid">
+      {PATENTS.map((item, index) => (
         <li>
-          <OptimizedImage src={item.src} alt="" sizes="(min-width: 800px) 168px, calc(50vw - 1.5rem)" />
+          <a href={item.href}>
+            <img
+              src={PATENT_ART[index]}
+              alt=""
+              width="640"
+              height="480"
+              loading="lazy"
+              decoding="async"
+            />
+            <span>{item.title}</span>
+          </a>
         </li>
       ))}
     </ul>
-    <ul class="plain-list cols">
-      {PATENTS.map((item) => (
-        <li><a href={item.href}>{item.title}</a></li>
-      ))}
-    </ul>
-    <a class="more" href="https://patents.justia.com/search?q=diogo+monica">All patents</a>
+    <a class="more" href="https://patents.justia.com/search?q=diogo+monica">All patents <span aria-hidden="true">→</span></a>
   </section>
 
-  <section class="section" id="research" aria-labelledby="research-heading">
+  <section class="section chapter" id="research" aria-labelledby="research-heading">
     <h2 id="research-heading">I research stuff</h2>
     <p>
       I've published several papers on the topics of security, distributed systems, botnets,
       intrusion detection systems, quorum systems, and passwords.
     </p>
     <ul class="figure-row" aria-hidden="true">
-      {RESEARCH_FIGURES.map((item) => (
+      {RESEARCH_ART.map((src) => (
         <li>
-          <OptimizedImage src={item.src} alt="" sizes="(min-width: 800px) 168px, calc(50vw - 1.5rem)" />
+          <img src={src} alt="" width="640" height="480" loading="lazy" decoding="async" />
         </li>
       ))}
     </ul>
@@ -103,10 +131,10 @@ const jsonLd = {
         <li><a href={item.href}>{item.title}</a></li>
       ))}
     </ul>
-    <a class="more" href="https://www.researchgate.net/profile/Diogo-Monica">ResearchGate profile</a>
+    <a class="more" href="https://www.researchgate.net/profile/Diogo-Monica">ResearchGate profile <span aria-hidden="true">→</span></a>
   </section>
 
-  <section class="section" id="speaking" aria-labelledby="speaking-heading">
+  <section class="section chapter" id="speaking" aria-labelledby="speaking-heading">
     <h2 id="speaking-heading">I talk about stuff</h2>
     <p>
       I speak regularly on the topics of crypto, security, financial regulations,
@@ -116,13 +144,12 @@ const jsonLd = {
       {TALKS.map((item) => (
         <li>
           <a href={item.href} rel="noopener noreferrer">
-            <OptimizedImage src={item.image} alt="" sizes="(min-width: 800px) 280px, min(880px, calc(100vw - 2rem))" />
+            <OptimizedImage src={item.image} alt="" sizes="(min-width: 900px) 360px, min(880px, calc(100vw - 2rem))" />
             <span>{item.title}</span>
           </a>
         </li>
       ))}
     </ul>
-    <a class="more" href="https://www.youtube.com/results?search_query=diogo+monica">More talks</a>
+    <a class="more" href="https://www.youtube.com/results?search_query=diogo+monica">More talks <span aria-hidden="true">→</span></a>
   </section>
-
 </Base>
