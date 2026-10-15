@@ -12,6 +12,7 @@ import {
   ORGANIZATIONS,
   PATENTS,
   PATENT_ART,
+  PATENT_STILL,
   PERSON,
   PHOTO_ALT,
   PHOTO_IMAGE,
@@ -32,14 +33,25 @@ const heroLabel =
 ---
 <Base title={DISPLAY} description={BIO} path="/" jsonLd={jsonLd}>
   <link slot="head" rel="preload" href={HERO_SVG} as="image" type="image/svg+xml" />
-  <section class="hero">
+  <script is:inline slot="head">
+    (() => {
+      try {
+        var stored = sessionStorage.getItem("dm-motion");
+        var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (stored === "off" || (stored !== "on" && reduce)) {
+          document.documentElement.setAttribute("data-motion", "off");
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <section class="hero" id="about">
     <div class="hero-copy">
       <OptimizedImage
         class="portrait"
         src={PHOTO_IMAGE}
         alt={PHOTO_ALT}
-        sizes="(min-width: 900px) 7.5rem, 6.25rem"
-        widths={[240, 360, 480]}
+        sizes="(min-width: 900px) 7.6rem, 7.25rem"
+        widths={[160, 240, 320]}
         priority
       />
       <h1 class="wordmark">Diogo<br /><em>Mónica</em></h1>
@@ -48,14 +60,19 @@ const heroLabel =
       </p>
       <p class="bio">
         Previously I led security at Docker and platform security at Square.
-        Before joining tech, I spent a while getting a PhD in Computer Science
-        at Instituto Superior Técnico. Oh, and I love angel investing.
+        Oh, and I love angel investing.
       </p>
+      <button type="button" class="motion-toggle" aria-pressed="false">
+        <span class="when-playing">Pause motion</span>
+        <span class="when-paused">Play motion</span>
+      </button>
     </div>
     <div class="hero-art">
       <img
         class="hero-svg"
         src={HERO_SVG}
+        data-motion-src={HERO_SVG}
+        data-still-src={HERO_POSTER}
         alt={heroLabel}
         width="1200"
         height="640"
@@ -64,8 +81,7 @@ const heroLabel =
     </div>
   </section>
 
-  <section class="section chapter" id="writing" aria-labelledby="writing-heading">
-    <h2 id="writing-heading">Latest posts</h2>
+  <section class="section posts" id="writing" aria-label="Latest posts">
     <ul class="link-list">
       {WRITING.map((item) => (
         <li>
@@ -92,6 +108,8 @@ const heroLabel =
           <a href={item.href}>
             <img
               src={PATENT_ART[index]}
+              data-motion-src={PATENT_ART[index]}
+              data-still-src={PATENT_STILL[index]}
               alt=""
               width="640"
               height="480"
@@ -137,7 +155,12 @@ const heroLabel =
       {TALKS.map((item) => (
         <li>
           <a href={item.href} rel="noopener noreferrer">
-            <OptimizedImage src={item.image} alt="" sizes="(min-width: 900px) 360px, min(880px, calc(100vw - 2rem))" />
+            <OptimizedImage
+              src={item.image}
+              alt=""
+              sizes="(min-width: 900px) calc((min(1120px, 100vw - 2.5rem) - 1.8rem) / 3), (min-width: 720px) calc((100vw - 1.5rem - 0.9rem) / 2), calc(100vw - 1.5rem)"
+              widths={[480, 720, 960, 1280]}
+            />
             <span>{item.title}</span>
           </a>
         </li>
@@ -145,4 +168,28 @@ const heroLabel =
     </ul>
     <a class="more" href="https://www.youtube.com/results?search_query=diogo+monica">More talks <span aria-hidden="true">→</span></a>
   </section>
+  <script is:inline>
+    (() => {
+      var nodes = document.querySelectorAll("[data-motion-src]");
+      var button = document.querySelector(".motion-toggle");
+      function apply(paused, persist) {
+        for (var i = 0; i < nodes.length; i++) {
+          var node = nodes[i];
+          var next = paused ? node.getAttribute("data-still-src") : node.getAttribute("data-motion-src");
+          if (next && node.getAttribute("src") !== next) node.setAttribute("src", next);
+        }
+        document.documentElement.setAttribute("data-motion", paused ? "off" : "on");
+        if (button) button.setAttribute("aria-pressed", paused ? "true" : "false");
+        if (persist) {
+          try { sessionStorage.setItem("dm-motion", paused ? "off" : "on"); } catch (e) {}
+        }
+      }
+      apply(document.documentElement.getAttribute("data-motion") === "off", false);
+      if (button) {
+        button.addEventListener("click", function () {
+          apply(document.documentElement.getAttribute("data-motion") !== "off", true);
+        });
+      }
+    })();
+  </script>
 </Base>

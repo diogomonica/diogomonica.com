@@ -64,6 +64,16 @@ export const PATENT_ART = [
   "/illustrations/patent-6.svg",
 ] as const;
 
+/** Same drawings with animation forced off, for the pause control. */
+export const PATENT_STILL = [
+  "/illustrations/patent-1-static.svg",
+  "/illustrations/patent-2-static.svg",
+  "/illustrations/patent-3-static.svg",
+  "/illustrations/patent-4-static.svg",
+  "/illustrations/patent-5-static.svg",
+  "/illustrations/patent-6-static.svg",
+] as const;
+
 /**
  * Decorative figure row. Five images, six papers — not a 1:1 attribution.
  * Order matches the original figure strip.

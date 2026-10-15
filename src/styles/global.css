@@ -1,37 +1,28 @@
 @font-face {
   font-family: "Fraunces";
   font-style: normal;
-  font-weight: 300 900;
+  font-weight: 400 700;
   font-display: swap;
-  src: url("@fontsource-variable/fraunces/files/fraunces-latin-standard-normal.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  src: url("../fonts/fraunces-latin-normal.woff2") format("woff2");
+  unicode-range: U+0020-007E, U+00A7, U+00A9, U+00B7, U+00E9, U+00F3, U+2013-2014, U+2019, U+2192;
 }
 
 @font-face {
   font-family: "Fraunces";
   font-style: italic;
-  font-weight: 300 900;
+  font-weight: 400 700;
   font-display: swap;
-  src: url("@fontsource-variable/fraunces/files/fraunces-latin-standard-italic.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  src: url("../fonts/fraunces-latin-italic.woff2") format("woff2");
+  unicode-range: U+0020-007E, U+00A7, U+00A9, U+00B7, U+00E9, U+00F3, U+2013-2014, U+2019, U+2192;
 }
 
 @font-face {
   font-family: "Source Sans 3";
   font-style: normal;
-  font-weight: 200 900;
+  font-weight: 400 700;
   font-display: swap;
-  src: url("@fontsource-variable/source-sans-3/files/source-sans-3-latin-wght-normal.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
-  font-family: "Source Sans 3";
-  font-style: italic;
-  font-weight: 200 900;
-  font-display: swap;
-  src: url("@fontsource-variable/source-sans-3/files/source-sans-3-latin-wght-italic.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  src: url("../fonts/source-sans-3-latin-normal.woff2") format("woff2");
+  unicode-range: U+0020-007E, U+00A7, U+00A9, U+00B7, U+00E9, U+00F3, U+2013-2014, U+2019, U+2192;
 }
 
 :root {
@@ -288,6 +279,7 @@ h2 {
   gap: 0.5rem 0.5rem;
   align-items: center;
   margin: 0.4rem 0 3.6rem;
+  scroll-margin-top: 5.5rem;
 }
 .hero-copy { max-width: 36rem; }
 .hero .wordmark { margin-bottom: 1rem; }
@@ -341,6 +333,38 @@ h2 {
   font-size: 1.05rem;
   line-height: 1.6;
 }
+
+.motion-toggle {
+  margin-top: 1.05rem;
+  padding: 0.28rem 0.72rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--muted);
+  font: 600 0.82rem/1.2 var(--sans);
+  cursor: pointer;
+}
+.motion-toggle:hover { color: var(--accent-deep); border-color: var(--sage-deep); }
+.motion-toggle .when-paused { display: none; }
+html[data-motion="off"] .motion-toggle .when-playing { display: none; }
+html[data-motion="off"] .motion-toggle .when-paused { display: inline; }
+
+.posts { margin: 0 0 2.2rem; }
+.posts .link-list li {
+  grid-template-columns: 8.25rem minmax(0, 1fr);
+  gap: 0.2rem 1rem;
+  padding: 0.7rem 0;
+}
+.posts .link-list time { padding-top: 0.12rem; font-size: 0.9rem; }
+.posts .link-list a {
+  font-family: var(--sans);
+  font-weight: 650;
+  font-size: 1.05rem;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+}
+.posts .link-list p { margin-top: 0.15rem; font-size: 0.95rem; }
+.posts .more { margin-top: 0.85rem; font-size: 0.98rem; }
 
 .link-list {
   margin: 0;
@@ -599,26 +623,50 @@ h2 {
     margin: 0;
   }
   .portrait { width: 7.6rem; }
+  .hero-svg,
+  .hero-art img { object-fit: fill; object-position: center; }
 }
 
 @media (max-width: 1099px) {
   .hero-art {
     position: relative;
-    width: min(100%, 34rem);
-    justify-self: end;
-    aspect-ratio: 1.06 / 1;
-    margin-top: 0.75rem;
+    width: 100%;
+    justify-self: stretch;
+    aspect-ratio: 1200 / 640;
+    margin-top: 1.25rem;
     overflow: hidden;
   }
   .hero-svg,
   .hero-art img {
-    position: absolute;
-    top: 0;
-    left: -78%;
-    width: 178%;
+    position: static;
+    top: auto;
+    left: auto;
+    width: 100%;
     height: 100%;
     max-width: none;
     margin: 0;
+    object-fit: contain;
+    object-position: center;
+  }
+}
+
+@media (min-width: 720px) and (max-width: 1099px) {
+  .hero {
+    grid-template-columns: minmax(16rem, 0.9fr) minmax(0, 1.2fr);
+    gap: 0.75rem 1.5rem;
+    align-items: center;
+  }
+  .hero-copy { max-width: none; }
+  .hero .wordmark { font-size: clamp(2.7rem, 4.4vw, 3.55rem); }
+  .hero-art {
+    margin-top: 0;
+    aspect-ratio: 5 / 4;
+    align-self: center;
+  }
+  .hero-svg,
+  .hero-art img {
+    object-fit: cover;
+    object-position: 70% 42%;
   }
 }
 
@@ -637,7 +685,8 @@ h2 {
 }
 
 @media (max-width: 899px) {
-  .link-list li {
+  .link-list li,
+  .posts .link-list li {
     grid-template-columns: minmax(0, 1fr);
     gap: 0.2rem;
   }
@@ -658,6 +707,25 @@ h2 {
     gap: 0;
   }
   .top-nav a { padding: 0.28rem 0.5rem; font-size: 0.98rem; }
+  .hero-art { aspect-ratio: 4 / 3; }
+  .hero-svg,
+  .hero-art img {
+    object-fit: cover;
+    object-position: 74% center;
+  }
+  .build-grid a {
+    flex-direction: row;
+    align-items: center;
+  }
+  .build-grid img {
+    width: min(46%, 11.5rem);
+    height: 170px;
+    max-height: 180px;
+    aspect-ratio: auto;
+    flex: none;
+    object-fit: contain;
+  }
+  .build-grid span { padding: 0.75rem 0.85rem 0.8rem; font-size: 0.98rem; }
   .figure-row li:last-child {
     grid-column: 1 / -1;
     width: calc(50% - 0.35rem);

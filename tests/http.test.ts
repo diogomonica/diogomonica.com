@@ -58,7 +58,8 @@ describe("homepage negotiation", () => {
     expect(res.headers.get("content-type")).toMatch(/text\/html/);
     expect(res.headers.get("vary")?.toLowerCase()).toContain("accept");
     const html = await res.text();
-    const hero = html.split('<section class="hero">')[1]?.split('id="writing"')[0] ?? "";
+    const hero = html.split('<section class="hero"')[1]?.split('id="writing"')[0] ?? "";
+    expect(hero).toContain('id="about"');
     expect(hero).toContain(`href="${HAUN_TEAM_URL}"`);
     expect(hero).toContain(`href="${ANCHORAGE_URL}"`);
     expect(hero).toContain("Haun Ventures");
@@ -69,16 +70,26 @@ describe("homepage negotiation", () => {
     const heroVisible = visibleText(hero);
     expect(heroVisible.match(/Haun Ventures/g)).toHaveLength(1);
     expect(heroVisible.match(/Anchorage Digital/g)).toHaveLength(1);
+    expect(heroVisible).not.toMatch(/PhD/);
+    expect(heroVisible).not.toMatch(/Instituto Superior Técnico/);
 
-    expect(html).toContain(">Latest posts<");
+    expect(html).not.toContain(">Latest posts<");
+    expect(html).toContain('id="writing"');
+    expect(html).toContain('href="#about"');
     expect(html).toContain(">I build stuff<");
     expect(html).toContain(">I research stuff<");
     expect(html).toContain(">I talk about stuff<");
-    expect(html.indexOf(">I talk about stuff<")).toBeGreaterThan(html.indexOf(">Latest posts<"));
+    expect(html.indexOf(">I build stuff<")).toBeGreaterThan(html.indexOf("AI Escapes"));
+    expect(html.indexOf(">I talk about stuff<")).toBeGreaterThan(html.indexOf(">I build stuff<"));
+    expect(html).not.toContain('class="site-footer"');
+    expect(html).toContain("Pause motion");
+    expect(html).toContain("patent-1-static.svg");
 
     const visible = visibleText(html);
     expect(visible).not.toMatch(/BSc,/);
     expect(visible).not.toMatch(/MSc,/);
+    expect(visible).not.toMatch(/PhD/);
+    expect(visible).not.toMatch(/Instituto Superior Técnico/);
   });
 });
 
@@ -94,6 +105,8 @@ describe("trust pages", () => {
     expect(text.length).toBeGreaterThanOrEqual(500);
     expect(html).toContain("Diogo Mónica");
     expect(html).toContain("Diogo Monica");
+    expect(html).toContain('class="site-footer"');
+    expect(html).toContain('href="/about"');
     expect(html).toContain(`rel="canonical"`);
     expect(html).toContain(`https://diogomonica.com${pagePath}`);
   });
