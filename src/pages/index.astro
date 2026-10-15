@@ -53,21 +53,14 @@ const heroLabel =
       </p>
     </div>
     <div class="hero-art">
-      <object
+      <img
         class="hero-svg"
-        type="image/svg+xml"
-        data={HERO_SVG}
-        aria-label={heroLabel}
+        src={HERO_SVG}
+        alt={heroLabel}
         width="1200"
         height="640"
-      >
-        <img
-          src={HERO_POSTER}
-          alt="Phone-mounted card reader beside a small server, shown in a verified state."
-          width="1200"
-          height="640"
-        />
-      </object>
+        onerror={`this.onerror=null;this.src='${HERO_POSTER}'`}
+      />
     </div>
   </section>
 
