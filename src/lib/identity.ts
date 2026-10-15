@@ -19,7 +19,7 @@ export const BIO =
   "General Partner at Haun Ventures. Co-founder and Executive Chairman of Anchorage Digital. Chairman of the NEAR Foundation. Director at Erebor.";
 
 export const HERO_LEDE =
-  "General Partner at Haun Ventures. Co-founder and Executive Chairman of Anchorage Digital.";
+  "General Partner at Haun Ventures, Co-founder and Executive Chairman of Anchorage Digital, Chairman of the NEAR Foundation, and Director at Erebor.";
 
 export const X_URL = "https://x.com/diogomonica";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/diogomonica";

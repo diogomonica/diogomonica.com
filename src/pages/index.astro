@@ -2,11 +2,9 @@
 import Base from "../layouts/Base.astro";
 import OptimizedImage from "../components/OptimizedImage.astro";
 import {
-  ANCHORAGE_URL,
   BLOG,
   BIO,
   DISPLAY,
-  HAUN_TEAM_URL,
   HERO_POSTER,
   HERO_SVG,
   ORGANIZATIONS,
@@ -30,6 +28,8 @@ const jsonLd = {
 
 const heroLabel =
   "A magnetic-stripe card swipes through a phone-mounted reader. Track digits scramble into encrypted blocks, a lock closes, and a protected packet reaches the phone.";
+
+const orgUrl = (name: string) => ORGANIZATIONS.find((org) => org.name === name)!.url;
 ---
 <Base title={DISPLAY} description={BIO} path="/" jsonLd={jsonLd}>
   <link slot="head" rel="preload" href={HERO_SVG} as="image" type="image/svg+xml" />
@@ -56,7 +56,7 @@ const heroLabel =
       />
       <h1 class="wordmark">Diogo<br /><em>Mónica</em></h1>
       <p class="lede">
-        General Partner at <a href={HAUN_TEAM_URL}>Haun Ventures</a>. Co-founder and Executive Chairman of <a href={ANCHORAGE_URL}>Anchorage Digital</a>.
+        General Partner at <a href={orgUrl("Haun Ventures")}>Haun Ventures</a>, Co-founder and Executive Chairman of <a href={orgUrl("Anchorage Digital")}>Anchorage Digital</a>, Chairman of the <a href={orgUrl("NEAR Foundation")}>NEAR Foundation</a>, and Director at <a href={orgUrl("Erebor")}>Erebor</a>.
       </p>
       <p class="bio">
         Previously I led security at Docker and platform security at Square.
