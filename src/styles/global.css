@@ -276,13 +276,34 @@ h2 {
 
 .hero {
   display: grid;
-  gap: 0.5rem 0.5rem;
+  grid-template-columns: 1fr;
+  gap: 0.35rem 1.25rem;
   align-items: center;
   margin: 0.4rem 0 3.6rem;
   scroll-margin-top: 5.5rem;
 }
-.hero-copy { max-width: 36rem; }
-.hero .wordmark { margin-bottom: 1rem; }
+.hero-copy {
+  width: 100%;
+  max-width: 40rem;
+  margin-inline: auto;
+}
+.identity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  gap: clamp(0.45rem, 1.5vw, 0.95rem);
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto 0.85rem;
+}
+.hero .wordmark {
+  margin: 0;
+  white-space: nowrap;
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  font-size: clamp(1.7rem, 11.2vw, 4.15rem);
+}
 .hero-art {
   min-width: 0;
   overflow: hidden;
@@ -299,15 +320,16 @@ h2 {
 }
 .portrait {
   display: block;
-  width: 7.25rem;
+  width: 2.5rem;
   height: auto;
+  flex: 0 0 auto;
   aspect-ratio: 6 / 7;
   object-fit: cover;
   object-position: 50% 12%;
-  border-radius: 1.15rem;
+  border-radius: 0.55rem;
   border: 1px solid var(--sage-deep);
   background: var(--paper);
-  margin: 0 0 1.15rem;
+  margin: 0;
   box-shadow: 0 10px 30px -18px rgba(31, 60, 44, 0.55);
 }
 .lede {
@@ -593,21 +615,26 @@ html[data-motion="off"] .motion-toggle .when-paused { display: inline; }
 
 @media (min-width: 1100px) {
   .hero {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    grid-template-areas:
+      "identity identity"
+      "copy art";
     margin-bottom: 4.4rem;
+    align-items: center;
   }
-  .hero-copy,
-  .hero-art { grid-area: 1 / 1; }
+  .identity { grid-area: identity; margin-bottom: 0.35rem; }
   .hero-copy {
+    grid-area: copy;
+    max-width: none;
+    margin-inline: 0;
     align-self: center;
-    max-width: 32rem;
-    position: relative;
-    z-index: 1;
   }
+  .hero .wordmark { font-size: clamp(3rem, 4.6vw, 4.5rem); }
   .hero-art {
+    grid-area: art;
     position: static;
-    width: min(92%, 1040px);
-    justify-self: end;
+    width: 100%;
+    justify-self: stretch;
     align-self: center;
     aspect-ratio: 1200 / 640;
     margin-top: 0;
@@ -621,10 +648,9 @@ html[data-motion="off"] .motion-toggle .when-paused { display: inline; }
     width: 100%;
     height: 100%;
     margin: 0;
+    object-fit: cover;
+    object-position: 72% center;
   }
-  .portrait { width: 7.6rem; }
-  .hero-svg,
-  .hero-art img { object-fit: fill; object-position: center; }
 }
 
 @media (max-width: 1099px) {
@@ -652,13 +678,17 @@ html[data-motion="off"] .motion-toggle .when-paused { display: inline; }
 
 @media (min-width: 720px) and (max-width: 1099px) {
   .hero {
-    grid-template-columns: minmax(16rem, 0.9fr) minmax(0, 1.2fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    grid-template-areas:
+      "identity identity"
+      "copy art";
     gap: 0.75rem 1.5rem;
     align-items: center;
   }
-  .hero-copy { max-width: none; }
-  .hero .wordmark { font-size: clamp(2.7rem, 4.4vw, 3.55rem); }
+  .identity { grid-area: identity; margin-bottom: 0.15rem; }
+  .hero-copy { grid-area: copy; max-width: none; margin-inline: 0; }
   .hero-art {
+    grid-area: art;
     margin-top: 0;
     aspect-ratio: 5 / 4;
     align-self: center;
@@ -670,8 +700,19 @@ html[data-motion="off"] .motion-toggle .when-paused { display: inline; }
   }
 }
 
+@media (min-width: 390px) {
+  .portrait { width: 2.85rem; border-radius: 0.65rem; }
+}
+
+@media (min-width: 720px) {
+  .portrait { width: 4.25rem; border-radius: 0.85rem; }
+}
+
+@media (min-width: 1100px) {
+  .portrait { width: 5.5rem; border-radius: 0.95rem; }
+}
+
 @media (min-width: 900px) {
-  .portrait { width: 7.6rem; }
   .build-grid,
   .talk-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .figure-row { grid-template-columns: repeat(5, minmax(0, 1fr)); }

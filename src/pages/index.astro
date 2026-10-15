@@ -45,16 +45,18 @@ const orgUrl = (name: string) => ORGANIZATIONS.find((org) => org.name === name)!
     })();
   </script>
   <section class="hero" id="about">
-    <div class="hero-copy">
+    <div class="identity">
       <OptimizedImage
         class="portrait"
         src={PHOTO_IMAGE}
         alt={PHOTO_ALT}
-        sizes="(min-width: 900px) 7.6rem, 7.25rem"
-        widths={[160, 240, 320]}
+        sizes="(min-width: 1100px) 5.5rem, (min-width: 720px) 4.25rem, (min-width: 390px) 2.85rem, 2.5rem"
+        widths={[80, 128, 176, 264]}
         priority
       />
-      <h1 class="wordmark">Diogo<br /><em>Mónica</em></h1>
+      <h1 class="wordmark">Diogo <em>Mónica</em></h1>
+    </div>
+    <div class="hero-copy">
       <p class="lede">
         General Partner at <a href={orgUrl("Haun Ventures")}>Haun Ventures</a>, Co-founder and Executive Chairman of <a href={orgUrl("Anchorage Digital")}>Anchorage Digital</a>, Chairman of the <a href={orgUrl("NEAR Foundation")}>NEAR Foundation</a>, and Director at <a href={orgUrl("Erebor")}>Erebor</a>.
       </p>
