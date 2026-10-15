@@ -6,7 +6,7 @@ Essays live on [blog.diogomonica.com](https://blog.diogomonica.com). This repo i
 
 ## Stack
 
-Astro, static output, Fraunces and Source Sans 3, warm off-white canvas. Essays stay on the blog.
+Astro, static output, Fraunces and Inter, warm off-white canvas. Essays stay on the blog.
 
 Agent Markdown is negotiated at the Cloudflare Pages edge by `functions/_middleware.ts`. The Astro app stays `output: "static"`. Middleware does not run on prerendered HTML at request time, so converting the whole site to `output: "server"` is unnecessary. Cloudflare "Markdown for Agents" is a dashboard toggle and is not enabled from this repo.
 
