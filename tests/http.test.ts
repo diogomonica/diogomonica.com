@@ -85,9 +85,11 @@ describe("homepage negotiation", () => {
     expect(html).not.toContain(">Latest posts<");
     expect(html).toContain('id="writing"');
     expect(html).toContain('href="#about"');
+    expect(html).toContain(">I write stuff<");
     expect(html).toContain(">I build stuff<");
     expect(html).toContain(">I research stuff<");
     expect(html).toContain(">I talk about stuff<");
+    expect(html.indexOf(">I write stuff<")).toBeLessThan(html.indexOf("AI Escapes"));
     expect(html.indexOf(">I build stuff<")).toBeGreaterThan(html.indexOf("AI Escapes"));
     expect(html.indexOf(">I talk about stuff<")).toBeGreaterThan(html.indexOf(">I build stuff<"));
     expect(html).not.toContain('class="site-footer"');

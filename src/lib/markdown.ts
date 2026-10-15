@@ -64,7 +64,7 @@ export function homeMarkdown(): string {
     "",
     "Anchorage Digital is the first federally chartered crypto-native bank, still operating at scale, still waiting on Fed rails.",
     "",
-    "## Latest posts",
+    "## I write stuff",
     "",
     ...WRITING.map((item) => "- " + item.title + " — " + item.href),
     "",
