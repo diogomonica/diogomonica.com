@@ -1,15 +1,5 @@
 import type { ImageMetadata } from "astro";
 import photoImage from "../assets/diogo-monica.jpg";
-import patent1 from "../assets/figures/patent-1.png";
-import patent2 from "../assets/figures/patent-2.png";
-import patent3 from "../assets/figures/patent-3.png";
-import patent4 from "../assets/figures/patent-4.png";
-import patent5 from "../assets/figures/patent-5.png";
-import research1 from "../assets/figures/research-1.png";
-import research2 from "../assets/figures/research-2.png";
-import research3 from "../assets/figures/research-3.png";
-import research4 from "../assets/figures/research-4.png";
-import research5 from "../assets/figures/research-5.png";
 import talk1 from "../assets/talks/talk-1.jpg";
 import talk2 from "../assets/talks/talk-2.jpg";
 import talk3 from "../assets/talks/talk-3.jpg";
@@ -61,18 +51,37 @@ export const TALKS: { title: string; href: string; image: ImageMetadata }[] = TA
   }),
 );
 
-export const PATENT_FIGURES: { src: ImageMetadata; alt: string }[] = [
-  { src: patent1, alt: "Patent figure: signal waveform" },
-  { src: patent2, alt: "Patent figure: device screen dimensions" },
-  { src: patent3, alt: "Patent figure: card reader on a phone" },
-  { src: patent4, alt: "Patent figure: hardware component" },
-  { src: patent5, alt: "Patent figure: custodial system with HSM" },
-];
+export const HERO_SVG = "/illustrations/hero.svg";
+export const HERO_POSTER = "/illustrations/hero-poster.png";
 
-export const RESEARCH_FIGURES: { src: ImageMetadata; alt: string }[] = [
-  { src: research1, alt: "Research figure: intrusion detection scatter plot" },
-  { src: research2, alt: "Research figure: Evil Twin attack" },
-  { src: research3, alt: "Research figure: self-organizing map" },
-  { src: research4, alt: "Research figure: botnet command and control" },
-  { src: research5, alt: "Research figure: quorum of honest and malicious nodes" },
-];
+/** Illustrative tiles, paired in PATENTS order. Not official patent drawings. */
+export const PATENT_ART = [
+  "/illustrations/patent-1.svg",
+  "/illustrations/patent-2.svg",
+  "/illustrations/patent-3.svg",
+  "/illustrations/patent-4.svg",
+  "/illustrations/patent-5.svg",
+  "/illustrations/patent-6.svg",
+] as const;
+
+/** Same drawings with animation forced off, for the pause control. */
+export const PATENT_STILL = [
+  "/illustrations/patent-1-static.svg",
+  "/illustrations/patent-2-static.svg",
+  "/illustrations/patent-3-static.svg",
+  "/illustrations/patent-4-static.svg",
+  "/illustrations/patent-5-static.svg",
+  "/illustrations/patent-6-static.svg",
+] as const;
+
+/**
+ * Decorative figure row. Five images, six papers — not a 1:1 attribution.
+ * Order matches the original figure strip.
+ */
+export const RESEARCH_ART = [
+  "/illustrations/research-1.svg",
+  "/illustrations/research-2.svg",
+  "/illustrations/research-3.svg",
+  "/illustrations/research-4.svg",
+  "/illustrations/research-5.svg",
+] as const;
