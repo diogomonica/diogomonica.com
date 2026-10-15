@@ -30,6 +30,8 @@ const heroLabel =
   "A magnetic-stripe card swipes through a phone-mounted reader. Track digits scramble into encrypted blocks, a lock closes, and a protected packet reaches the phone.";
 
 const orgUrl = (name: string) => ORGANIZATIONS.find((org) => org.name === name)!.url;
+const outboundLabel = (title: string, href: string) =>
+  `${title}. Opens ${new URL(href).host.replace(/^www\./, "")} in a new tab.`;
 ---
 <Base title={DISPLAY} description={BIO} path="/" jsonLd={jsonLd}>
   <link slot="head" rel="preload" href={HERO_SVG} as="image" type="image/svg+xml" />
@@ -107,7 +109,7 @@ const orgUrl = (name: string) => ORGANIZATIONS.find((org) => org.name === name)!
     <ul class="build-grid">
       {PATENTS.map((item, index) => (
         <li>
-          <a href={item.href}>
+          <a class="asset-card" href={item.href} target="_blank" rel="noopener noreferrer" aria-label={outboundLabel(item.title, item.href)}>
             <img
               src={PATENT_ART[index]}
               data-motion-src={PATENT_ART[index]}
@@ -118,12 +120,15 @@ const orgUrl = (name: string) => ORGANIZATIONS.find((org) => org.name === name)!
               loading="lazy"
               decoding="async"
             />
-            <span>{item.title}</span>
+            <span class="asset-card-body">
+              <span class="asset-card-title">{item.title}</span>
+              <span class="asset-card-go" aria-hidden="true">↗</span>
+            </span>
           </a>
         </li>
       ))}
     </ul>
-    <a class="more" href="https://patents.justia.com/search?q=diogo+monica">All patents <span aria-hidden="true">→</span></a>
+    <a class="more" href="https://patents.justia.com/search?q=diogo+monica" target="_blank" rel="noopener noreferrer">All patents <span aria-hidden="true">↗</span></a>
   </section>
 
   <section class="section chapter" id="research" aria-labelledby="research-heading">
@@ -132,19 +137,22 @@ const orgUrl = (name: string) => ORGANIZATIONS.find((org) => org.name === name)!
       I've published several papers on the topics of security, distributed systems, botnets,
       intrusion detection systems, quorum systems, and passwords.
     </p>
-    <ul class="figure-row" aria-hidden="true">
-      {RESEARCH_ART.map((src) => (
+    <ul class="research-grid">
+      {RESEARCH.map((item, index) => (
         <li>
-          <img src={src} alt="" width="640" height="480" loading="lazy" decoding="async" />
+          <a class="asset-card" href={item.href} target="_blank" rel="noopener noreferrer" aria-label={outboundLabel(item.title, item.href)}>
+            {RESEARCH_ART[index] && (
+              <img src={RESEARCH_ART[index]} alt="" width="640" height="480" loading="lazy" decoding="async" />
+            )}
+            <span class="asset-card-body">
+              <span class="asset-card-title">{item.title}</span>
+              <span class="asset-card-go" aria-hidden="true">↗</span>
+            </span>
+          </a>
         </li>
       ))}
     </ul>
-    <ul class="plain-list cols">
-      {RESEARCH.map((item) => (
-        <li><a href={item.href}>{item.title}</a></li>
-      ))}
-    </ul>
-    <a class="more" href="https://www.researchgate.net/profile/Diogo-Monica">ResearchGate profile <span aria-hidden="true">→</span></a>
+    <a class="more" href="https://www.researchgate.net/profile/Diogo-Monica" target="_blank" rel="noopener noreferrer">ResearchGate profile <span aria-hidden="true">↗</span></a>
   </section>
 
   <section class="section chapter" id="speaking" aria-labelledby="speaking-heading">

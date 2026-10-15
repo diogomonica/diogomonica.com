@@ -93,6 +93,25 @@ describe("homepage negotiation", () => {
     expect(html).not.toContain('class="site-footer"');
     expect(html).toContain("Pause motion");
     expect(html).toContain("patent-1-static.svg");
+    expect(html).toContain('class="asset-card"');
+    expect(html).toContain("↗");
+    expect(html.match(/id="patents"[\s\S]*id="research"/)?.[0]).toContain('target="_blank"');
+    expect(html.match(/id="research"[\s\S]*id="speaking"/)?.[0]).toContain('target="_blank"');
+    expect(html).toContain("Opens patents.justia.com in a new tab.");
+    expect(html).toContain("Opens researchgate.net in a new tab.");
+    expect(html).toContain('rel="noopener noreferrer"');
+
+    const assetUrls = new Set<string>();
+    for (const raw of html.matchAll(/(?:src|href|srcset)="([^"]+)"/g)) {
+      for (const part of raw[1].split(",")) {
+        const url = part.trim().split(" ")[0];
+        if (url.startsWith("/") && !url.startsWith("//")) assetUrls.add(url.split("?")[0]);
+      }
+    }
+    for (const url of assetUrls) {
+      if (["/", "/about", "/contact", "/privacy", "/submit-deck"].includes(url)) continue;
+      expect(existsSync(path.join(DIST, url.slice(1))), url).toBe(true);
+    }
 
     expect(html).toContain("<title>Diogo Mónica — General Partner at Haun Ventures. Co-founder and Executive Chairman of Anchorage Digital. Chairman of the NEAR Foundation. Director at Erebor.</title>");
     expect(html).toContain('content="General Partner at Haun Ventures. Co-founder and Executive Chairman of Anchorage Digital. Chairman of the NEAR Foundation. Director at Erebor."');

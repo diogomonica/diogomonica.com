@@ -471,61 +471,72 @@ html[data-motion="off"] .motion-toggle .when-paused { display: inline; }
   padding: 0;
   list-style: none;
 }
-.build-grid a {
+.build-grid a,
+.research-grid a {
   display: flex;
   flex-direction: column;
   height: 100%;
+  cursor: pointer;
   text-decoration: none;
   color: var(--fg);
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   overflow: hidden;
-  transition: border-color 160ms ease, transform 160ms ease;
+  transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
 }
-.build-grid a:hover {
+.build-grid a:hover,
+.research-grid a:hover,
+.build-grid a:focus-visible,
+.research-grid a:focus-visible {
   color: var(--accent-deep);
-  border-color: var(--sage-deep);
+  border-color: var(--accent);
   transform: translateY(-2px);
+  box-shadow: 0 14px 28px -20px rgba(20, 60, 44, 0.85);
 }
 .build-grid img {
   display: block;
   width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 3;
+  height: 7.25rem;
+  aspect-ratio: auto;
   object-fit: contain;
   background: var(--paper);
 }
-.build-grid span {
-  display: block;
-  padding: 0.9rem 1rem 1.05rem;
-  font-weight: 650;
-  letter-spacing: -0.02em;
-  line-height: 1.35;
-}
-
-.figure-row {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.7rem;
-  margin: 0 0 1.35rem;
-  padding: 0;
-  list-style: none;
-}
-.figure-row li {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 0.95rem;
-  overflow: hidden;
-  aspect-ratio: 4 / 3;
-  display: grid;
-}
-.figure-row img {
+.research-grid img {
   display: block;
   width: 100%;
-  height: 100%;
+  height: 8.5rem;
   object-fit: contain;
   background: var(--paper);
+}
+.asset-card-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  padding: 0.95rem 1rem 1.1rem;
+}
+.asset-card-title {
+  flex: 1;
+  font-size: 1.35rem;
+  font-weight: 650;
+  letter-spacing: -0.022em;
+  line-height: 1.28;
+}
+.asset-card-go {
+  flex: none;
+  color: var(--accent);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.research-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.9rem;
+  margin: 0.2rem 0 0.2rem;
+  padding: 0;
+  list-style: none;
 }
 
 .talk-grid {
@@ -608,9 +619,10 @@ html[data-motion="off"] .motion-toggle .when-paused { display: inline; }
 .lost-recover a:hover { color: var(--accent-deep); }
 
 @media (min-width: 720px) {
-  .build-grid { grid-template-columns: 1fr 1fr; }
+  .build-grid,
+  .research-grid { grid-template-columns: 1fr 1fr; }
   .talk-grid { grid-template-columns: 1fr 1fr; }
-  .figure-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .build-grid img { height: 8rem; }
 }
 
 @media (min-width: 1100px) {
@@ -714,8 +726,10 @@ html[data-motion="off"] .motion-toggle .when-paused { display: inline; }
 
 @media (min-width: 900px) {
   .build-grid,
+  .research-grid,
   .talk-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .figure-row { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .build-grid img { height: 7.5rem; }
+  .asset-card-title { font-size: 1.55rem; }
   .plain-list.cols {
     grid-template-columns: 1fr 1fr;
     column-gap: 2.25rem;
@@ -754,30 +768,16 @@ html[data-motion="off"] .motion-toggle .when-paused { display: inline; }
     object-fit: cover;
     object-position: 74% center;
   }
-  .build-grid a {
-    flex-direction: row;
-    align-items: center;
-  }
-  .build-grid img {
-    width: min(46%, 11.5rem);
-    height: 170px;
-    max-height: 180px;
-    aspect-ratio: auto;
-    flex: none;
-    object-fit: contain;
-  }
-  .build-grid span { padding: 0.75rem 0.85rem 0.8rem; font-size: 0.98rem; }
-  .figure-row li:last-child {
-    grid-column: 1 / -1;
-    width: calc(50% - 0.35rem);
-    justify-self: center;
-  }
+  .build-grid img { height: 6.25rem; }
+  .research-grid img { height: 7.25rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .build-grid a,
+  .research-grid a,
   .talk-grid a { transition: none; }
   .build-grid a:hover,
+  .research-grid a:hover,
   .talk-grid a:hover { transform: none; }
 }
