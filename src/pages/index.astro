@@ -6,8 +6,6 @@ import {
   BLOG,
   BIO,
   DISPLAY,
-  HERO_POSTER,
-  HERO_SVG,
   ORGANIZATIONS,
   PATENTS,
   PATENT_ART,
@@ -27,23 +25,11 @@ const jsonLd = {
   "@graph": [PERSON, WEBSITE, ...ORGANIZATIONS],
 };
 
-const heroLabel =
-  "A magnetic-stripe card swipes through a phone-mounted reader. Track digits scramble into encrypted blocks, a lock closes, and a protected packet reaches the phone.";
-
 const orgUrl = (name: string) => ORGANIZATIONS.find((org) => org.name === name)!.url;
 const outboundLabel = (title: string, href: string) =>
   `${title}. Opens ${new URL(href).host.replace(/^www\./, "")} in a new tab.`;
-
-const tagline = [
-  ["Security", "and"],
-  ["custody,", "built"],
-  ["in", "companies"],
-  ["and", "written"],
-  ["in", "public."],
-];
 ---
 <Base title={DISPLAY} description={BIO} path="/" jsonLd={jsonLd}>
-  <link slot="head" rel="preload" href={HERO_SVG} as="image" type="image/svg+xml" />
   <script is:inline slot="head">
     (() => {
       try {
@@ -62,8 +48,8 @@ const tagline = [
           class="portrait"
           src={PHOTO_IMAGE}
           alt={PHOTO_ALT}
-          sizes="(min-width: 720px) 7.6rem, 7.25rem"
-          widths={[240, 360, 480]}
+          sizes="(min-width: 1100px) 16rem, (min-width: 720px) 14rem, (min-width: 380px) 12rem, 9.5rem"
+          widths={[320, 480, 640, 800, 960]}
           priority
         />
         <h1 class="wordmark">Diogo<br />Mónica</h1>
@@ -83,18 +69,6 @@ const tagline = [
         <span class="when-paused"><Icon name="play" /> Play motion</span>
       </button>
     </div>
-    <div class="hero-art settle">
-      <img
-        class="hero-svg"
-        src={HERO_SVG}
-        data-motion-src={HERO_SVG}
-        data-still-src={HERO_POSTER}
-        alt={heroLabel}
-        width="1200"
-        height="640"
-        onerror={`this.onerror=null;this.src='${HERO_POSTER}'`}
-      />
-    </div>
   </section>
 
   <section class="section chapter posts reveal" id="writing" aria-labelledby="writing-heading">
@@ -111,22 +85,6 @@ const tagline = [
       ))}
     </ul>
     <a class="more" href={BLOG}>All essays on the blog <Icon name="arrow-right" /></a>
-  </section>
-
-  <section class="tagline" id="tagline" aria-label="Tagline">
-    <p class="tagline-text">
-      {tagline.map((line, lineIndex) => (
-        <>
-          {lineIndex > 0 && <br />}
-          {line.map((word, wordIndex) => (
-            <>
-              {wordIndex > 0 && " "}
-              <span class="tagline-word">{word}</span>
-            </>
-          ))}
-        </>
-      ))}
-    </p>
   </section>
 
   <section class="section chapter reveal" id="patents" aria-labelledby="patents-heading">
@@ -235,32 +193,6 @@ const tagline = [
           apply(document.documentElement.getAttribute("data-motion") !== "off", true);
         });
       }
-
-      var section = document.querySelector(".tagline");
-      var words = section ? section.querySelectorAll(".tagline-word") : [];
-      var reduce = false;
-      try { reduce = matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) {}
-      if (!section || !words.length || reduce) return;
-      var ticking = false;
-      function updateTagline() {
-        var trigger = window.innerHeight * 0.46;
-        var top = section.getBoundingClientRect().top;
-        var step = 24;
-        for (var i = 0; i < words.length; i++) {
-          words[i].classList.toggle("is-on", top < trigger - i * step);
-        }
-      }
-      function onScroll() {
-        if (ticking) return;
-        ticking = true;
-        requestAnimationFrame(function () {
-          ticking = false;
-          updateTagline();
-        });
-      }
-      updateTagline();
-      window.addEventListener("scroll", onScroll, { passive: true });
-      window.addEventListener("resize", onScroll, { passive: true });
     })();
   </script>
 </Base>

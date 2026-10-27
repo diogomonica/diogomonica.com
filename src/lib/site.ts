@@ -51,9 +51,6 @@ export const TALKS: { title: string; href: string; image: ImageMetadata }[] = TA
   }),
 );
 
-export const HERO_SVG = "/illustrations/hero.svg";
-export const HERO_POSTER = "/illustrations/hero-poster.png";
-
 /** Illustrative tiles, paired in PATENTS order. Not official patent drawings. */
 export const PATENT_ART = [
   "/illustrations/patent-1.svg",
