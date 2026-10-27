@@ -42,33 +42,34 @@ const outboundLabel = (title: string, href: string) =>
     })();
   </script>
   <section class="hero" id="about">
-    <div class="hero-copy">
-      <div class="identity settle">
-        <OptimizedImage
-          class="portrait"
-          src={PHOTO_IMAGE}
-          alt={PHOTO_ALT}
-          sizes="(min-width: 1100px) 16rem, (min-width: 720px) 14rem, (min-width: 380px) 12rem, 9.5rem"
-          widths={[320, 480, 640, 800, 960]}
-          priority
-        />
-        <h1 class="wordmark">Diogo<br />Mónica</h1>
+    <div class="hero-text">
+      <h1 class="wordmark settle">Diogo<br />Mónica</h1>
+      <div class="hero-copy">
+        <p class="lede settle">
+          General Partner at <a href={orgUrl("Haun Ventures")}>Haun Ventures</a>,<br />
+          Co-founder and Executive Chairman<br />
+          of <a href={orgUrl("Anchorage Digital")}>Anchorage Digital</a>,<br />
+          Chairman of the <a href={orgUrl("NEAR Foundation")}>NEAR Foundation</a>,<br />
+          and Director at <a href={orgUrl("Erebor")}>Erebor</a>.
+        </p>
+        <p class="bio settle">
+          Previously I led security at Docker and platform security at Square.
+          Oh, and I love angel investing.
+        </p>
+        <button type="button" class="motion-toggle settle" aria-pressed="false">
+          <span class="when-playing"><Icon name="pause" /> Pause motion</span>
+          <span class="when-paused"><Icon name="play" /> Play motion</span>
+        </button>
       </div>
-      <p class="lede settle">
-        General Partner at <a href={orgUrl("Haun Ventures")}>Haun Ventures</a>,<br />
-        Co-founder and Executive Chairman of <a href={orgUrl("Anchorage Digital")}>Anchorage Digital</a>,<br />
-        Chairman of the <a href={orgUrl("NEAR Foundation")}>NEAR Foundation</a>,<br />
-        and Director at <a href={orgUrl("Erebor")}>Erebor</a>.
-      </p>
-      <p class="bio settle">
-        Previously I led security at Docker and platform security at Square.
-        Oh, and I love angel investing.
-      </p>
-      <button type="button" class="motion-toggle settle" aria-pressed="false">
-        <span class="when-playing"><Icon name="pause" /> Pause motion</span>
-        <span class="when-paused"><Icon name="play" /> Play motion</span>
-      </button>
     </div>
+    <OptimizedImage
+      class="portrait settle"
+      src={PHOTO_IMAGE}
+      alt={PHOTO_ALT}
+      sizes="(min-width: 960px) 42rem, (min-width: 720px) 14rem, (min-width: 380px) 12rem, 9.5rem"
+      widths={[320, 480, 640, 800, 960, 1200, 1400]}
+      priority
+    />
   </section>
 
   <section class="section chapter posts reveal" id="writing" aria-labelledby="writing-heading">
