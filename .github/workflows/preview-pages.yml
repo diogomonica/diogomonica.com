@@ -1,0 +1,36 @@
+name: Preview Cloudflare Pages
+
+# Branch preview only. Production stays on the master workflow
+# (.github/workflows/deploy-pages.yml), which deploys with --branch=master.
+on:
+  push:
+    branches:
+      - redesign-pastel
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  preview:
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    name: Preview
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+      - run: npm test
+
+      - name: Deploy preview
+        id: deploy
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=diogomonica-com --branch=redesign-pastel
