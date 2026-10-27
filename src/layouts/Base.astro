@@ -14,6 +14,15 @@ const { title, description, path, jsonLd } = Astro.props;
 const url = new URL(path, SITE).href;
 const ogImage = new URL(PHOTO, SITE).href;
 const pageTitle = path === "/" ? `${DISPLAY} — ${BIO}` : `${title} · ${DISPLAY}`;
+
+const navItems = [
+  { href: "/", label: "Home", current: path === "/", me: false },
+  { href: path === "/" ? "#about" : "/about", label: "About", current: path === "/about", me: false },
+  { href: BLOG, label: "Blog", current: false, me: false },
+  { href: WIKIPEDIA_URL, label: "Wikipedia", current: false, me: true },
+  { href: LINKEDIN_URL, label: "LinkedIn", current: false, me: true },
+  { href: X_URL, label: "X", current: false, me: true },
+];
 ---
 <!doctype html>
 <html lang="en">
@@ -23,8 +32,11 @@ const pageTitle = path === "/" ? `${DISPLAY} — ${BIO}` : `${title} · ${DISPLA
   <meta name="color-scheme" content="light" />
   <meta name="theme-color" content="#F3F2EE" />
   <style is:inline>
-    html{background:#F3F2EE;color:#1C1B19;color-scheme:light}
+    html{background:#F3F2EE;color:#141312;color-scheme:light}
   </style>
+  <script is:inline>
+    document.documentElement.classList.add("js");
+  </script>
   <slot name="head" />
   <title>{pageTitle}</title>
   <meta name="description" content={description} />
@@ -35,6 +47,7 @@ const pageTitle = path === "/" ? `${DISPLAY} — ${BIO}` : `${title} · ${DISPLA
   <link rel="icon" href="/favicon.png" type="image/png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <meta property="og:site_name" content={DISPLAY} />
+  <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
@@ -47,27 +60,35 @@ const pageTitle = path === "/" ? `${DISPLAY} — ${BIO}` : `${title} · ${DISPLA
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={ogImage} />
+  <meta name="twitter:image:alt" content="Portrait of Diogo Mónica" />
   {SAME_AS.map((href) => <link rel="me" href={href} />)}
   {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
   <header class="site-header">
-    <div class="wrap">
+    <div class="nav-bar">
       <a class="brand" href="/">
         <BrandMark />
         <span class="brand-name">{DISPLAY}</span>
       </a>
       <nav class="top-nav" aria-label="Site">
-        <a href="/" aria-current={path === "/" ? "page" : undefined}>Home</a>
-        <a href={path === "/" ? "#about" : "/about"} aria-current={path === "/about" ? "page" : undefined}>About</a>
-        <a href={BLOG}>Blog</a>
-        <a rel="me" href={WIKIPEDIA_URL}>Wikipedia</a>
-        <a rel="me" href={LINKEDIN_URL}>LinkedIn</a>
-        <a rel="me" href={X_URL}>X</a>
+        {navItems.map((item) => (
+          <a href={item.href} rel={item.me ? "me" : undefined} aria-current={item.current ? "page" : undefined}>{item.label}</a>
+        ))}
       </nav>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+        <span class="nav-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
     </div>
   </header>
+  <div class="nav-panel" id="mobile-nav" aria-hidden="true">
+    <nav aria-label="Site">
+      {navItems.map((item) => (
+        <a href={item.href} rel={item.me ? "me" : undefined} aria-current={item.current ? "page" : undefined}>{item.label}</a>
+      ))}
+    </nav>
+  </div>
   <main id="main" class="wrap"><slot /></main>
   {path !== "/" && (
     <footer class="site-footer">
@@ -90,5 +111,54 @@ const pageTitle = path === "/" ? `${DISPLAY} — ${BIO}` : `${title} · ${DISPLA
       </div>
     </footer>
   )}
+  <script is:inline>
+    (() => {
+      var toggle = document.querySelector(".nav-toggle");
+      var panel = document.querySelector(".nav-panel");
+      function setOpen(open) {
+        if (!toggle || !panel) return;
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+        toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+        panel.classList.toggle("is-open", open);
+        panel.setAttribute("aria-hidden", open ? "false" : "true");
+        document.documentElement.classList.toggle("nav-open", open);
+        if (open) {
+          var first = panel.querySelector("a");
+          if (first) first.focus();
+        } else if (document.activeElement && panel.contains(document.activeElement)) {
+          toggle.focus();
+        }
+      }
+      if (toggle && panel) {
+        toggle.addEventListener("click", function () {
+          setOpen(toggle.getAttribute("aria-expanded") !== "true");
+        });
+        panel.addEventListener("click", function (event) {
+          if (event.target.closest("a")) setOpen(false);
+        });
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") setOpen(false);
+        });
+        window.addEventListener("resize", function () {
+          if (window.innerWidth >= 960 && toggle.getAttribute("aria-expanded") === "true") setOpen(false);
+        });
+      }
+
+      var nodes = document.querySelectorAll(".reveal");
+      if (!nodes.length) return;
+      if (!("IntersectionObserver" in window)) {
+        for (var i = 0; i < nodes.length; i++) nodes[i].classList.add("is-in");
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        for (var i = 0; i < entries.length; i++) {
+          if (!entries[i].isIntersecting) continue;
+          entries[i].target.classList.add("is-in");
+          io.unobserve(entries[i].target);
+        }
+      }, { threshold: 0.18 });
+      for (var j = 0; j < nodes.length; j++) io.observe(nodes[j]);
+    })();
+  </script>
 </body>
 </html>

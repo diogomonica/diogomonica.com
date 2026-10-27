@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import Icon from "../components/Icon.astro";
 import OptimizedImage from "../components/OptimizedImage.astro";
 import {
   BLOG,
@@ -32,6 +33,14 @@ const heroLabel =
 const orgUrl = (name: string) => ORGANIZATIONS.find((org) => org.name === name)!.url;
 const outboundLabel = (title: string, href: string) =>
   `${title}. Opens ${new URL(href).host.replace(/^www\./, "")} in a new tab.`;
+
+const tagline = [
+  ["Security", "and"],
+  ["custody,", "built"],
+  ["in", "companies"],
+  ["and", "written"],
+  ["in", "public."],
+];
 ---
 <Base title={DISPLAY} description={BIO} path="/" jsonLd={jsonLd}>
   <link slot="head" rel="preload" href={HERO_SVG} as="image" type="image/svg+xml" />
@@ -48,30 +57,33 @@ const outboundLabel = (title: string, href: string) =>
   </script>
   <section class="hero" id="about">
     <div class="hero-copy">
-      <div class="identity">
+      <div class="identity settle">
         <OptimizedImage
           class="portrait"
           src={PHOTO_IMAGE}
           alt={PHOTO_ALT}
-          sizes="(min-width: 900px) 7.6rem, 7.25rem"
+          sizes="(min-width: 720px) 7.6rem, 7.25rem"
           widths={[240, 360, 480]}
           priority
         />
-        <h1 class="wordmark">Diogo<br /><em>Mónica</em></h1>
+        <h1 class="wordmark">Diogo<br />Mónica</h1>
       </div>
-      <p class="lede">
-        General Partner at <a href={orgUrl("Haun Ventures")}>Haun Ventures</a>, Co-founder and Executive Chairman of <a href={orgUrl("Anchorage Digital")}>Anchorage Digital</a>, Chairman of the <a href={orgUrl("NEAR Foundation")}>NEAR Foundation</a>, and Director at <a href={orgUrl("Erebor")}>Erebor</a>.
+      <p class="lede settle">
+        General Partner at <a href={orgUrl("Haun Ventures")}>Haun Ventures</a>,<br />
+        Co-founder and Executive Chairman of <a href={orgUrl("Anchorage Digital")}>Anchorage Digital</a>,<br />
+        Chairman of the <a href={orgUrl("NEAR Foundation")}>NEAR Foundation</a>,<br />
+        and Director at <a href={orgUrl("Erebor")}>Erebor</a>.
       </p>
-      <p class="bio">
+      <p class="bio settle">
         Previously I led security at Docker and platform security at Square.
         Oh, and I love angel investing.
       </p>
-      <button type="button" class="motion-toggle" aria-pressed="false">
-        <span class="when-playing">Pause motion</span>
-        <span class="when-paused">Play motion</span>
+      <button type="button" class="motion-toggle settle" aria-pressed="false">
+        <span class="when-playing"><Icon name="pause" /> Pause motion</span>
+        <span class="when-paused"><Icon name="play" /> Play motion</span>
       </button>
     </div>
-    <div class="hero-art">
+    <div class="hero-art settle">
       <img
         class="hero-svg"
         src={HERO_SVG}
@@ -85,7 +97,7 @@ const outboundLabel = (title: string, href: string) =>
     </div>
   </section>
 
-  <section class="section chapter posts" id="writing" aria-labelledby="writing-heading">
+  <section class="section chapter posts reveal" id="writing" aria-labelledby="writing-heading">
     <h2 id="writing-heading">I write stuff</h2>
     <ul class="link-list">
       {WRITING.map((item) => (
@@ -98,10 +110,26 @@ const outboundLabel = (title: string, href: string) =>
         </li>
       ))}
     </ul>
-    <a class="more" href={BLOG}>All essays on the blog <span aria-hidden="true">→</span></a>
+    <a class="more" href={BLOG}>All essays on the blog <Icon name="arrow-right" /></a>
   </section>
 
-  <section class="section chapter" id="patents" aria-labelledby="patents-heading">
+  <section class="tagline" id="tagline" aria-label="Tagline">
+    <p class="tagline-text">
+      {tagline.map((line, lineIndex) => (
+        <>
+          {lineIndex > 0 && <br />}
+          {line.map((word, wordIndex) => (
+            <>
+              {wordIndex > 0 && " "}
+              <span class="tagline-word">{word}</span>
+            </>
+          ))}
+        </>
+      ))}
+    </p>
+  </section>
+
+  <section class="section chapter reveal" id="patents" aria-labelledby="patents-heading">
     <h2 id="patents-heading">I build stuff</h2>
     <p>
       I have several patents on payment architectures, payment hardware, private key management,
@@ -123,16 +151,19 @@ const outboundLabel = (title: string, href: string) =>
             />
             <span class="asset-card-body">
               <span class="asset-card-title">{item.title}</span>
-              <span class="asset-card-go" aria-hidden="true">↗</span>
+              <span class="asset-card-go" aria-hidden="true">
+                <Icon name="arrow-up-right" />
+                <span class="sr-only">↗</span>
+              </span>
             </span>
           </a>
         </li>
       ))}
     </ul>
-    <a class="more" href="https://patents.justia.com/search?q=diogo+monica" target="_blank" rel="noopener noreferrer">All patents <span aria-hidden="true">↗</span></a>
+    <a class="more" href="https://patents.justia.com/search?q=diogo+monica" target="_blank" rel="noopener noreferrer">All patents <Icon name="arrow-up-right" /></a>
   </section>
 
-  <section class="section chapter" id="research" aria-labelledby="research-heading">
+  <section class="section chapter reveal" id="research" aria-labelledby="research-heading">
     <h2 id="research-heading">I research stuff</h2>
     <p>
       I've published several papers on the topics of security, distributed systems, botnets,
@@ -147,16 +178,19 @@ const outboundLabel = (title: string, href: string) =>
             )}
             <span class="asset-card-body">
               <span class="asset-card-title">{item.title}</span>
-              <span class="asset-card-go" aria-hidden="true">↗</span>
+              <span class="asset-card-go" aria-hidden="true">
+                <Icon name="arrow-up-right" />
+                <span class="sr-only">↗</span>
+              </span>
             </span>
           </a>
         </li>
       ))}
     </ul>
-    <a class="more" href="https://www.researchgate.net/profile/Diogo-Monica" target="_blank" rel="noopener noreferrer">ResearchGate profile <span aria-hidden="true">↗</span></a>
+    <a class="more" href="https://www.researchgate.net/profile/Diogo-Monica" target="_blank" rel="noopener noreferrer">ResearchGate profile <Icon name="arrow-up-right" /></a>
   </section>
 
-  <section class="section chapter" id="speaking" aria-labelledby="speaking-heading">
+  <section class="section chapter reveal" id="speaking" aria-labelledby="speaking-heading">
     <h2 id="speaking-heading">I talk about stuff</h2>
     <p>
       I speak regularly on the topics of crypto, security, financial regulations,
@@ -169,7 +203,7 @@ const outboundLabel = (title: string, href: string) =>
             <OptimizedImage
               src={item.image}
               alt=""
-              sizes="(min-width: 900px) calc((min(1120px, 100vw - 2.5rem) - 1.8rem) / 3), (min-width: 720px) calc((100vw - 1.5rem - 0.9rem) / 2), calc(100vw - 1.5rem)"
+              sizes="(min-width: 900px) calc((min(1120px, 100vw - 4rem) - 2rem) / 3), (min-width: 720px) calc((100vw - 4rem - 1rem) / 2), calc(100vw - 2rem)"
               widths={[480, 720, 960, 1280]}
             />
             <span>{item.title}</span>
@@ -177,7 +211,7 @@ const outboundLabel = (title: string, href: string) =>
         </li>
       ))}
     </ul>
-    <a class="more" href="https://www.youtube.com/results?search_query=diogo+monica">More talks <span aria-hidden="true">→</span></a>
+    <a class="more" href="https://www.youtube.com/results?search_query=diogo+monica">More talks <Icon name="arrow-right" /></a>
   </section>
   <script is:inline>
     (() => {
@@ -201,6 +235,32 @@ const outboundLabel = (title: string, href: string) =>
           apply(document.documentElement.getAttribute("data-motion") !== "off", true);
         });
       }
+
+      var section = document.querySelector(".tagline");
+      var words = section ? section.querySelectorAll(".tagline-word") : [];
+      var reduce = false;
+      try { reduce = matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) {}
+      if (!section || !words.length || reduce) return;
+      var ticking = false;
+      function updateTagline() {
+        var trigger = window.innerHeight * 0.46;
+        var top = section.getBoundingClientRect().top;
+        var step = 24;
+        for (var i = 0; i < words.length; i++) {
+          words[i].classList.toggle("is-on", top < trigger - i * step);
+        }
+      }
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () {
+          ticking = false;
+          updateTagline();
+        });
+      }
+      updateTagline();
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", onScroll, { passive: true });
     })();
   </script>
 </Base>
