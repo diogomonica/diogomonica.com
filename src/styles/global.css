@@ -1068,12 +1068,6 @@ a.role-title:hover { color: var(--accent-deep); }
   .talk-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
-@media (min-width: 1100px) {
-  .build-grid,
-  .research-grid,
-  .talk-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-}
-
 @media (min-width: 960px) {
   .top-nav { display: flex; }
   .nav-toggle,

@@ -2,10 +2,12 @@ name: Preview Cloudflare Pages
 
 # Branch preview only. Production stays on the master workflow
 # (.github/workflows/deploy-pages.yml), which deploys with --branch=master.
+# Each preview is aliased at https://<branch>.diogomonica-com.pages.dev.
 on:
   push:
     branches:
       - redesign-pastel
+      - cards-3up
   pull_request:
     branches:
       - master
@@ -33,4 +35,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=diogomonica-com --branch=redesign-pastel
+          command: pages deploy dist --project-name=diogomonica-com --branch=${{ github.head_ref || github.ref_name }}
