@@ -167,6 +167,14 @@ export const RECOVERY_HREFS = [
 
 export const WRITING = [
   {
+    date: "2026-11-02",
+    label: "November 2, 2026",
+    title: "The light of other days",
+    excerpt:
+      "In The Light of Other Days, Arthur C. Clarke imagines a world in which wormhole technology lets anyone spy on anyone.",
+    href: "https://blog.diogomonica.com/2026/11/02/the-light-of-other-days/",
+  },
+  {
     date: "2026-09-28",
     label: "September 28, 2026",
     title: "AI Escapes: Super Intelligence or Super Incompetence?",
@@ -189,13 +197,6 @@ export const WRITING = [
     excerpt:
       "Wake a GrokBot on inbound mail with a webhook, a cheap Replit proxy, and a fetch of that one email.",
     href: "https://blog.diogomonica.com/2026/08/28/how-to-get-your-grokbot-to-receive-emails-instantly/",
-  },
-  {
-    date: "2026-07-02",
-    label: "July 2, 2026",
-    title: "Jota",
-    excerpt: "We're proud to lead Jota's Series A and to make Haun Ventures' first investment in Brazil.",
-    href: "https://blog.diogomonica.com/2026/07/02/jota/",
   },
 ];
 
