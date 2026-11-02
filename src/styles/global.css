@@ -183,7 +183,6 @@ button { font: inherit; color: inherit; }
   color: var(--accent);
   flex-shrink: 0;
 }
-.brand-name { white-space: nowrap; }
 
 .top-nav {
   display: none;
