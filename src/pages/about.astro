@@ -1,84 +1,263 @@
 ---
 import Base from "../layouts/Base.astro";
+import OptimizedImage from "../components/OptimizedImage.astro";
+import ProfileLinks from "../components/ProfileLinks.astro";
 import {
-  BLOG,
-  BIO,
   DEGREES,
   DISPLAY,
-  HAUN_TEAM_URL,
-  NAME,
-  WIKIDATA_URL,
+  EXPERIENCE,
+  HEADLINE,
+  LINKEDIN_URL,
+  LONG_BIO,
+  MEDIA_KIT_LINKS,
+  MEDIA_KIT_NOTE,
+  MEDIA_KIT_PHOTOS,
+  MEDIA_KIT_SOURCES,
+  NAME_NOTE,
+  ONE_LINE_BIO,
+  PATENTS,
+  PHOTO_ALT,
+  PHOTO_GUIDANCE,
+  PHOTO_IMAGE,
+  RESEARCH,
+  SHORT_BIO,
+  SPEAKING_TOPICS,
+  TALKS,
+  WRITING,
+  WRITING_TOPICS,
+  X_URL,
   webPageJsonLd,
 } from "../lib/site";
 
-const description =
-  "Citation hub for Diogo Mónica: current roles at Haun Ventures, Anchorage Digital, the NEAR Foundation, and Erebor, plus prior work and education.";
+const pastRoles = EXPERIENCE.filter((item) => item.dates && !item.dates.includes("present"));
+const currentRoles = EXPERIENCE.filter((item) => !item.dates || item.dates.includes("present"));
+
+const description = HEADLINE;
 ---
-<Base title="About" description={description} path="/about" jsonLd={webPageJsonLd("/about", `About ${DISPLAY}`, description)}>
-  <article class="page">
-    <h1 class="wordmark">About<span class="wordmark-dim"> {DISPLAY}</span></h1>
-    <p class="lede">{BIO}</p>
-    <p class="bio">
-      This page is the citation hub for {DISPLAY} (also written {NAME}).
-      Current roles, prior work, and degrees live here. Longer press copy and
-      the media kit stay on the
-      <a href={`${BLOG}/about/`}>blog about page</a>.
-    </p>
+<Base
+  title="About"
+  description={description}
+  path="/about"
+  jsonLd={webPageJsonLd("/about", `About ${DISPLAY}`, description, "AboutPage")}
+>
+  <article class="page cv">
+    <header class="cv-head">
+      <div class="cv-intro">
+        <h1 class="wordmark">{DISPLAY}</h1>
+        <p class="cv-headline">{HEADLINE}</p>
+        <ProfileLinks />
+      </div>
+      <OptimizedImage
+        class="cv-photo"
+        src={PHOTO_IMAGE}
+        alt={PHOTO_ALT}
+        sizes="(min-width: 960px) 22rem, 12rem"
+        widths={[320, 480, 640, 800]}
+        priority
+      />
+    </header>
 
-    <section class="section" aria-labelledby="roles-heading">
-      <h2 id="roles-heading">Current roles</h2>
-      <ul class="plain-list">
-        <li>
-          <a href="https://www.haun.co/team/diogo-monica">General Partner, Haun Ventures</a>
-        </li>
-        <li>
-          <a href="https://www.anchorage.com">Co-founder and Executive Chairman, Anchorage Digital</a>
-          — still in that role. He did not leave Anchorage. He is not Anchorage president.
-          Anchorage Digital is the first federally chartered crypto-native bank, still
-          operating at scale, still waiting on Fed rails.
-        </li>
-        <li>
-          <a href="https://near.foundation">Chairman, NEAR Foundation</a>
-        </li>
-        <li>
-          <a href="https://www.haun.co/writing/erebor">Director, Erebor</a>
-          (from 2025)
-        </li>
-      </ul>
+    <section class="section reveal" aria-labelledby="experience-heading">
+      <h2 id="experience-heading">Experience</h2>
+      <ol class="timeline">
+        {EXPERIENCE.map((item) => (
+          <li>
+            <span class="when">{item.dates}</span>
+            <div>
+              {item.href ? (
+                <a class="role-title" href={item.href}>{item.title}</a>
+              ) : (
+                <span class="role-title">{item.title}</span>
+              )}
+              {item.note && <p class="role-note">{item.note}</p>}
+            </div>
+          </li>
+        ))}
+      </ol>
     </section>
 
-    <section class="section" aria-labelledby="prior-heading">
-      <h2 id="prior-heading">Prior work</h2>
-      <p>
-        Before Haun Ventures and Anchorage Digital, he led security at Docker
-        and platform security at Square.
-      </p>
-    </section>
-
-    <section class="section" aria-labelledby="education-heading">
+    <section class="section reveal" aria-labelledby="education-heading">
       <h2 id="education-heading">Education</h2>
-      <p>
-        Instituto Superior Técnico, University of Lisbon. Short form: BSc
-        Telecommunications and Informatics, MSc Communication Networks, PhD
-        Computer Science.
-      </p>
-      <ul class="plain-list">
+      <ol class="timeline">
         {DEGREES.map((degree) => (
-          <li><span>{degree.years}</span> {degree.line}</li>
+          <li>
+            <span class="when">{degree.years}</span>
+            <span class="role-title">{degree.line}</span>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section class="section" id="media-kit" aria-labelledby="media-kit-heading">
+      <h2 id="media-kit-heading">Media kit</h2>
+      <div class="reveal">
+      <p class="kit-note">{MEDIA_KIT_NOTE}</p>
+
+      <h3>Name and titles</h3>
+      <p>{NAME_NOTE}</p>
+      <p>Preferred titles: {HEADLINE}</p>
+
+      <div class="kit-bio">
+        <div class="kit-bio-head">
+          <h3>One-line bio</h3>
+          <button type="button" class="copy-link" data-copy-text="#one-line-bio" aria-live="polite">Copy</button>
+        </div>
+        <p id="one-line-bio">{ONE_LINE_BIO}</p>
+      </div>
+
+      <div class="kit-bio">
+        <div class="kit-bio-head">
+          <h3>Short bio</h3>
+          <button type="button" class="copy-link" data-copy-text="#short-bio" aria-live="polite">Copy</button>
+        </div>
+        <p id="short-bio">{SHORT_BIO}</p>
+      </div>
+
+      <div class="kit-bio">
+        <div class="kit-bio-head">
+          <h3>Long bio</h3>
+          <button type="button" class="copy-link" data-copy-text="#long-bio" aria-live="polite">Copy</button>
+        </div>
+        <div id="long-bio">
+          {LONG_BIO.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+      </div>
+      </div>
+
+      <div class="reveal">
+      <h3>Fast facts</h3>
+      <dl class="kit-facts">
+        <div>
+          <dt>Current roles</dt>
+          <dd>{currentRoles.map((item) => item.title.replace(/\.$/, "")).join("; ")}.</dd>
+        </div>
+        <div>
+          <dt>Past roles</dt>
+          <dd>{pastRoles.map((item) => `${item.dates}: ${item.title}`).join(" ")}</dd>
+        </div>
+        <div>
+          <dt>Education</dt>
+          <dd>BSc, MSc, and PhD, Instituto Superior Técnico, University of Lisbon.</dd>
+        </div>
+        <div>
+          <dt>Co-founded</dt>
+          <dd>Anchorage Digital, in 2017. First federally chartered crypto-native bank.</dd>
+        </div>
+        <div>
+          <dt>On this site</dt>
+          <dd>{PATENTS.length} patents and {RESEARCH.length} papers are listed here.</dd>
+        </div>
+      </dl>
+      </div>
+
+      <div class="reveal">
+      <h3>Topics</h3>
+      <p>{SPEAKING_TOPICS}</p>
+      <p>{WRITING_TOPICS}</p>
+
+      <h3>Selected talks</h3>
+      <ul class="plain-list">
+        {TALKS.map((item) => (
+          <li><a href={item.href}>{item.title}</a></li>
         ))}
       </ul>
-    </section>
 
-    <section class="section" aria-labelledby="citations-heading">
-      <h2 id="citations-heading">Citations</h2>
+      <h3>Selected writing</h3>
       <ul class="plain-list">
-        <li><a href={`${BLOG}/about/`}>Blog about and media kit</a></li>
-        <li><a href={`${BLOG}/about/#media-kit`}>Media kit</a></li>
-        <li><a href={HAUN_TEAM_URL}>Haun Ventures team page</a></li>
-        <li><a href={WIKIDATA_URL}>Wikidata Q111948997</a></li>
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="/llms.txt">Agent brief (llms.txt)</a></li>
+        {WRITING.map((item) => (
+          <li><a class="post-title" href={item.href}>{item.title}</a></li>
+        ))}
       </ul>
+      </div>
+
+      <div class="reveal">
+      <h3>Pictures</h3>
+      <p>{PHOTO_GUIDANCE}</p>
+      <ul class="kit-photos">
+        {MEDIA_KIT_PHOTOS.map((photo) => (
+          <li>
+            <img
+              src={photo.src}
+              alt={photo.alt}
+              width={photo.width}
+              height={photo.height}
+              loading="lazy"
+              decoding="async"
+            />
+            <p class="kit-photo-links">
+              <a href={photo.original} download={photo.originalDownload}>Original</a>
+              <a href={photo.src} download={photo.webDownload}>Web JPEG</a>
+            </p>
+            <p class="kit-photo-credit">
+              Photo: {photo.credit}.
+              <a href={photo.licenseHref}>{photo.license}</a>.
+              <a href={photo.commonsHref}>Wikimedia Commons</a>.
+            </p>
+          </li>
+        ))}
+      </ul>
+      </div>
+
+      <div class="reveal">
+      <h3>Press contact</h3>
+      <p>
+        This site does not publish an email address. For press, use the public
+        profiles on the <a href="/contact">contact page</a>,
+        <a rel="me" href={X_URL}>X</a>, and
+        <a rel="me" href={LINKEDIN_URL}>LinkedIn</a>.
+      </p>
+
+      <h3>Links</h3>
+      <ul class="kit-links">
+        {MEDIA_KIT_LINKS.map((link) => (
+          <li>
+            <a href={link.href} rel={link.me ? "me" : undefined}>{link.label}</a>
+          </li>
+        ))}
+      </ul>
+
+      <h3>Sources</h3>
+      <ul class="plain-list">
+        {MEDIA_KIT_SOURCES.map((source) => (
+          <li><a href={source.href}>{source.label}</a></li>
+        ))}
+      </ul>
+      </div>
     </section>
   </article>
+  <script is:inline>
+    document.querySelectorAll("[data-copy-text]").forEach(function (button) {
+      if (!(button instanceof HTMLButtonElement)) return;
+      var selector = button.getAttribute("data-copy-text") || "";
+      var label = "Copy";
+      var timer = 0;
+      button.addEventListener("click", async function () {
+        var root = document.querySelector(selector);
+        if (!(root instanceof HTMLElement)) return;
+        var paragraphs = root.matches("p")
+          ? [root]
+          : Array.prototype.slice.call(root.querySelectorAll("p"));
+        var text = (paragraphs.length ? paragraphs : [root])
+          .map(function (node) { return (node.textContent || "").trim(); })
+          .filter(Boolean)
+          .join("\n\n");
+        try {
+          await navigator.clipboard.writeText(text);
+        } catch (error) {
+          var area = document.createElement("textarea");
+          area.value = text;
+          area.setAttribute("readonly", "");
+          area.style.position = "fixed";
+          area.style.left = "-9999px";
+          document.body.appendChild(area);
+          area.select();
+          document.execCommand("copy");
+          area.remove();
+        }
+        button.textContent = "Copied";
+        window.clearTimeout(timer);
+        timer = window.setTimeout(function () { button.textContent = label; }, 1600);
+      });
+    });
+  </script>
 </Base>

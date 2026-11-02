@@ -1,15 +1,5 @@
 import type { ImageMetadata } from "astro";
 import photoImage from "../assets/diogo-monica.jpg";
-import patent1 from "../assets/figures/patent-1.png";
-import patent2 from "../assets/figures/patent-2.png";
-import patent3 from "../assets/figures/patent-3.png";
-import patent4 from "../assets/figures/patent-4.png";
-import patent5 from "../assets/figures/patent-5.png";
-import research1 from "../assets/figures/research-1.png";
-import research2 from "../assets/figures/research-2.png";
-import research3 from "../assets/figures/research-3.png";
-import research4 from "../assets/figures/research-4.png";
-import research5 from "../assets/figures/research-5.png";
 import talk1 from "../assets/talks/talk-1.jpg";
 import talk2 from "../assets/talks/talk-2.jpg";
 import talk3 from "../assets/talks/talk-3.jpg";
@@ -25,22 +15,36 @@ export {
   DEGREES,
   DISPLAY,
   EREBOR_URL,
+  EXPERIENCE,
   HAUN_TEAM_URL,
+  HEADLINE,
   HERO_LEDE,
   IST,
   LINKEDIN_URL,
+  LONG_BIO,
+  MEDIA_KIT_LINKS,
+  MEDIA_KIT_NOTE,
+  MEDIA_KIT_PHOTOS,
+  MEDIA_KIT_SOURCES,
+  MEDIA_KIT_URL,
   NAME,
+  NAME_NOTE,
   NEAR_URL,
+  ONE_LINE_BIO,
   ORGANIZATIONS,
   PATENTS,
   PERSON,
   PERSON_ID,
   PHOTO,
   PHOTO_ALT,
+  PHOTO_GUIDANCE,
   PHOTO_LEGACY,
+  PRESS_PHOTO,
   RESEARCH,
   ROLES,
   SAME_AS,
+  SHORT_BIO,
+  SPEAKING_TOPICS,
   SITE,
   SUBMIT_DECK_PATH,
   TALK_ITEMS,
@@ -48,6 +52,7 @@ export {
   WIKIDATA_URL,
   WIKIPEDIA_URL,
   WRITING,
+  WRITING_TOPICS,
   X_URL,
   webPageJsonLd,
 } from "./identity";
@@ -61,18 +66,22 @@ export const TALKS: { title: string; href: string; image: ImageMetadata }[] = TA
   }),
 );
 
-export const PATENT_FIGURES: { src: ImageMetadata; alt: string }[] = [
-  { src: patent1, alt: "Patent figure: signal waveform" },
-  { src: patent2, alt: "Patent figure: device screen dimensions" },
-  { src: patent3, alt: "Patent figure: card reader on a phone" },
-  { src: patent4, alt: "Patent figure: hardware component" },
-  { src: patent5, alt: "Patent figure: custodial system with HSM" },
-];
+/** Illustrative tiles, paired in PATENTS order. Not official patent drawings. */
+export const PATENT_ART = [
+  "/illustrations/patent-1.svg",
+  "/illustrations/patent-2.svg",
+  "/illustrations/patent-3.svg",
+  "/illustrations/patent-4.svg",
+  "/illustrations/patent-5.svg",
+  "/illustrations/patent-6.svg",
+] as const;
 
-export const RESEARCH_FIGURES: { src: ImageMetadata; alt: string }[] = [
-  { src: research1, alt: "Research figure: intrusion detection scatter plot" },
-  { src: research2, alt: "Research figure: Evil Twin attack" },
-  { src: research3, alt: "Research figure: self-organizing map" },
-  { src: research4, alt: "Research figure: botnet command and control" },
-  { src: research5, alt: "Research figure: quorum of honest and malicious nodes" },
-];
+/** Decorative figures, paired in RESEARCH order. */
+export const RESEARCH_ART = [
+  "/illustrations/research-1.svg",
+  "/illustrations/research-2.svg",
+  "/illustrations/research-3.svg",
+  "/illustrations/research-4.svg",
+  "/illustrations/research-5.svg",
+  "/illustrations/research-6.svg",
+] as const;
