@@ -17,16 +17,21 @@ import {
   MEDIA_KIT_SOURCES,
   MEDIA_KIT_URL,
   NAME,
+  NAME_NOTE,
   NEAR_URL,
+  ONE_LINE_BIO,
   PATENTS,
+  PHOTO_GUIDANCE,
   RECOVERY_HREFS,
   RESEARCH,
   SHORT_BIO,
+  SPEAKING_TOPICS,
   SITE,
   SUBMIT_DECK_PATH,
   TALK_ITEMS,
   WIKIDATA_URL,
   WRITING,
+  WRITING_TOPICS,
   X_URL,
 } from "./identity";
 
@@ -129,15 +134,21 @@ export function aboutMarkdown(): string {
     "- Research: " + SITE + "/#research",
     "- Talks: " + SITE + "/#speaking",
     "",
-    "## Citations",
-    "",
-    "- Media kit: " + MEDIA_KIT_URL,
-    "- Contact: " + SITE + "/contact",
-    "- Agent brief: " + SITE + "/llms.txt",
-    "",
     "## Media kit",
     "",
+    MEDIA_KIT_URL,
+    "",
     MEDIA_KIT_NOTE,
+    "",
+    "### Name and titles",
+    "",
+    NAME_NOTE,
+    "",
+    "Preferred titles: " + HEADLINE,
+    "",
+    "### One-line bio",
+    "",
+    ONE_LINE_BIO,
     "",
     "### Short bio",
     "",
@@ -147,7 +158,38 @@ export function aboutMarkdown(): string {
     "",
     ...LONG_BIO,
     "",
+    "### Fast facts",
+    "",
+    "- Current roles: " +
+      EXPERIENCE.filter((item) => !item.dates || item.dates.includes("present"))
+        .map((item) => item.title.replace(/\.$/, ""))
+        .join("; ") +
+      ".",
+    "- Past roles: " +
+      EXPERIENCE.filter((item) => item.dates && !item.dates.includes("present"))
+        .map((item) => item.dates + ": " + item.title)
+        .join(" "),
+    "- Education: BSc, MSc, and PhD, Instituto Superior Técnico, University of Lisbon.",
+    "- Co-founded: Anchorage Digital, in 2017.",
+    "- On this site: " + PATENTS.length + " patents and " + RESEARCH.length + " papers.",
+    "",
+    "### Topics",
+    "",
+    SPEAKING_TOPICS,
+    "",
+    WRITING_TOPICS,
+    "",
+    "### Selected talks",
+    "",
+    ...TALK_ITEMS.map((item) => "- " + item.title + " — " + item.href),
+    "",
+    "### Selected writing",
+    "",
+    ...WRITING.map((item) => "- " + item.title + " — " + item.href),
+    "",
     "### Pictures",
+    "",
+    PHOTO_GUIDANCE,
     "",
     ...MEDIA_KIT_PHOTOS.flatMap((photo) => [
       "- " + photo.alt,
@@ -155,6 +197,16 @@ export function aboutMarkdown(): string {
       "  - Web JPEG: " + SITE + photo.src,
       "  - Photo: " + photo.credit + ". " + photo.license + " (" + photo.licenseHref + "). Wikimedia Commons (" + photo.commonsHref + ").",
     ]),
+    "",
+    "### Press contact",
+    "",
+    "This site does not publish an email address. For press, use " +
+      SITE +
+      "/contact, " +
+      X_URL +
+      ", and " +
+      LINKEDIN_URL +
+      ".",
     "",
     "### Links",
     "",
@@ -178,7 +230,8 @@ export function contactMarkdown(): string {
     "",
     "- X: " + X_URL,
     "- LinkedIn: " + LINKEDIN_URL,
-    "- Essays, archive, and media kit: " + BLOG + "/",
+    "- Essays and archive: " + BLOG + "/",
+    "- Media kit: " + MEDIA_KIT_URL,
     "",
     "Founders: an existing deck path is already on this hub at " +
       SITE +

@@ -7,19 +7,30 @@ import {
   DISPLAY,
   EXPERIENCE,
   HEADLINE,
+  LINKEDIN_URL,
   LONG_BIO,
   MEDIA_KIT_LINKS,
   MEDIA_KIT_NOTE,
   MEDIA_KIT_PHOTOS,
   MEDIA_KIT_SOURCES,
+  NAME_NOTE,
+  ONE_LINE_BIO,
   PATENTS,
   PHOTO_ALT,
+  PHOTO_GUIDANCE,
   PHOTO_IMAGE,
   RESEARCH,
   SHORT_BIO,
+  SPEAKING_TOPICS,
   TALKS,
+  WRITING,
+  WRITING_TOPICS,
+  X_URL,
   webPageJsonLd,
 } from "../lib/site";
+
+const pastRoles = EXPERIENCE.filter((item) => item.dates && !item.dates.includes("present"));
+const currentRoles = EXPERIENCE.filter((item) => !item.dates || item.dates.includes("present"));
 
 const description = HEADLINE;
 ---
@@ -101,18 +112,21 @@ const description = HEADLINE;
       </ul>
     </section>
 
-    <section class="section reveal" aria-labelledby="citations-heading">
-      <h2 id="citations-heading">Citations</h2>
-      <ul class="plain-list">
-        <li><a href="#media-kit">Media kit</a></li>
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="/llms.txt">Agent brief (llms.txt)</a></li>
-      </ul>
-    </section>
-
     <section class="section reveal" id="media-kit" aria-labelledby="media-kit-heading">
       <h2 id="media-kit-heading">Media kit</h2>
       <p class="kit-note">{MEDIA_KIT_NOTE}</p>
+
+      <h3>Name and titles</h3>
+      <p>{NAME_NOTE}</p>
+      <p>Preferred titles: {HEADLINE}</p>
+
+      <div class="kit-bio">
+        <div class="kit-bio-head">
+          <h3>One-line bio</h3>
+          <button type="button" class="copy-link" data-copy-text="#one-line-bio" aria-live="polite">Copy</button>
+        </div>
+        <p id="one-line-bio">{ONE_LINE_BIO}</p>
+      </div>
 
       <div class="kit-bio">
         <div class="kit-bio-head">
@@ -132,7 +146,50 @@ const description = HEADLINE;
         </div>
       </div>
 
+      <h3>Fast facts</h3>
+      <dl class="kit-facts">
+        <div>
+          <dt>Current roles</dt>
+          <dd>{currentRoles.map((item) => item.title.replace(/\.$/, "")).join("; ")}.</dd>
+        </div>
+        <div>
+          <dt>Past roles</dt>
+          <dd>{pastRoles.map((item) => `${item.dates}: ${item.title}`).join(" ")}</dd>
+        </div>
+        <div>
+          <dt>Education</dt>
+          <dd>BSc, MSc, and PhD, Instituto Superior Técnico, University of Lisbon.</dd>
+        </div>
+        <div>
+          <dt>Co-founded</dt>
+          <dd>Anchorage Digital, in 2017. First federally chartered crypto-native bank.</dd>
+        </div>
+        <div>
+          <dt>On this site</dt>
+          <dd>{PATENTS.length} patents and {RESEARCH.length} papers are listed here.</dd>
+        </div>
+      </dl>
+
+      <h3>Topics</h3>
+      <p>{SPEAKING_TOPICS}</p>
+      <p>{WRITING_TOPICS}</p>
+
+      <h3>Selected talks</h3>
+      <ul class="plain-list">
+        {TALKS.map((item) => (
+          <li><a href={item.href}>{item.title}</a></li>
+        ))}
+      </ul>
+
+      <h3>Selected writing</h3>
+      <ul class="plain-list">
+        {WRITING.map((item) => (
+          <li><a href={item.href}>{item.title}</a></li>
+        ))}
+      </ul>
+
       <h3>Pictures</h3>
+      <p>{PHOTO_GUIDANCE}</p>
       <ul class="kit-photos">
         {MEDIA_KIT_PHOTOS.map((photo) => (
           <li>
@@ -156,6 +213,14 @@ const description = HEADLINE;
           </li>
         ))}
       </ul>
+
+      <h3>Press contact</h3>
+      <p>
+        This site does not publish an email address. For press, use the public
+        profiles on the <a href="/contact">contact page</a>,
+        <a rel="me" href={X_URL}>X</a>, and
+        <a rel="me" href={LINKEDIN_URL}>LinkedIn</a>.
+      </p>
 
       <h3>Links</h3>
       <ul class="kit-links">

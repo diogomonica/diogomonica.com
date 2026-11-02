@@ -28,19 +28,23 @@ export {
   MEDIA_KIT_SOURCES,
   MEDIA_KIT_URL,
   NAME,
+  NAME_NOTE,
   NEAR_URL,
+  ONE_LINE_BIO,
   ORGANIZATIONS,
   PATENTS,
   PERSON,
   PERSON_ID,
   PHOTO,
   PHOTO_ALT,
+  PHOTO_GUIDANCE,
   PHOTO_LEGACY,
   PRESS_PHOTO,
   RESEARCH,
   ROLES,
   SAME_AS,
   SHORT_BIO,
+  SPEAKING_TOPICS,
   SITE,
   SUBMIT_DECK_PATH,
   TALK_ITEMS,
@@ -48,6 +52,7 @@ export {
   WIKIDATA_URL,
   WIKIPEDIA_URL,
   WRITING,
+  WRITING_TOPICS,
   X_URL,
   webPageJsonLd,
 } from "./identity";
@@ -71,14 +76,12 @@ export const PATENT_ART = [
   "/illustrations/patent-6.svg",
 ] as const;
 
-/**
- * Decorative figure row. Five images, six papers — not a 1:1 attribution.
- * Order matches the original figure strip.
- */
+/** Decorative figures, paired in RESEARCH order. */
 export const RESEARCH_ART = [
   "/illustrations/research-1.svg",
   "/illustrations/research-2.svg",
   "/illustrations/research-3.svg",
   "/illustrations/research-4.svg",
   "/illustrations/research-5.svg",
+  "/illustrations/research-6.svg",
 ] as const;

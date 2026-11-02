@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="research-6-radio-resource-test" viewBox="0 0 640 480" width="640" height="480" role="img" aria-label="Wireless ad hoc network where a radio resource test exposes a Sybil identity">
+  <rect width="640" height="480" fill="#F3F2EE"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke">
+    <path d="M248 214C300 176 352 168 404 156" stroke="#617466" stroke-width="0.75" stroke-dasharray="3 3"/>
+    <path d="M268 230C330 250 390 258 448 246" stroke="#617466" stroke-width="0.75" stroke-dasharray="3 3"/>
+    <path d="M250 236C280 270 300 292 318 304" stroke="#AD6353" stroke-width="0.75" stroke-dasharray="2 3"/>
+    <path d="M214 168c18-22 48-34 78-28" stroke="#5A9DB6" stroke-width="1.25"/>
+    <path d="M198 154c28-34 78-50 124-38" stroke="#5A9DB6" stroke-width="1.25" opacity=".7"/>
+    <path d="M184 140c38-46 108-66 168-48" stroke="#5A9DB6" stroke-width="1.25" opacity=".4"/>
+  </g>
+  <g>
+    <path d="M404 132 L438 150 L404 168 L370 150 Z" fill="#FCFCF8" stroke="#344D40" stroke-width="1.25" vector-effect="non-scaling-stroke"/>
+    <path d="M370 150 L404 168 L404 194 L370 176 Z" fill="#E1E9D9" stroke="#344D40" stroke-width="1.25" vector-effect="non-scaling-stroke"/>
+    <path d="M404 168 L438 150 L438 176 L404 194 Z" fill="#CCD8C8" stroke="#344D40" stroke-width="1.25" vector-effect="non-scaling-stroke"/>
+    <path d="M404 132 v-16" stroke="#344D40" stroke-width="1.25" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+    <circle cx="404" cy="112" r="3" fill="#1F7A5A"/>
+  </g>
+  <g>
+    <path d="M250 172 L284 190 L250 208 L216 190 Z" fill="#FCFCF8" stroke="#344D40" stroke-width="1.25" vector-effect="non-scaling-stroke"/>
+    <path d="M216 190 L250 208 L250 238 L216 220 Z" fill="#E1E9D9" stroke="#344D40" stroke-width="1.25" vector-effect="non-scaling-stroke"/>
+    <path d="M250 208 L284 190 L284 220 L250 238 Z" fill="#CCD8C8" stroke="#344D40" stroke-width="1.25" vector-effect="non-scaling-stroke"/>
+    <path d="M250 172 v-22" stroke="#1F7A5A" stroke-width="1.25" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+    <circle cx="250" cy="146" r="3.5" fill="#1F7A5A"/>
+  </g>
+  <g>
+    <path d="M460 228 L494 246 L460 264 L426 246 Z" fill="#FCFCF8" stroke="#344D40" stroke-width="1.25" vector-effect="non-scaling-stroke"/>
+    <path d="M426 246 L460 264 L460 290 L426 272 Z" fill="#E1E9D9" stroke="#344D40" stroke-width="1.25" vector-effect="non-scaling-stroke"/>
+    <path d="M460 264 L494 246 L494 272 L460 290 Z" fill="#CCD8C8" stroke="#344D40" stroke-width="1.25" vector-effect="non-scaling-stroke"/>
+    <path d="M460 228 v-16" stroke="#344D40" stroke-width="1.25" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+    <circle cx="460" cy="208" r="3" fill="#344D40"/>
+  </g>
+  <g>
+    <path d="M328 292 L362 310 L328 328 L294 310 Z" fill="#F0D6CA" stroke="#AD6353" stroke-width="1.25" stroke-dasharray="3 2" vector-effect="non-scaling-stroke"/>
+    <path d="M294 310 L328 328 L328 354 L294 336 Z" fill="#E8C4B6" stroke="#AD6353" stroke-width="1.25" vector-effect="non-scaling-stroke"/>
+    <path d="M328 328 L362 310 L362 336 L328 354 Z" fill="#D9B0A2" stroke="#AD6353" stroke-width="1.25" vector-effect="non-scaling-stroke"/>
+    <path d="M318 300 h8 M330 294 v8" stroke="#AD6353" stroke-width="1.25" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+  </g>
+  <g>
+    <rect x="168" y="268" width="16" height="28" rx="2" fill="#1F7A5A"/>
+    <rect x="190" y="268" width="16" height="28" rx="2" fill="#1F7A5A"/>
+    <rect x="212" y="268" width="16" height="28" rx="2" fill="#1F7A5A"/>
+    <rect x="234" y="268" width="16" height="28" rx="2" fill="#FCFCF8" stroke="#617466" stroke-width="0.75" vector-effect="non-scaling-stroke"/>
+    <rect x="256" y="268" width="16" height="28" rx="2" fill="#F0D6CA" stroke="#AD6353" stroke-width="1.25" vector-effect="non-scaling-stroke"/>
+  </g>
+  <text x="168" y="316" fill="#617466" font-family="Liberation Sans, Arial, sans-serif" font-size="14">channels</text>
+  <text x="294" y="378" fill="#AD6353" font-family="Liberation Sans, Arial, sans-serif" font-size="16">Sybil</text>
+  <text x="168" y="400" fill="#344D40" font-family="Liberation Sans, Arial, sans-serif" font-size="16">Radio resource test</text>
+</svg>

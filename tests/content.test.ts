@@ -50,6 +50,8 @@ describe("markdown representations", () => {
     expect(aboutMarkdown()).toContain("For press. Credit Diogo Mónica. Do not crop out of context.");
     expect(aboutMarkdown()).not.toContain("blog.diogomonica.com/about");
     expect(aboutMarkdown()).not.toContain("also written");
+    expect(aboutMarkdown()).not.toContain("## Citations");
+    expect(aboutMarkdown()).toContain("### One-line bio");
     expect(renderLlmsTxt()).toContain(SITE + "/about#media-kit");
     expect(renderLlmsTxt()).not.toContain("blog.diogomonica.com/about");
     expect(contactMarkdown()).toContain("https://x.com/diogomonica");

@@ -51,6 +51,20 @@ export const EXPERIENCE: { dates: string; title: string; href?: string; note?: s
 
 export const MEDIA_KIT_NOTE = "For press. Credit Diogo Mónica. Do not crop out of context.";
 
+export const ONE_LINE_BIO =
+  "Diogo Mónica is General Partner at Haun Ventures, Co-founder and Executive Chairman of Anchorage Digital, Chairman of the NEAR Foundation, and a Director at Erebor.";
+
+export const NAME_NOTE =
+  "Spell the name Diogo Mónica, with an accent on the ó. Diogo Monica, without the accent, is an alternate spelling.";
+
+export const PHOTO_GUIDANCE =
+  "Credit Diogo Mónica. Do not crop out of context. Use these files as provided, and keep the photographer credit and license with the image.";
+
+export const SPEAKING_TOPICS =
+  "He speaks on crypto, security, financial regulations, venture capital, startups, and financial literacy.";
+
+export const WRITING_TOPICS = "He writes on security, infrastructure, and digital assets.";
+
 export const SHORT_BIO =
   "Diogo Mónica is General Partner at Haun Ventures, Co-founder and Executive Chairman of Anchorage Digital, Chairman of the NEAR Foundation, and a Director at Erebor. He is a security engineer and investor. He previously led security at Docker and platform security at Square. He holds BSc, MSc, and PhD degrees from Instituto Superior Técnico at the University of Lisbon.";
 

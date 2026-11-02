@@ -111,9 +111,9 @@ describe("homepage negotiation", () => {
       expect(nav).not.toContain("LinkedIn");
       expect(nav).not.toContain("https://x.com/diogomonica");
     }
-    const wiki = hero.indexOf(">Wikipedia<");
-    const linkedin = hero.indexOf(">LinkedIn<");
-    const x = hero.indexOf(">X<");
+    const wiki = hero.indexOf('aria-label="Wikipedia"');
+    const linkedin = hero.indexOf('aria-label="LinkedIn"');
+    const x = hero.indexOf('aria-label="X"');
     expect(wiki).toBeGreaterThan(-1);
     expect(wiki).toBeLessThan(linkedin);
     expect(linkedin).toBeLessThan(x);
@@ -122,6 +122,10 @@ describe("homepage negotiation", () => {
     expect(hero).toContain('href="https://x.com/diogomonica"');
     expect(hero).toContain('target="_blank"');
     expect(hero).toContain('rel="me noopener"');
+    expect(hero).toContain('title="Wikipedia"');
+    expect(hero).toContain('title="LinkedIn"');
+    expect(hero).toContain('title="X"');
+    expect(html).toContain("/illustrations/research-6.svg");
     expect(html).toContain("↗");
     expect(html.match(/id="patents"[\s\S]*id="research"/)?.[0]).toContain('target="_blank"');
     expect(html.match(/id="research"[\s\S]*id="speaking"/)?.[0]).toContain('target="_blank"');
@@ -196,7 +200,10 @@ describe("trust pages", () => {
     expect(html).toContain("https://creativecommons.org/licenses/by-sa/4.0/");
     expect(html).toContain("https://www.anchorage.com/insights/positioned-for-the-future-new-role-at-anchorage-digital");
     expect(html).toContain("https://www.occ.gov/news-issuances/news-releases/2025/nr-occ-2025-101a.pdf");
-    expect(html).toContain('href="#media-kit"');
+    expect(html).not.toContain(">Citations<");
+    expect(html).toContain("One-line bio");
+    expect(html).toContain("Spell the name Diogo Mónica");
+    expect(html.indexOf('id="selected-heading"')).toBeLessThan(html.indexOf('id="media-kit"'));
     expect(html).not.toContain("blog.diogomonica.com/about");
     expect(html).not.toContain("citation hub");
     expect(html).not.toContain("also written");
