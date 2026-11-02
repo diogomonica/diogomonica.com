@@ -31,6 +31,7 @@ const navItems = [
   <style is:inline>
     html{background:#F3F2EE;color:#141312;color-scheme:light}
   </style>
+  <link rel="preload" href="/fonts/manrope-latin-wght-normal.v3.woff2" as="font" type="font/woff2" crossorigin />
   <script is:inline>
     document.documentElement.classList.add("js");
   </script>
@@ -142,10 +143,13 @@ const navItems = [
       }
 
       var nodes = document.querySelectorAll(".reveal");
+      function revealAll() {
+        for (var i = 0; i < nodes.length; i++) nodes[i].classList.add("is-in");
+      }
       if (!nodes.length) return;
       var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (reduce || !("IntersectionObserver" in window)) {
-        for (var i = 0; i < nodes.length; i++) nodes[i].classList.add("is-in");
+        revealAll();
         return;
       }
       var io = new IntersectionObserver(function (entries) {
@@ -154,8 +158,10 @@ const navItems = [
           entries[i].target.classList.add("is-in");
           io.unobserve(entries[i].target);
         }
-      }, { threshold: 0.18 });
+      }, { threshold: 0, rootMargin: "0px 0px -10% 0px" });
       for (var j = 0; j < nodes.length; j++) io.observe(nodes[j]);
+      var fallback = window.setTimeout(revealAll, 1200);
+      window.addEventListener("pagehide", function () { window.clearTimeout(fallback); });
     })();
   </script>
 </body>

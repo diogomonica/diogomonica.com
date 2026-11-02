@@ -88,8 +88,9 @@ const description = HEADLINE;
       </ol>
     </section>
 
-    <section class="section reveal" id="media-kit" aria-labelledby="media-kit-heading">
+    <section class="section" id="media-kit" aria-labelledby="media-kit-heading">
       <h2 id="media-kit-heading">Media kit</h2>
+      <div class="reveal">
       <p class="kit-note">{MEDIA_KIT_NOTE}</p>
 
       <h3>Name and titles</h3>
@@ -121,7 +122,9 @@ const description = HEADLINE;
           {LONG_BIO.map((paragraph) => <p>{paragraph}</p>)}
         </div>
       </div>
+      </div>
 
+      <div class="reveal">
       <h3>Fast facts</h3>
       <dl class="kit-facts">
         <div>
@@ -145,7 +148,9 @@ const description = HEADLINE;
           <dd>{PATENTS.length} patents and {RESEARCH.length} papers are listed here.</dd>
         </div>
       </dl>
+      </div>
 
+      <div class="reveal">
       <h3>Topics</h3>
       <p>{SPEAKING_TOPICS}</p>
       <p>{WRITING_TOPICS}</p>
@@ -160,10 +165,12 @@ const description = HEADLINE;
       <h3>Selected writing</h3>
       <ul class="plain-list">
         {WRITING.map((item) => (
-          <li><a href={item.href}>{item.title}</a></li>
+          <li><a class="post-title" href={item.href}>{item.title}</a></li>
         ))}
       </ul>
+      </div>
 
+      <div class="reveal">
       <h3>Pictures</h3>
       <p>{PHOTO_GUIDANCE}</p>
       <ul class="kit-photos">
@@ -189,7 +196,9 @@ const description = HEADLINE;
           </li>
         ))}
       </ul>
+      </div>
 
+      <div class="reveal">
       <h3>Press contact</h3>
       <p>
         This site does not publish an email address. For press, use the public
@@ -213,6 +222,7 @@ const description = HEADLINE;
           <li><a href={source.href}>{source.label}</a></li>
         ))}
       </ul>
+      </div>
     </section>
   </article>
   <script is:inline>
