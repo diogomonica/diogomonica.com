@@ -203,7 +203,12 @@ describe("trust pages", () => {
     expect(html).not.toContain(">Citations<");
     expect(html).toContain("One-line bio");
     expect(html).toContain("Spell the name Diogo Mónica");
-    expect(html.indexOf('id="selected-heading"')).toBeLessThan(html.indexOf('id="media-kit"'));
+    expect(html).not.toContain("Selected work");
+    expect(html).not.toContain('id="selected-heading"');
+    expect(html.indexOf('id="education-heading"')).toBeLessThan(html.indexOf('id="media-kit"'));
+    const education = html.split('id="education-heading"')[1]?.split('id="media-kit"')[0] ?? "";
+    expect(education.indexOf("2009–2015")).toBeLessThan(education.indexOf("2007–2009"));
+    expect(education.indexOf("2007–2009")).toBeLessThan(education.indexOf("2004–2007"));
     expect(html).not.toContain("blog.diogomonica.com/about");
     expect(html).not.toContain("citation hub");
     expect(html).not.toContain("also written");

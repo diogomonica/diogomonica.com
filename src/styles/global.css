@@ -2,7 +2,7 @@
   font-family: "Manrope";
   font-style: normal;
   font-display: swap;
-  font-weight: 400 700;
+  font-weight: 200 800;
   src: url("@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2") format("woff2-variations");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
@@ -422,7 +422,8 @@ h2 {
   white-space: nowrap;
   font-size: 2.25rem;
   line-height: 2.5rem;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: -0.03em;
   color: #000000;
 }
 .portrait {
@@ -535,7 +536,7 @@ h2 {
 }
 .cv-intro .wordmark,
 .cv-intro .identity-pills { margin: 0; }
-.cv-intro .wordmark { font-weight: 700; }
+.cv-intro .wordmark { font-weight: 800; letter-spacing: -0.03em; }
 .cv-headline {
   margin: 0;
   max-width: 40rem;

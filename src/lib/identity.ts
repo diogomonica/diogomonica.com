@@ -150,12 +150,12 @@ export const IST = {
 
 export const DEGREES = [
   {
-    years: "2004–2007",
-    line: "BSc, Telecommunications and Informatics Engineering, Instituto Superior Técnico, University of Lisbon.",
+    years: "2009–2015",
+    line: "PhD, Computer Science (network security), Instituto Superior Técnico, University of Lisbon.",
     credential: {
       "@type": "EducationalOccupationalCredential",
-      name: "BSc, Telecommunications and Informatics Engineering",
-      credentialCategory: "bachelor degree",
+      name: "PhD, Computer Science (network security)",
+      credentialCategory: "doctorate",
       recognizedBy: IST,
     },
   },
@@ -170,12 +170,12 @@ export const DEGREES = [
     },
   },
   {
-    years: "2009–2015",
-    line: "PhD, Computer Science (network security), Instituto Superior Técnico, University of Lisbon.",
+    years: "2004–2007",
+    line: "BSc, Telecommunications and Informatics Engineering, Instituto Superior Técnico, University of Lisbon.",
     credential: {
       "@type": "EducationalOccupationalCredential",
-      name: "PhD, Computer Science (network security)",
-      credentialCategory: "doctorate",
+      name: "BSc, Telecommunications and Informatics Engineering",
+      credentialCategory: "bachelor degree",
       recognizedBy: IST,
     },
   },
