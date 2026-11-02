@@ -111,6 +111,9 @@ describe("homepage negotiation", () => {
       expect(nav).not.toContain("LinkedIn");
       expect(nav).not.toContain("https://x.com/diogomonica");
     }
+    expect(header).toContain('aria-label="Diogo Mónica, home"');
+    expect(header).not.toContain("brand-name");
+    expect(header).not.toContain(">Diogo Mónica<");
     const wiki = hero.indexOf('aria-label="Wikipedia"');
     const linkedin = hero.indexOf('aria-label="LinkedIn"');
     const x = hero.indexOf('aria-label="X"');
@@ -180,6 +183,9 @@ describe("trust pages", () => {
       expect(nav).not.toContain("LinkedIn");
       expect(nav).not.toContain("https://x.com/diogomonica");
     }
+    expect(header).toContain('aria-label="Diogo Mónica, home"');
+    expect(header).not.toContain("brand-name");
+    expect(header).not.toContain(">Diogo Mónica<");
   });
 
   it("serves the canonical about page with the media kit", async () => {
