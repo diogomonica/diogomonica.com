@@ -1,18 +1,15 @@
 name: Preview Cloudflare Pages
 
-# Branch preview only. Production stays on the master workflow
-# (.github/workflows/deploy-pages.yml), which deploys with --branch=master.
+# Branch preview for the book redesign. Production stays on the master
+# workflow (.github/workflows/deploy-pages.yml), which deploys with
+# --branch=master. This file lives on redesign-book only.
 on:
   push:
     branches:
-      - redesign-pastel
-  pull_request:
-    branches:
-      - master
+      - redesign-book
 
 jobs:
   preview:
-    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     name: Preview
     steps:
@@ -33,4 +30,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=diogomonica-com --branch=redesign-pastel
+          command: pages deploy dist --project-name=diogomonica-com --branch=redesign-book

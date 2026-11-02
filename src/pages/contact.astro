@@ -15,47 +15,63 @@ const description =
 ---
 <Base title="Contact" description={description} path="/contact" jsonLd={webPageJsonLd("/contact", `Contact ${DISPLAY}`, description)}>
   <article class="page">
-    <h1 class="wordmark">Contact<span class="wordmark-dim"> {DISPLAY}</span></h1>
-    <p class="lede">
-      Public channels only. This site does not publish an email address and
-      does not host a mailer.
-    </p>
-    <p class="bio">
-      {DISPLAY} (also written {NAME}) is reachable on the profiles he actually
-      uses. This apex is a short personal hub, not a company support desk and
-      not an inbox. Essays and the archive are on the
-      <a href={BLOG}>blog</a>. Press assets are on the
-      <a href="/about#media-kit">about page</a>.
-    </p>
+    <header class="page-open col">
+      <h1 class="ch-title">Contact</h1>
+    </header>
+    <div class="col prose front-prose">
+      <p class="lede reveal">
+        Public channels only. This site does not publish an email address and
+        does not host a mailer.
+      </p>
+      <p class="reveal">
+        {DISPLAY} (also written {NAME}) is reachable on the profiles he actually
+        uses. This apex is a short personal hub, not a company support desk and
+        not an inbox. Essays and the archive are on the
+        <a href={BLOG}>blog</a>. Press assets are on the
+        <a href="/about#media-kit">about page</a>.
+      </p>
+    </div>
 
-    <section class="section reveal" aria-labelledby="channels-heading">
-      <h2 id="channels-heading">Public profiles</h2>
-      <ul class="plain-list">
-        <li><a rel="me" href={X_URL}>X — @diogomonica</a></li>
-        <li><a rel="me" href={LINKEDIN_URL}>LinkedIn — diogomonica</a></li>
-        <li><a href={BLOG}>Blog — essays and archive</a></li>
-        <li><a href="/about#media-kit">Media kit</a></li>
-      </ul>
+    <section class="ch" id="channels" data-rail="Profiles" aria-labelledby="channels-heading">
+      <div class="col">
+        <header class="ch-head reveal">
+          <h2 class="ch-title" id="channels-heading">Public profiles</h2>
+        </header>
+        <ul class="plain-list reveal">
+          <li><a rel="me" href={X_URL}>X — @diogomonica</a></li>
+          <li><a rel="me" href={LINKEDIN_URL}>LinkedIn — diogomonica</a></li>
+          <li><a href={BLOG}>Blog — essays and archive</a></li>
+          <li><a href="/about#media-kit">Media kit</a></li>
+        </ul>
+      </div>
     </section>
 
-    <section class="section reveal" aria-labelledby="founders-heading">
-      <h2 id="founders-heading">Founders</h2>
-      <p>
-        An existing deck path is already on this hub at
-        <a href={SUBMIT_DECK_PATH}>{SUBMIT_DECK_PATH}</a>.
-        Use that URL rather than inventing a new intake. It currently lands on
-        the hub home.
-      </p>
+    <section class="ch" id="founders" data-rail="Founders" aria-labelledby="founders-heading">
+      <div class="col prose">
+        <header class="ch-head reveal">
+          <h2 class="ch-title" id="founders-heading">Founders</h2>
+        </header>
+        <p class="ni reveal">
+          An existing deck path is already on this hub at
+          <a href={SUBMIT_DECK_PATH}>{SUBMIT_DECK_PATH}</a>.
+          Use that URL rather than inventing a new intake. It currently lands on
+          the hub home.
+        </p>
+      </div>
     </section>
 
-    <section class="section reveal" aria-labelledby="not-heading">
-      <h2 id="not-heading">What this is not</h2>
-      <p>
-        Do not treat this page as customer support for Anchorage Digital or
-        Haun Ventures. Use those organizations' official channels for product,
-        banking, or fund questions. There is no email form here, and a public
-        social profile is not a confidential intake.
-      </p>
+    <section class="ch" id="not-this" data-rail="Limits" aria-labelledby="not-heading">
+      <div class="col prose">
+        <header class="ch-head reveal">
+          <h2 class="ch-title" id="not-heading">What this is not</h2>
+        </header>
+        <p class="ni reveal">
+          Do not treat this page as customer support for Anchorage Digital or
+          Haun Ventures. Use those organizations' official channels for product,
+          banking, or fund questions. There is no email form here, and a public
+          social profile is not a confidential intake.
+        </p>
+      </div>
     </section>
   </article>
 </Base>

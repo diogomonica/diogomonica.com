@@ -41,178 +41,196 @@ const description = HEADLINE;
   jsonLd={webPageJsonLd("/about", `About ${DISPLAY}`, description, "AboutPage")}
 >
   <article class="page cv">
-    <header class="cv-head">
-      <div class="cv-intro">
-        <h1 class="wordmark">{DISPLAY}</h1>
-        <p class="cv-headline">{HEADLINE}</p>
-        <ProfileLinks />
-      </div>
-      <OptimizedImage
-        class="cv-photo"
-        src={PHOTO_IMAGE}
-        alt={PHOTO_ALT}
-        sizes="(min-width: 960px) 22rem, 12rem"
-        widths={[320, 480, 640, 800]}
-        priority
-      />
+    <header class="cv-open col">
+      <figure class="hero-plate reveal">
+        <OptimizedImage
+          src={PHOTO_IMAGE}
+          alt={PHOTO_ALT}
+          sizes="(min-width: 760px) 220px, 56vw"
+          widths={[320, 480, 640]}
+          priority
+        />
+      </figure>
+      <h1 class="cv-name">{DISPLAY}</h1>
+      <p class="dek">{HEADLINE}</p>
+      <ProfileLinks />
     </header>
 
-    <section class="section reveal" aria-labelledby="experience-heading">
-      <h2 id="experience-heading">Experience</h2>
-      <ol class="timeline">
-        {EXPERIENCE.map((item) => (
-          <li>
-            <span class="when">{item.dates}</span>
-            <div>
-              {item.href ? (
-                <a class="role-title" href={item.href}>{item.title}</a>
-              ) : (
-                <span class="role-title">{item.title}</span>
-              )}
-              {item.note && <p class="role-note">{item.note}</p>}
-            </div>
-          </li>
-        ))}
-      </ol>
+    <section class="ch" id="experience" data-rail="Experience" aria-labelledby="experience-heading">
+      <div class="col">
+        <header class="ch-head reveal">
+          <p class="ch-kicker">I · Experience</p>
+          <h2 class="ch-title" id="experience-heading">Experience</h2>
+        </header>
+        <ol class="timeline">
+          {EXPERIENCE.map((item) => (
+            <li class="cv-row reveal">
+              {item.dates && <span class="when">{item.dates}</span>}
+              <div>
+                {item.href ? (
+                  <a class="role-title" href={item.href}>{item.title}</a>
+                ) : (
+                  <span class="role-title">{item.title}</span>
+                )}
+                {item.note && <p class="role-note">{item.note}</p>}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
     </section>
 
-    <section class="section reveal" aria-labelledby="education-heading">
-      <h2 id="education-heading">Education</h2>
-      <ol class="timeline">
-        {DEGREES.map((degree) => (
-          <li>
-            <span class="when">{degree.years}</span>
-            <span class="role-title">{degree.line}</span>
-          </li>
-        ))}
-      </ol>
+    <section class="ch" id="education" data-rail="Education" aria-labelledby="education-heading">
+      <div class="col">
+        <header class="ch-head reveal">
+          <p class="ch-kicker">II · Education</p>
+          <h2 class="ch-title" id="education-heading">Education</h2>
+        </header>
+        <ol class="timeline">
+          {DEGREES.map((degree) => (
+            <li class="cv-row reveal">
+              <span class="when">{degree.years}</span>
+              <span class="role-title">{degree.line}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
     </section>
 
-    <section class="section reveal" id="media-kit" aria-labelledby="media-kit-heading">
-      <h2 id="media-kit-heading">Media kit</h2>
-      <p class="kit-note">{MEDIA_KIT_NOTE}</p>
+    <section class="ch sidenotes" id="media-kit" data-rail="Media kit" aria-labelledby="media-kit-heading">
+      <div class="col prose">
+        <header class="ch-head reveal">
+          <p class="ch-kicker">III · Press</p>
+          <h2 class="ch-title" id="media-kit-heading">Media kit</h2>
+        </header>
+        <p class="kit-note reveal">{MEDIA_KIT_NOTE}</p>
 
-      <h3>Name and titles</h3>
-      <p>{NAME_NOTE}</p>
-      <p>Preferred titles: {HEADLINE}</p>
+        <h3 class="reveal">Name and titles</h3>
+        <p class="name-note reveal">{NAME_NOTE}</p>
+        <p class="ni reveal">Preferred titles: {HEADLINE}</p>
 
-      <div class="kit-bio">
-        <div class="kit-bio-head">
-          <h3>One-line bio</h3>
-          <button type="button" class="copy-link" data-copy-text="#one-line-bio" aria-live="polite">Copy</button>
+        <div class="kit-bio reveal">
+          <div class="kit-bio-head">
+            <h3>One-line bio</h3>
+            <button type="button" class="copy-link" data-copy-text="#one-line-bio" aria-live="polite">Copy</button>
+          </div>
+          <blockquote class="scripture" id="one-line-bio"><p>{ONE_LINE_BIO}</p></blockquote>
         </div>
-        <p id="one-line-bio">{ONE_LINE_BIO}</p>
+
+        <div class="kit-bio reveal">
+          <div class="kit-bio-head">
+            <h3>Short bio</h3>
+            <button type="button" class="copy-link" data-copy-text="#short-bio" aria-live="polite">Copy</button>
+          </div>
+          <blockquote class="scripture" id="short-bio"><p>{SHORT_BIO}</p></blockquote>
+        </div>
+
+        <div class="kit-bio reveal">
+          <div class="kit-bio-head">
+            <h3>Long bio</h3>
+            <button type="button" class="copy-link" data-copy-text="#long-bio" aria-live="polite">Copy</button>
+          </div>
+          <blockquote class="scripture" id="long-bio">
+            {LONG_BIO.map((paragraph) => <p>{paragraph}</p>)}
+          </blockquote>
+        </div>
+
+        <h3 class="reveal">Fast facts</h3>
+        <dl class="kit-facts reveal">
+          <div>
+            <dt>Current roles</dt>
+            <dd>{currentRoles.map((item) => item.title.replace(/\.$/, "")).join("; ")}.</dd>
+          </div>
+          <div>
+            <dt>Past roles</dt>
+            <dd>{pastRoles.map((item) => `${item.dates}: ${item.title}`).join(" ")}</dd>
+          </div>
+          <div>
+            <dt>Education</dt>
+            <dd>BSc, MSc, and PhD, Instituto Superior Técnico, University of Lisbon.</dd>
+          </div>
+          <div>
+            <dt>Co-founded</dt>
+            <dd>Anchorage Digital, in 2017. First federally chartered crypto-native bank.</dd>
+          </div>
+          <div>
+            <dt>On this site</dt>
+            <dd>{PATENTS.length} patents and {RESEARCH.length} papers are listed here.</dd>
+          </div>
+        </dl>
+
+        <h3 class="reveal">Topics</h3>
+        <p class="ni reveal">{SPEAKING_TOPICS}</p>
+        <p class="reveal">{WRITING_TOPICS}</p>
+
+        <h3 class="reveal">Selected talks</h3>
+        <ul class="plain-list reveal">
+          {TALKS.map((item) => (
+            <li><a href={item.href}>{item.title}</a></li>
+          ))}
+        </ul>
+
+        <h3 class="reveal">Selected writing</h3>
+        <ul class="plain-list reveal">
+          {WRITING.map((item) => (
+            <li><a href={item.href}>{item.title}</a></li>
+          ))}
+        </ul>
+
+        <h3 class="reveal">Pictures</h3>
+        <p class="ni reveal">{PHOTO_GUIDANCE}</p>
+        <ul class="kit-photos">
+          {MEDIA_KIT_PHOTOS.map((photo) => (
+            <li class="reveal">
+              <figure class="fig plate portrait">
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  width={photo.width}
+                  height={photo.height}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>
+                  <p class="fig-share">
+                    <a href={photo.original} download={photo.originalDownload}>Original</a>
+                    <a href={photo.src} download={photo.webDownload}>Web JPEG</a>
+                  </p>
+                  <p class="kit-photo-credit">
+                    Photo: {photo.credit}.
+                    <a href={photo.licenseHref}>{photo.license}</a>.
+                    <a href={photo.commonsHref}>Wikimedia Commons</a>.
+                  </p>
+                </figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
+
+        <h3 class="reveal">Press contact</h3>
+        <p class="ni reveal">
+          This site does not publish an email address. For press, use the public
+          profiles on the <a href="/contact">contact page</a>,
+          <a rel="me" href={X_URL}>X</a>, and
+          <a rel="me" href={LINKEDIN_URL}>LinkedIn</a>.
+        </p>
+
+        <h3 class="reveal">Links</h3>
+        <ul class="kit-links reveal">
+          {MEDIA_KIT_LINKS.map((link) => (
+            <li>
+              <a href={link.href} rel={link.me ? "me" : undefined}>{link.label}</a>
+            </li>
+          ))}
+        </ul>
+
+        <h3 class="reveal">Sources</h3>
+        <ul class="plain-list reveal">
+          {MEDIA_KIT_SOURCES.map((source) => (
+            <li><a href={source.href}>{source.label}</a></li>
+          ))}
+        </ul>
       </div>
-
-      <div class="kit-bio">
-        <div class="kit-bio-head">
-          <h3>Short bio</h3>
-          <button type="button" class="copy-link" data-copy-text="#short-bio" aria-live="polite">Copy</button>
-        </div>
-        <p id="short-bio">{SHORT_BIO}</p>
-      </div>
-
-      <div class="kit-bio">
-        <div class="kit-bio-head">
-          <h3>Long bio</h3>
-          <button type="button" class="copy-link" data-copy-text="#long-bio" aria-live="polite">Copy</button>
-        </div>
-        <div id="long-bio">
-          {LONG_BIO.map((paragraph) => <p>{paragraph}</p>)}
-        </div>
-      </div>
-
-      <h3>Fast facts</h3>
-      <dl class="kit-facts">
-        <div>
-          <dt>Current roles</dt>
-          <dd>{currentRoles.map((item) => item.title.replace(/\.$/, "")).join("; ")}.</dd>
-        </div>
-        <div>
-          <dt>Past roles</dt>
-          <dd>{pastRoles.map((item) => `${item.dates}: ${item.title}`).join(" ")}</dd>
-        </div>
-        <div>
-          <dt>Education</dt>
-          <dd>BSc, MSc, and PhD, Instituto Superior Técnico, University of Lisbon.</dd>
-        </div>
-        <div>
-          <dt>Co-founded</dt>
-          <dd>Anchorage Digital, in 2017. First federally chartered crypto-native bank.</dd>
-        </div>
-        <div>
-          <dt>On this site</dt>
-          <dd>{PATENTS.length} patents and {RESEARCH.length} papers are listed here.</dd>
-        </div>
-      </dl>
-
-      <h3>Topics</h3>
-      <p>{SPEAKING_TOPICS}</p>
-      <p>{WRITING_TOPICS}</p>
-
-      <h3>Selected talks</h3>
-      <ul class="plain-list">
-        {TALKS.map((item) => (
-          <li><a href={item.href}>{item.title}</a></li>
-        ))}
-      </ul>
-
-      <h3>Selected writing</h3>
-      <ul class="plain-list">
-        {WRITING.map((item) => (
-          <li><a href={item.href}>{item.title}</a></li>
-        ))}
-      </ul>
-
-      <h3>Pictures</h3>
-      <p>{PHOTO_GUIDANCE}</p>
-      <ul class="kit-photos">
-        {MEDIA_KIT_PHOTOS.map((photo) => (
-          <li>
-            <img
-              src={photo.src}
-              alt={photo.alt}
-              width={photo.width}
-              height={photo.height}
-              loading="lazy"
-              decoding="async"
-            />
-            <p class="kit-photo-links">
-              <a href={photo.original} download={photo.originalDownload}>Original</a>
-              <a href={photo.src} download={photo.webDownload}>Web JPEG</a>
-            </p>
-            <p class="kit-photo-credit">
-              Photo: {photo.credit}.
-              <a href={photo.licenseHref}>{photo.license}</a>.
-              <a href={photo.commonsHref}>Wikimedia Commons</a>.
-            </p>
-          </li>
-        ))}
-      </ul>
-
-      <h3>Press contact</h3>
-      <p>
-        This site does not publish an email address. For press, use the public
-        profiles on the <a href="/contact">contact page</a>,
-        <a rel="me" href={X_URL}>X</a>, and
-        <a rel="me" href={LINKEDIN_URL}>LinkedIn</a>.
-      </p>
-
-      <h3>Links</h3>
-      <ul class="kit-links">
-        {MEDIA_KIT_LINKS.map((link) => (
-          <li>
-            <a href={link.href} rel={link.me ? "me" : undefined}>{link.label}</a>
-          </li>
-        ))}
-      </ul>
-
-      <h3>Sources</h3>
-      <ul class="plain-list">
-        {MEDIA_KIT_SOURCES.map((source) => (
-          <li><a href={source.href}>{source.label}</a></li>
-        ))}
-      </ul>
     </section>
   </article>
   <script is:inline>

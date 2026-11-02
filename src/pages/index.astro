@@ -28,132 +28,179 @@ const jsonLd = {
 const orgUrl = (name: string) => ORGANIZATIONS.find((org) => org.name === name)!.url;
 const outboundLabel = (title: string, href: string) =>
   `${title}. Opens ${new URL(href).host.replace(/^www\./, "")} in a new tab.`;
+
+const roman = ["i", "ii", "iii", "iv", "v", "vi", "vii", "viii"];
 ---
 <Base title={DISPLAY} description={BIO} path="/" jsonLd={jsonLd}>
   <section class="hero" id="about">
-    <div class="hero-text">
-      <h1 class="wordmark">Diogo<br />Mónica</h1>
-      <div class="hero-copy">
+    <div class="hero-main">
+      <figure class="hero-plate reveal">
+        <OptimizedImage
+          src={PHOTO_IMAGE}
+          alt={PHOTO_ALT}
+          sizes="(min-width: 760px) 240px, 62vw"
+          widths={[320, 480, 640]}
+          priority
+        />
+      </figure>
+      <h1 class="ih-title">
+        <span class="l" style="animation-delay:.10s">DIOGO</span>
+        <span class="l" style="animation-delay:.16s">MÓNICA</span>
+      </h1>
+      <div class="hero-copy prose">
         <p class="lede">
-          General Partner at <a href={orgUrl("Haun Ventures")}>Haun Ventures</a>,<br />
-          Co-founder and Executive Chairman<br />
-          of <a href={orgUrl("Anchorage Digital")}>Anchorage Digital</a>,<br />
-          Chairman of the <a href={orgUrl("NEAR Foundation")}>NEAR Foundation</a>,<br />
+          General Partner at <a href={orgUrl("Haun Ventures")}>Haun Ventures</a>,
+          Co-founder and Executive Chairman
+          of <a href={orgUrl("Anchorage Digital")}>Anchorage Digital</a>,
+          Chairman of the <a href={orgUrl("NEAR Foundation")}>NEAR Foundation</a>,
           and Director at <a href={orgUrl("Erebor")}>Erebor</a>.
         </p>
-        <p class="bio">
+        <p class="bio fell">
           Previously I led security at Docker and platform security at Square.
           Oh, and I love angel investing.
         </p>
         <ProfileLinks />
       </div>
     </div>
-    <OptimizedImage
-      class="portrait"
-      src={PHOTO_IMAGE}
-      alt={PHOTO_ALT}
-      sizes="(min-width: 960px) 42rem, (min-width: 720px) 14rem, (min-width: 380px) 12rem, 9.5rem"
-      widths={[320, 480, 640, 800, 960, 1200, 1400]}
-      priority
-    />
+    <div class="ih-way">
+      <p class="ih-ways">
+        <a class="ih-go" href="#writing">Read</a><span class="ih-or"> <span class="i" style="animation-delay:1s">or</span> </span><a class="ih-go" href="#patents">see the work</a>
+      </p>
+      <p class="ih-from" data-resume></p>
+    </div>
   </section>
 
-  <section class="section chapter posts reveal" id="writing" aria-labelledby="writing-heading">
-    <h2 id="writing-heading">I write stuff</h2>
-    <ul class="link-list">
-      {WRITING.map((item) => (
-        <li>
-          <time datetime={item.date}>{item.label}</time>
-          <div>
-            <a href={item.href}>{item.title}</a>
-            <p>{item.excerpt}</p>
-          </div>
-        </li>
-      ))}
-    </ul>
-    <a class="more" href={BLOG}>All essays on the blog <Icon name="arrow-right" /></a>
+  <section class="ch" id="writing" data-rail="Writing" aria-labelledby="writing-heading">
+    <div class="col">
+      <header class="ch-head reveal">
+        <p class="ch-kicker">I · Writing</p>
+        <h2 class="ch-title" id="writing-heading">I write stuff</h2>
+      </header>
+      <ol class="toc-list">
+        {WRITING.map((item, index) => (
+          <li class="toc-item reveal" id={`w-${index + 1}`}>
+            <a class="toc-name" href={item.href}>
+              <span class="toc-num">{roman[index]}</span>
+              {item.title}
+            </a>
+            <p class="toc-sum">{item.excerpt}</p>
+            <p class="toc-when"><time datetime={item.date}>{item.label}</time></p>
+          </li>
+        ))}
+      </ol>
+      <p class="more-row ni"><a class="more" href={BLOG}>All essays on the blog <Icon name="arrow-right" /></a></p>
+    </div>
   </section>
 
-  <section class="section chapter reveal" id="patents" aria-labelledby="patents-heading">
-    <h2 id="patents-heading">I build stuff</h2>
-    <p>
-      I have several patents on payment architectures, payment hardware, private key management,
-      digital asset custody, cryptographic systems, and blockchain.
-    </p>
-    <ul class="build-grid">
-      {PATENTS.map((item, index) => (
-        <li>
-          <a class="asset-card" href={item.href} target="_blank" rel="noopener noreferrer" aria-label={outboundLabel(item.title, item.href)}>
-            <img
-              src={PATENT_ART[index]}
-              alt=""
-              width="640"
-              height="480"
-              loading="lazy"
-              decoding="async"
-            />
-            <span class="asset-card-body">
-              <span class="asset-card-title">{item.title}</span>
-              <span class="asset-card-go" aria-hidden="true">
-                <Icon name="arrow-up-right" />
-                <span class="sr-only">↗</span>
+  <section class="ch" id="patents" data-rail="Patents" aria-labelledby="patents-heading">
+    <div class="col">
+      <header class="ch-head reveal">
+        <p class="ch-kicker">II · Patents</p>
+        <h2 class="ch-title" id="patents-heading">I build stuff</h2>
+      </header>
+      <div class="prose">
+        <p class="ni reveal" id="p-patents">
+          I have several patents on payment architectures, payment hardware, private key management,
+          digital asset custody, cryptographic systems, and blockchain.
+        </p>
+        {PATENTS.map((item, index) => (
+          <figure class="fig plate wide reveal">
+            <a class="asset-card" href={item.href} target="_blank" rel="noopener noreferrer" aria-label={outboundLabel(item.title, item.href)}>
+              <img
+                src={PATENT_ART[index]}
+                alt=""
+                width="640"
+                height="480"
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="asset-card-body">
+                <span class="asset-card-title">{item.title}</span>
+                <span class="asset-card-go" aria-hidden="true">
+                  <Icon name="arrow-up-right" />
+                  <span class="sr-only">↗</span>
+                </span>
               </span>
-            </span>
-          </a>
-        </li>
-      ))}
-    </ul>
-    <a class="more" href="https://patents.justia.com/search?q=diogo+monica" target="_blank" rel="noopener noreferrer">All patents <Icon name="arrow-up-right" /></a>
+            </a>
+          </figure>
+        ))}
+        <p class="more-row ni"><a class="more" href="https://patents.justia.com/search?q=diogo+monica" target="_blank" rel="noopener noreferrer">All patents <Icon name="arrow-up-right" /></a></p>
+      </div>
+    </div>
   </section>
 
-  <section class="section chapter reveal" id="research" aria-labelledby="research-heading">
-    <h2 id="research-heading">I research stuff</h2>
-    <p>
-      I've published several papers on the topics of security, distributed systems, botnets,
-      intrusion detection systems, quorum systems, and passwords.
-    </p>
-    <ul class="research-grid">
-      {RESEARCH.map((item, index) => (
-        <li>
-          <a class="asset-card" href={item.href} target="_blank" rel="noopener noreferrer" aria-label={outboundLabel(item.title, item.href)}>
-            {RESEARCH_ART[index] && (
-              <img src={RESEARCH_ART[index]} alt="" width="640" height="480" loading="lazy" decoding="async" />
-            )}
-            <span class="asset-card-body">
-              <span class="asset-card-title">{item.title}</span>
-              <span class="asset-card-go" aria-hidden="true">
-                <Icon name="arrow-up-right" />
-                <span class="sr-only">↗</span>
+  <section class="ch" id="research" data-rail="Research" aria-labelledby="research-heading">
+    <div class="col">
+      <header class="ch-head reveal">
+        <p class="ch-kicker">III · Research</p>
+        <h2 class="ch-title" id="research-heading">I research stuff</h2>
+      </header>
+      <div class="prose">
+        <p class="ni reveal" id="p-research">
+          I've published several papers on the topics of security, distributed systems, botnets,
+          intrusion detection systems, quorum systems, and passwords.
+        </p>
+        {RESEARCH.map((item, index) => (
+          <figure class="fig plate wide reveal">
+            <a class="asset-card" href={item.href} target="_blank" rel="noopener noreferrer" aria-label={outboundLabel(item.title, item.href)}>
+              {RESEARCH_ART[index] && (
+                <img src={RESEARCH_ART[index]} alt="" width="640" height="480" loading="lazy" decoding="async" />
+              )}
+              <span class="asset-card-body">
+                <span class="asset-card-title">{item.title}</span>
+                <span class="asset-card-go" aria-hidden="true">
+                  <Icon name="arrow-up-right" />
+                  <span class="sr-only">↗</span>
+                </span>
               </span>
-            </span>
-          </a>
-        </li>
-      ))}
-    </ul>
-    <a class="more" href="https://www.researchgate.net/profile/Diogo-Monica" target="_blank" rel="noopener noreferrer">ResearchGate profile <Icon name="arrow-up-right" /></a>
+            </a>
+          </figure>
+        ))}
+        <p class="more-row ni"><a class="more" href="https://www.researchgate.net/profile/Diogo-Monica" target="_blank" rel="noopener noreferrer">ResearchGate profile <Icon name="arrow-up-right" /></a></p>
+      </div>
+    </div>
   </section>
 
-  <section class="section chapter reveal" id="speaking" aria-labelledby="speaking-heading">
-    <h2 id="speaking-heading">I talk about stuff</h2>
-    <p>
-      I speak regularly on the topics of crypto, security, financial regulations,
-      venture capital, startups, and financial literacy.
-    </p>
-    <ul class="talk-grid">
-      {TALKS.map((item) => (
-        <li>
-          <a href={item.href} rel="noopener noreferrer">
-            <OptimizedImage
-              src={item.image}
-              alt=""
-              sizes="(min-width: 900px) calc((min(1120px, 100vw - 4rem) - 2rem) / 3), (min-width: 720px) calc((100vw - 4rem - 1rem) / 2), calc(100vw - 2rem)"
-              widths={[480, 720, 960, 1280]}
-            />
-            <span>{item.title}</span>
-          </a>
-        </li>
-      ))}
-    </ul>
-    <a class="more" href="https://www.youtube.com/results?search_query=diogo+monica">More talks <Icon name="arrow-right" /></a>
+  <section class="ch" id="speaking" data-rail="Talks" aria-labelledby="speaking-heading">
+    <div class="col">
+      <header class="ch-head reveal">
+        <p class="ch-kicker">IV · Talks</p>
+        <h2 class="ch-title" id="speaking-heading">I talk about stuff</h2>
+      </header>
+      <div class="prose">
+        <p class="ni reveal" id="p-talks">
+          I speak regularly on the topics of crypto, security, financial regulations,
+          venture capital, startups, and financial literacy.
+        </p>
+        <ul class="talk-list">
+          {TALKS.map((item) => (
+            <li class="reveal">
+              <a class="talk" href={item.href} rel="noopener noreferrer">
+                <OptimizedImage
+                  src={item.image}
+                  alt=""
+                  sizes="(min-width: 1100px) 620px, calc(100vw - 44px)"
+                  widths={[480, 720, 960, 1280]}
+                />
+                <span class="talk-title">{item.title}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <p class="more-row ni"><a class="more" href="https://www.youtube.com/results?search_query=diogo+monica">More talks <Icon name="arrow-right" /></a></p>
+      </div>
+    </div>
   </section>
+
+  <footer class="colophon">
+    <p class="colo-names">{DISPLAY}</p>
+    <p class="colo-place">Lisbon · San Francisco</p>
+    <p class="colo-acts">
+      <a href={BLOG}>Blog</a>
+      <span class="colo-dot" aria-hidden="true">·</span>
+      <a href="/about">About</a>
+      <span class="colo-dot" aria-hidden="true">·</span>
+      <a href="#top">Back to top</a>
+    </p>
+  </footer>
 </Base>

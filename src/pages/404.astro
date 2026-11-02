@@ -3,13 +3,13 @@ import Base from "../layouts/Base.astro";
 import { BLOG, RECOVERY_HREFS } from "../lib/identity";
 ---
 <Base title="Not found" description="This page does not exist." path="/404">
-  <section class="lost">
+  <section class="lost col">
     <p class="lost-code">404</p>
-    <h1 class="wordmark">Not<span class="wordmark-dim"> found</span></h1>
+    <h1 class="ch-title">Not found</h1>
     <p>That URL is not on this site. Essays live on the blog.</p>
     <p class="lost-links">
-      <a href="/">Home</a>
-      <a href={BLOG}>Blog</a>
+      <a class="more" href="/">Home</a>
+      <a class="more" href={BLOG}>Blog</a>
     </p>
     <ul class="lost-recover">
       {RECOVERY_HREFS.map((href) => (

@@ -27,9 +27,9 @@ const navItems = [
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="light" />
-  <meta name="theme-color" content="#F3F2EE" />
+  <meta name="theme-color" content="#ffffff" />
   <style is:inline>
-    html{background:#F3F2EE;color:#141312;color-scheme:light}
+    html{background:#fff;color:#1f2428;color-scheme:only light}
   </style>
   <script is:inline>
     document.documentElement.classList.add("js");
@@ -39,6 +39,8 @@ const navItems = [
   <meta name="description" content={description} />
   <meta name="author" content={DISPLAY} />
   <link rel="canonical" href={url} />
+  <link rel="preload" href="/fonts/EBGaramond-Roman-VF.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+  <link rel="preload" href="/fonts/IMFellEnglish-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" href="/favicon.png" type="image/png" />
@@ -63,33 +65,22 @@ const navItems = [
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="nav-bar">
-      <a class="brand" href="/">
-        <BrandMark />
-        <span class="brand-name">{DISPLAY}</span>
-      </a>
-      <nav class="top-nav" aria-label="Site">
-        {navItems.map((item) => (
-          <a href={item.href} aria-current={item.current ? "page" : undefined}>{item.label}</a>
-        ))}
-      </nav>
-      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
-        <span class="nav-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-      </button>
-    </div>
-  </header>
-  <div class="nav-panel" id="mobile-nav" aria-hidden="true">
-    <nav aria-label="Site">
+  <div class="topline" aria-hidden="true"></div>
+  <header class="site-header" id="top">
+    <nav class="top-nav" id="mobile-nav" aria-label="Site">
       {navItems.map((item) => (
         <a href={item.href} aria-current={item.current ? "page" : undefined}>{item.label}</a>
       ))}
     </nav>
-  </div>
-  <main id="main" class="wrap"><slot /></main>
+  </header>
+  <nav class="rail" aria-label="Sections">
+    <div class="rail-track" aria-hidden="true"></div>
+    <div class="rail-fill" aria-hidden="true"></div>
+  </nav>
+  <main id="main"><slot /></main>
   {path !== "/" && (
     <footer class="site-footer">
-      <div class="wrap">
+      <div class="mid">
         <span class="footer-brand">
           <BrandMark class="footer-mark" />
           <span>© {DISPLAY}</span>
@@ -110,52 +101,200 @@ const navItems = [
   )}
   <script is:inline>
     (() => {
-      var toggle = document.querySelector(".nav-toggle");
-      var panel = document.querySelector(".nav-panel");
-      function setOpen(open) {
-        if (!toggle || !panel) return;
-        toggle.setAttribute("aria-expanded", open ? "true" : "false");
-        toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-        panel.classList.toggle("is-open", open);
-        panel.setAttribute("aria-hidden", open ? "false" : "true");
-        document.documentElement.classList.toggle("nav-open", open);
-        if (open) {
-          var first = panel.querySelector("a");
-          if (first) first.focus();
-        } else if (document.activeElement && panel.contains(document.activeElement)) {
-          toggle.focus();
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var nodes = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+      var root = document.documentElement;
+      var ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
+      var LINE = 0.285;
+      var rail = document.querySelector(".rail");
+      var wide = window.matchMedia("(min-width: 1100px)");
+      var chapters = Array.prototype.slice.call(document.querySelectorAll("section.ch"));
+      var stops = [];
+      var ticking = false;
+      var lastP = -1;
+
+      function show(el, animate) {
+        if (el.classList.contains("is-in")) return;
+        el.classList.add("is-in");
+        if (!animate || reduce) el.classList.add("no-anim");
+      }
+      function settle(el) {
+        el.classList.add("is-in", "no-anim");
+      }
+      function revealAll() {
+        for (var i = 0; i < nodes.length; i++) show(nodes[i], false);
+      }
+      window.addEventListener("load", function () { window.setTimeout(revealAll, 1200); });
+      window.setTimeout(revealAll, 2500);
+      window.setTimeout(function () {
+        document.querySelectorAll(".hero .l, .ih-title").forEach(function (el) { el.style.opacity = "1"; });
+        document.querySelectorAll(".i").forEach(function (el) {
+          el.style.animation = "none";
+          el.style.webkitClipPath = "none";
+          el.style.clipPath = "none";
+        });
+      }, 3200);
+
+      if (reduce || !("IntersectionObserver" in window)) {
+        revealAll();
+      } else {
+        var io = new IntersectionObserver(function (entries) {
+          for (var i = 0; i < entries.length; i++) {
+            if (!entries[i].isIntersecting) continue;
+            show(entries[i].target, true);
+            io.unobserve(entries[i].target);
+          }
+        }, { threshold: 0, rootMargin: "0px 0px 15% 0px" });
+        for (var n = 0; n < nodes.length; n++) io.observe(nodes[n]);
+      }
+
+      function scan() {
+        var vh = window.innerHeight || 800;
+        var margin = vh * 0.15;
+        for (var i = 0; i < nodes.length; i++) {
+          var el = nodes[i];
+          if (el.classList.contains("is-in")) continue;
+          var r = el.getBoundingClientRect();
+          if (r.bottom < 8) settle(el);
+          else if (!el.classList.contains("is-in") && r.top < vh + margin) show(el, true);
         }
       }
-      if (toggle && panel) {
-        toggle.addEventListener("click", function () {
-          setOpen(toggle.getAttribute("aria-expanded") !== "true");
-        });
-        panel.addEventListener("click", function (event) {
-          if (event.target.closest("a")) setOpen(false);
-        });
-        document.addEventListener("keydown", function (event) {
-          if (event.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") setOpen(false);
-        });
-        window.addEventListener("resize", function () {
-          if (window.innerWidth >= 960 && toggle.getAttribute("aria-expanded") === "true") setOpen(false);
+
+      if (rail && chapters.length) {
+        chapters.forEach(function (ch, i) {
+          if (!ch.id) return;
+          var label = ch.getAttribute("data-rail") || "";
+          var numeral = ROMAN[i] || String(i + 1);
+          var a = document.createElement("a");
+          a.className = "stop";
+          a.href = "#" + ch.id;
+          var num = document.createElement("span");
+          num.className = "stop-n";
+          num.textContent = numeral;
+          var tip = document.createElement("span");
+          tip.className = "stop-t";
+          var b = document.createElement("b");
+          b.textContent = numeral;
+          tip.appendChild(b);
+          tip.appendChild(document.createTextNode(label));
+          a.appendChild(num);
+          a.appendChild(tip);
+          a.setAttribute("aria-label", numeral + (label ? " " + label : ""));
+          rail.appendChild(a);
+          stops.push(a);
         });
       }
 
-      var nodes = document.querySelectorAll(".reveal");
-      if (!nodes.length) return;
-      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (reduce || !("IntersectionObserver" in window)) {
-        for (var i = 0; i < nodes.length; i++) nodes[i].classList.add("is-in");
-        return;
-      }
-      var io = new IntersectionObserver(function (entries) {
-        for (var i = 0; i < entries.length; i++) {
-          if (!entries[i].isIntersecting) continue;
-          entries[i].target.classList.add("is-in");
-          io.unobserve(entries[i].target);
+      function topOf(el) { return el.getBoundingClientRect().top + window.scrollY; }
+      function measure() {
+        var docEnd = Math.max(1, root.scrollHeight - window.innerHeight);
+        var p = Math.min(1, Math.max(0, window.scrollY / docEnd));
+        if (Math.abs(p - lastP) > 0.0004) {
+          root.style.setProperty("--p", p.toFixed(4));
+          lastP = p;
         }
-      }, { threshold: 0.18 });
-      for (var j = 0; j < nodes.length; j++) io.observe(nodes[j]);
+        if (!chapters.length) return;
+        var start = topOf(chapters[0]) - window.innerHeight * LINE;
+        var cur = 0;
+        chapters.forEach(function (c, i) {
+          if (c.getBoundingClientRect().top < window.innerHeight * LINE) cur = i;
+        });
+        if (wide.matches) {
+          stops.forEach(function (s, i) {
+            var y = (topOf(chapters[i]) - window.innerHeight * LINE) / docEnd;
+            s.style.top = (Math.min(1, Math.max(0, y)) * 100).toFixed(3) + "%";
+            s.classList.toggle("past", i < cur);
+            s.classList.toggle("on", i === cur);
+            if (i === cur) s.setAttribute("aria-current", "location");
+            else s.removeAttribute("aria-current");
+          });
+          if (rail) rail.classList.toggle("on", window.scrollY > start);
+        }
+      }
+
+      function frame() {
+        ticking = false;
+        measure();
+        scan();
+      }
+      window.addEventListener("scroll", function () {
+        if (!ticking) { ticking = true; window.requestAnimationFrame(frame); }
+      }, { passive: true });
+      window.addEventListener("resize", function () { window.requestAnimationFrame(frame); });
+      frame();
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(function () {
+          window.requestAnimationFrame(function () { window.requestAnimationFrame(frame); });
+        });
+      }
+
+      var from = document.querySelector("[data-resume]");
+      var KEY = "dm-place";
+      try {
+        var saved = JSON.parse(localStorage.getItem(KEY) || "null");
+        if (from && saved && saved.id) {
+          var target = document.getElementById(saved.id);
+          var section = target && target.closest ? target.closest("section.ch") : null;
+          var label = section && section.getAttribute("data-rail");
+          if (label) from.textContent = "from " + label;
+        }
+      } catch (err) { /* storage unavailable */ }
+      var saveT = 0;
+      window.addEventListener("scroll", function () {
+        window.clearTimeout(saveT);
+        saveT = window.setTimeout(function () {
+          var marks = Array.prototype.slice.call(document.querySelectorAll(".prose p[id], .toc-item[id]"));
+          var found = null;
+          for (var i = marks.length - 1; i >= 0; i--) {
+            if (marks[i].getBoundingClientRect().top < window.innerHeight * LINE) { found = marks[i]; break; }
+          }
+          if (!found) return;
+          try {
+            localStorage.setItem(KEY, JSON.stringify({
+              id: found.id,
+              dy: Math.round(found.getBoundingClientRect().top),
+              t: Date.now(),
+            }));
+          } catch (err) { /* ignore */ }
+        }, 1500);
+      }, { passive: true });
+
+      document.addEventListener("click", function (event) {
+        var ref = event.target.closest ? event.target.closest(".nref") : null;
+        if (!ref || wide.matches) return;
+        event.preventDefault();
+        var host = ref.closest("p") || ref.parentElement;
+        var open = host && host.nextElementSibling && host.nextElementSibling.classList.contains("nbox") && host.nextElementSibling.dataset.for === ref.hash;
+        document.querySelectorAll(".nbox").forEach(function (b) { b.remove(); });
+        document.querySelectorAll(".nref[aria-expanded]").forEach(function (r) { r.setAttribute("aria-expanded", "false"); });
+        if (open || !host) return;
+        var source = document.querySelector(ref.hash);
+        if (!source) return;
+        var box = document.createElement("div");
+        box.className = "nbox";
+        box.dataset.for = ref.hash;
+        box.innerHTML = source.innerHTML;
+        host.after(box);
+        ref.setAttribute("aria-expanded", "true");
+      });
+
+      function placeNotes() {
+        if (!wide.matches) return;
+        chapters.forEach(function (ch) {
+          var floor = 0;
+          var base = ch.getBoundingClientRect().top;
+          ch.querySelectorAll(".nref").forEach(function (ref) {
+            if (!ref.hash) return;
+            var note = document.getElementById(ref.hash.slice(1));
+            if (!note) return;
+            var y = Math.max(ref.getBoundingClientRect().top - base - 4, floor);
+            note.style.top = y + "px";
+            floor = y + note.offsetHeight + 14;
+          });
+        });
+      }
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(placeNotes);
+      window.addEventListener("resize", placeNotes);
     })();
   </script>
 </body>
