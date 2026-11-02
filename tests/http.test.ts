@@ -84,7 +84,6 @@ describe("homepage negotiation", () => {
 
     expect(html).not.toContain(">Latest posts<");
     expect(html).toContain('id="writing"');
-    expect(html).toContain('href="#about"');
     expect(html).toContain(">I write stuff<");
     expect(html).toContain(">I build stuff<");
     expect(html).toContain(">I research stuff<");
@@ -93,9 +92,36 @@ describe("homepage negotiation", () => {
     expect(html.indexOf(">I build stuff<")).toBeGreaterThan(html.indexOf("AI Escapes"));
     expect(html.indexOf(">I talk about stuff<")).toBeGreaterThan(html.indexOf(">I build stuff<"));
     expect(html).not.toContain('class="site-footer"');
-    expect(html).toContain("Pause motion");
-    expect(html).toContain("patent-1-static.svg");
+    expect(html).not.toMatch(/Paus(?:e) motion|Pla(?:y) motion|motion-toggle/);
+    expect(html).not.toContain("patent-1-static.svg");
+    expect(html).toContain("/illustrations/patent-1.svg");
     expect(html).toContain('class="asset-card"');
+    expect(html).toContain('href="/about"');
+    expect(html).not.toContain('href="#about"');
+    expect(html).toContain("The light of other days");
+    expect(html).not.toContain("/2026/07/02/jota/");
+    expect(html.indexOf("The light of other days")).toBeLessThan(html.indexOf("AI Escapes"));
+    const header = html.split("<header")[1]?.split("</header>")[0] ?? "";
+    const panel = html.split('id="mobile-nav"')[1]?.split("</nav>")[0] ?? "";
+    for (const nav of [header, panel]) {
+      expect(nav).toContain('href="/about"');
+      expect(nav).toContain(">Home<");
+      expect(nav).toContain(">Blog<");
+      expect(nav).not.toContain("Wikipedia");
+      expect(nav).not.toContain("LinkedIn");
+      expect(nav).not.toContain("https://x.com/diogomonica");
+    }
+    const wiki = hero.indexOf(">Wikipedia<");
+    const linkedin = hero.indexOf(">LinkedIn<");
+    const x = hero.indexOf(">X<");
+    expect(wiki).toBeGreaterThan(-1);
+    expect(wiki).toBeLessThan(linkedin);
+    expect(linkedin).toBeLessThan(x);
+    expect(hero).toContain('href="https://en.wikipedia.org/wiki/Diogo_Mónica"');
+    expect(hero).toContain('href="https://www.linkedin.com/in/diogomonica"');
+    expect(hero).toContain('href="https://x.com/diogomonica"');
+    expect(hero).toContain('target="_blank"');
+    expect(hero).toContain('rel="me noopener"');
     expect(html).toContain("↗");
     expect(html.match(/id="patents"[\s\S]*id="research"/)?.[0]).toContain('target="_blank"');
     expect(html.match(/id="research"[\s\S]*id="speaking"/)?.[0]).toContain('target="_blank"');
@@ -142,6 +168,46 @@ describe("trust pages", () => {
     expect(html).toContain('href="/about"');
     expect(html).toContain(`rel="canonical"`);
     expect(html).toContain(`https://diogomonica.com${pagePath}`);
+    const header = html.split("<header")[1]?.split("</header>")[0] ?? "";
+    const panel = html.split('id="mobile-nav"')[1]?.split("</nav>")[0] ?? "";
+    for (const nav of [header, panel]) {
+      expect(nav).toContain('href="/about"');
+      expect(nav).not.toContain("Wikipedia");
+      expect(nav).not.toContain("LinkedIn");
+      expect(nav).not.toContain("https://x.com/diogomonica");
+    }
+  });
+
+  it("serves the canonical about page with the media kit", async () => {
+    const res = await previewFetch("/about", { headers: { Accept: BROWSER_ACCEPT } });
+    expect(res.status).toBe(200);
+    const html = await res.text();
+    expect(html).toContain('rel="canonical" href="https://diogomonica.com/about"');
+    expect(html).toContain('"@type":"AboutPage"');
+    expect(html).toContain("https://diogomonica.com/media-kit/Diogo_Monica_Founder_Engineer.web.jpg");
+    expect(html).toContain('id="media-kit"');
+    expect(html).toContain("For press. Credit Diogo Mónica. Do not crop out of context.");
+    expect(html).toContain("Diogo_Monica_Founder_Engineer.jpg");
+    expect(html).toContain("Diogo_Monica_Anchorge_Digital.jpg");
+    expect(html).toContain("Diogo_Monica_Anchorge_Digital.web.jpg");
+    expect(html).toContain("Equityarena1");
+    expect(html).toContain("WikPic2023");
+    expect(html).toContain("https://creativecommons.org/publicdomain/zero/1.0/");
+    expect(html).toContain("https://creativecommons.org/licenses/by-sa/4.0/");
+    expect(html).toContain("https://www.anchorage.com/insights/positioned-for-the-future-new-role-at-anchorage-digital");
+    expect(html).toContain("https://www.occ.gov/news-issuances/news-releases/2025/nr-occ-2025-101a.pdf");
+    expect(html).toContain('href="#media-kit"');
+    expect(html).not.toContain("blog.diogomonica.com/about");
+    expect(html).not.toContain("citation hub");
+    expect(html).not.toContain("also written");
+    expect(html).not.toContain("did not leave");
+    expect(html).not.toContain("theblog");
+    expect(html).toContain("2004–2007");
+    expect(html).toContain("BSc, Telecommunications and Informatics Engineering, Instituto Superior Técnico, University of Lisbon.");
+    expect(html).toContain(">Copy<");
+    const footer = html.split("<footer")[1] ?? "";
+    expect(footer).toContain("Wikipedia");
+    expect(footer).toContain("LinkedIn");
   });
 
   it("negotiates Markdown for trust pages", async () => {

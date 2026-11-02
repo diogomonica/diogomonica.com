@@ -7,6 +7,8 @@ export const PHOTO = "/assets/diogo-monica.jpg";
 export const PHOTO_LEGACY = "/assets/diogo-monica-BF1kBtTr.jpg";
 export const PHOTO_ALT =
   "Portrait of Diogo Mónica, General Partner at Haun Ventures and Executive Chairman of Anchorage Digital";
+export const PRESS_PHOTO = "/media-kit/Diogo_Monica_Founder_Engineer.web.jpg";
+export const MEDIA_KIT_URL = `${SITE}/about#media-kit`;
 
 export const ROLES = [
   "General Partner, Haun Ventures",
@@ -14,6 +16,8 @@ export const ROLES = [
   "Chairman, NEAR Foundation",
   "Director, Erebor",
 ];
+
+export const HEADLINE = ROLES.join("; ") + ".";
 
 export const BIO =
   "General Partner at Haun Ventures. Co-founder and Executive Chairman of Anchorage Digital. Chairman of the NEAR Foundation. Director at Erebor.";
@@ -30,6 +34,85 @@ export const ANCHORAGE_URL = "https://www.anchorage.com";
 export const NEAR_URL = "https://near.foundation";
 export const EREBOR_URL = "https://www.haun.co/writing/erebor";
 export const SUBMIT_DECK_PATH = "/submit-deck";
+
+export const EXPERIENCE: { dates: string; title: string; href?: string; note?: string }[] = [
+  { dates: "2025–present", title: "Director, Erebor.", href: EREBOR_URL },
+  { dates: "2024–present", title: "General Partner, Haun Ventures.", href: HAUN_TEAM_URL },
+  { dates: "", title: "Chairman, NEAR Foundation.", href: NEAR_URL },
+  {
+    dates: "2017–present",
+    title: "Co-founder, Anchorage Digital, and Executive Chairman since 2024.",
+    href: ANCHORAGE_URL,
+    note: "First federally chartered crypto-native bank.",
+  },
+  { dates: "2015–2017", title: "Security lead, Docker." },
+  { dates: "Until 2015", title: "Platform security, Square (now Block)." },
+];
+
+export const MEDIA_KIT_NOTE = "For press. Credit Diogo Mónica. Do not crop out of context.";
+
+export const SHORT_BIO =
+  "Diogo Mónica is General Partner at Haun Ventures, Co-founder and Executive Chairman of Anchorage Digital, Chairman of the NEAR Foundation, and a Director at Erebor. He is a security engineer and investor. He previously led security at Docker and platform security at Square. He holds BSc, MSc, and PhD degrees from Instituto Superior Técnico at the University of Lisbon.";
+
+export const LONG_BIO = [
+  "Diogo Mónica is General Partner at Haun Ventures, Co-founder and Executive Chairman of Anchorage Digital, Chairman of the NEAR Foundation, and a Director at Erebor. He is a security engineer and investor.",
+  "Until 2015 he led platform security at Square (now Block). From 2015 to 2017 he led security at Docker. In 2017 he co-founded Anchorage Digital, a digital-asset custody company. In 2024 he became Executive Chairman of Anchorage Digital. He continues as Co-founder and Executive Chairman.",
+  "In 2024 he became General Partner at Haun Ventures. He also serves as Chairman of the NEAR Foundation. In 2025 he became a Director at Erebor.",
+  "He has published security research and holds patents in cryptography, payments, and digital-asset custody. He writes on this site about security, infrastructure, and digital assets.",
+  "He studied at Instituto Superior Técnico at the University of Lisbon. From 2004 to 2007 he completed a BSc in Telecommunications and Informatics Engineering. From 2007 to 2009 he completed an MSc in Communication Networks Engineering. From 2009 to 2015 he completed a PhD in Computer Science, focused on network security.",
+] as const;
+
+export const MEDIA_KIT_PHOTOS = [
+  {
+    src: "/media-kit/Diogo_Monica_Founder_Engineer.web.jpg",
+    original: "/media-kit/Diogo_Monica_Founder_Engineer.jpg",
+    originalDownload: "Diogo_Monica_-_Founder_Engineer_-_Anchorage_-_Haun_Ventures.jpg",
+    webDownload: "Diogo_Monica_Founder_Engineer.web.jpg",
+    alt: "Portrait of Diogo Mónica, 2024",
+    width: 800,
+    height: 1200,
+    credit: "Equityarena1",
+    license: "CC0 1.0",
+    licenseHref: "https://creativecommons.org/publicdomain/zero/1.0/",
+    commonsHref:
+      "https://commons.wikimedia.org/wiki/File:Diogo_Monica_-_Founder_Engineer_-_Anchorage_-_Haun_Ventures.jpg",
+  },
+  {
+    src: "/media-kit/Diogo_Monica_Anchorge_Digital.web.jpg",
+    original: "/media-kit/Diogo_Monica_Anchorge_Digital.jpg",
+    originalDownload: "Diogo_Monica_Anchorge_Digital.jpg",
+    webDownload: "Diogo_Monica_Anchorge_Digital.web.jpg",
+    alt: "Portrait of Diogo Mónica, 2023",
+    width: 800,
+    height: 1200,
+    credit: "WikPic2023",
+    license: "CC BY-SA 4.0",
+    licenseHref: "https://creativecommons.org/licenses/by-sa/4.0/",
+    commonsHref: "https://commons.wikimedia.org/wiki/File:Diogo_Monica_Anchorge_Digital.jpg",
+  },
+] as const;
+
+export const MEDIA_KIT_LINKS = [
+  { label: "diogomonica.com", href: SITE, me: false },
+  { label: "Blog", href: BLOG, me: false },
+  { label: "X", href: X_URL, me: true },
+  { label: "LinkedIn", href: LINKEDIN_URL, me: true },
+  { label: "Wikipedia", href: WIKIPEDIA_URL, me: true },
+  { label: "Wikidata", href: WIKIDATA_URL, me: true },
+  { label: "Haun Ventures", href: HAUN_TEAM_URL, me: true },
+] as const;
+
+export const MEDIA_KIT_SOURCES = [
+  {
+    label: "Anchorage Digital: Executive Chairman announcement (20 March 2024)",
+    href: "https://www.anchorage.com/insights/positioned-for-the-future-new-role-at-anchorage-digital",
+  },
+  { label: "Haun Ventures team page", href: HAUN_TEAM_URL },
+  {
+    label: "OCC conditional approval letter for Erebor Bank, N.A. (November 2025)",
+    href: "https://www.occ.gov/news-issuances/news-releases/2025/nr-occ-2025-101a.pdf",
+  },
+] as const;
 
 export const SAME_AS = [X_URL, LINKEDIN_URL, WIKIPEDIA_URL, WIKIDATA_URL, BLOG, HAUN_TEAM_URL];
 
@@ -131,7 +214,7 @@ export const PERSON = {
   },
   alumniOf: IST,
   hasCredential: DEGREES.map((degree) => degree.credential),
-  image: new URL(PHOTO, SITE).href,
+  image: new URL(PRESS_PHOTO, SITE).href,
   knowsAbout: [
     "security engineering",
     "digital-asset custody",
@@ -260,7 +343,12 @@ export const TALK_ITEMS = [
   { title: "Bitcoin going mainstream", href: "https://www.youtube.com/watch?v=MHcD27Q0Dm4" },
 ];
 
-export function webPageJsonLd(path: string, name: string, description: string) {
+export function webPageJsonLd(
+  path: string,
+  name: string,
+  description: string,
+  type: "WebPage" | "AboutPage" = "WebPage",
+) {
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -268,13 +356,14 @@ export function webPageJsonLd(path: string, name: string, description: string) {
       WEBSITE,
       ...ORGANIZATIONS,
       {
-        "@type": "WebPage",
+        "@type": type,
         url: new URL(path, SITE).href,
         name,
         description,
         isPartOf: { "@id": WEBSITE_ID },
         about: { "@id": PERSON_ID },
         author: { "@id": PERSON_ID },
+        ...(type === "AboutPage" ? { mainEntity: { "@id": PERSON_ID } } : {}),
       },
     ],
   };

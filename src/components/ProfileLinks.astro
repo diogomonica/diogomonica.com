@@ -1,0 +1,14 @@
+---
+import { LINKEDIN_URL, WIKIPEDIA_URL, X_URL } from "../lib/site";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+<nav class:list={["identity-pills", className]} aria-label="Profiles">
+  <a href={WIKIPEDIA_URL} target="_blank" rel="me noopener">Wikipedia</a>
+  <a href={LINKEDIN_URL} target="_blank" rel="me noopener">LinkedIn</a>
+  <a href={X_URL} target="_blank" rel="me noopener">X</a>
+</nav>

@@ -76,10 +76,10 @@
 .tb-ring[data-tone="mid"]{stroke:var(--anatomy-mid)}
 .tb-ring[data-tone="faint"]{stroke:var(--anatomy-faint)}
 .tb-ring[data-tone="hi"]{stroke:var(--anatomy-hi)}
-@keyframes iso-flow{to{stroke-dashoffset:-32}}
-@keyframes iso-pulse{0%,100%{opacity:.18}12%{opacity:1}40%{opacity:.18}}
-.iso-line[data-flow]{animation:iso-flow 1600ms linear infinite}
-.iso-dots circle[data-pulse]{animation:iso-pulse 1600ms steps(1,end) infinite;animation-delay:var(--pulse-at,0ms)}
+
+
+.iso-line[data-flow]{animation:none}
+.iso-dots circle[data-pulse]{animation:none}
 .iso-figure{margin:32px 0 36px}
 .iso-plate{position:relative;padding:52px 24px;border-radius:0;background:var(--anatomy-card);box-shadow:0 0 0 1px var(--anatomy-mid);--anatomy-paper:var(--anatomy-card)}
 .iso-plate-corners{position:absolute;inset:18px 20px;pointer-events:none}

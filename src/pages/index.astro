@@ -2,6 +2,7 @@
 import Base from "../layouts/Base.astro";
 import Icon from "../components/Icon.astro";
 import OptimizedImage from "../components/OptimizedImage.astro";
+import ProfileLinks from "../components/ProfileLinks.astro";
 import {
   BLOG,
   BIO,
@@ -9,7 +10,6 @@ import {
   ORGANIZATIONS,
   PATENTS,
   PATENT_ART,
-  PATENT_STILL,
   PERSON,
   PHOTO_ALT,
   PHOTO_IMAGE,
@@ -30,40 +30,26 @@ const outboundLabel = (title: string, href: string) =>
   `${title}. Opens ${new URL(href).host.replace(/^www\./, "")} in a new tab.`;
 ---
 <Base title={DISPLAY} description={BIO} path="/" jsonLd={jsonLd}>
-  <script is:inline slot="head">
-    (() => {
-      try {
-        var stored = sessionStorage.getItem("dm-motion");
-        var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-        if (stored === "off" || (stored !== "on" && reduce)) {
-          document.documentElement.setAttribute("data-motion", "off");
-        }
-      } catch (e) {}
-    })();
-  </script>
   <section class="hero" id="about">
     <div class="hero-text">
-      <h1 class="wordmark settle">Diogo<br />Mónica</h1>
+      <h1 class="wordmark">Diogo<br />Mónica</h1>
       <div class="hero-copy">
-        <p class="lede settle">
+        <p class="lede">
           General Partner at <a href={orgUrl("Haun Ventures")}>Haun Ventures</a>,<br />
           Co-founder and Executive Chairman<br />
           of <a href={orgUrl("Anchorage Digital")}>Anchorage Digital</a>,<br />
           Chairman of the <a href={orgUrl("NEAR Foundation")}>NEAR Foundation</a>,<br />
           and Director at <a href={orgUrl("Erebor")}>Erebor</a>.
         </p>
-        <p class="bio settle">
+        <p class="bio">
           Previously I led security at Docker and platform security at Square.
           Oh, and I love angel investing.
         </p>
-        <button type="button" class="motion-toggle settle" aria-pressed="false">
-          <span class="when-playing"><Icon name="pause" /> Pause motion</span>
-          <span class="when-paused"><Icon name="play" /> Play motion</span>
-        </button>
+        <ProfileLinks />
       </div>
     </div>
     <OptimizedImage
-      class="portrait settle"
+      class="portrait"
       src={PHOTO_IMAGE}
       alt={PHOTO_ALT}
       sizes="(min-width: 960px) 42rem, (min-width: 720px) 14rem, (min-width: 380px) 12rem, 9.5rem"
@@ -100,8 +86,6 @@ const outboundLabel = (title: string, href: string) =>
           <a class="asset-card" href={item.href} target="_blank" rel="noopener noreferrer" aria-label={outboundLabel(item.title, item.href)}>
             <img
               src={PATENT_ART[index]}
-              data-motion-src={PATENT_ART[index]}
-              data-still-src={PATENT_STILL[index]}
               alt=""
               width="640"
               height="480"
@@ -172,28 +156,4 @@ const outboundLabel = (title: string, href: string) =>
     </ul>
     <a class="more" href="https://www.youtube.com/results?search_query=diogo+monica">More talks <Icon name="arrow-right" /></a>
   </section>
-  <script is:inline>
-    (() => {
-      var nodes = document.querySelectorAll("[data-motion-src]");
-      var button = document.querySelector(".motion-toggle");
-      function apply(paused, persist) {
-        for (var i = 0; i < nodes.length; i++) {
-          var node = nodes[i];
-          var next = paused ? node.getAttribute("data-still-src") : node.getAttribute("data-motion-src");
-          if (next && node.getAttribute("src") !== next) node.setAttribute("src", next);
-        }
-        document.documentElement.setAttribute("data-motion", paused ? "off" : "on");
-        if (button) button.setAttribute("aria-pressed", paused ? "true" : "false");
-        if (persist) {
-          try { sessionStorage.setItem("dm-motion", paused ? "off" : "on"); } catch (e) {}
-        }
-      }
-      apply(document.documentElement.getAttribute("data-motion") === "off", false);
-      if (button) {
-        button.addEventListener("click", function () {
-          apply(document.documentElement.getAttribute("data-motion") !== "off", true);
-        });
-      }
-    })();
-  </script>
 </Base>

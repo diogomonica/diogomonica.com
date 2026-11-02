@@ -15,10 +15,18 @@ export {
   DEGREES,
   DISPLAY,
   EREBOR_URL,
+  EXPERIENCE,
   HAUN_TEAM_URL,
+  HEADLINE,
   HERO_LEDE,
   IST,
   LINKEDIN_URL,
+  LONG_BIO,
+  MEDIA_KIT_LINKS,
+  MEDIA_KIT_NOTE,
+  MEDIA_KIT_PHOTOS,
+  MEDIA_KIT_SOURCES,
+  MEDIA_KIT_URL,
   NAME,
   NEAR_URL,
   ORGANIZATIONS,
@@ -28,9 +36,11 @@ export {
   PHOTO,
   PHOTO_ALT,
   PHOTO_LEGACY,
+  PRESS_PHOTO,
   RESEARCH,
   ROLES,
   SAME_AS,
+  SHORT_BIO,
   SITE,
   SUBMIT_DECK_PATH,
   TALK_ITEMS,
@@ -59,16 +69,6 @@ export const PATENT_ART = [
   "/illustrations/patent-4.svg",
   "/illustrations/patent-5.svg",
   "/illustrations/patent-6.svg",
-] as const;
-
-/** Same drawings with animation forced off, for the pause control. */
-export const PATENT_STILL = [
-  "/illustrations/patent-1-static.svg",
-  "/illustrations/patent-2-static.svg",
-  "/illustrations/patent-3-static.svg",
-  "/illustrations/patent-4-static.svg",
-  "/illustrations/patent-5-static.svg",
-  "/illustrations/patent-6-static.svg",
 ] as const;
 
 /**

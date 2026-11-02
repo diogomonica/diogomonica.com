@@ -37,6 +37,8 @@ describe("markdown representations", () => {
     expect(text).toContain(SITE + "/about");
     expect(text).toContain(SITE + "/contact");
     expect(text).toContain("I talk about stuff");
+    expect(text).toContain("The light of other days");
+    expect(text).not.toContain("/2026/07/02/jota/");
   });
 
   it("trust-page markdown is real content", () => {
@@ -44,6 +46,12 @@ describe("markdown representations", () => {
     expect(contactMarkdown().length).toBeGreaterThan(500);
     expect(privacyMarkdown().length).toBeGreaterThan(500);
     expect(aboutMarkdown()).toContain("Instituto Superior Técnico");
+    expect(aboutMarkdown()).toContain(SITE + "/about#media-kit");
+    expect(aboutMarkdown()).toContain("For press. Credit Diogo Mónica. Do not crop out of context.");
+    expect(aboutMarkdown()).not.toContain("blog.diogomonica.com/about");
+    expect(aboutMarkdown()).not.toContain("also written");
+    expect(renderLlmsTxt()).toContain(SITE + "/about#media-kit");
+    expect(renderLlmsTxt()).not.toContain("blog.diogomonica.com/about");
     expect(contactMarkdown()).toContain("https://x.com/diogomonica");
     expect(contactMarkdown()).not.toMatch(/mailto:/);
     expect(privacyMarkdown()).toContain("not sold");

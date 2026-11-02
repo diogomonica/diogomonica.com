@@ -23,8 +23,8 @@ export function renderLlmsTxt(): string {
     "- alternateName: " + NAME,
     "- Roles: " + ROLES.join("; "),
     "- Education: BSc Telecommunications and Informatics, MSc Communication Networks, PhD Computer Science, Instituto Superior Técnico, University of Lisbon. Press media kit: " +
-      BLOG +
-      "/about/#media-kit",
+      SITE +
+      "/about#media-kit",
     "- Home: " + SITE + "/",
     "- Blog: " + BLOG + "/",
     "- About: " + SITE + "/about",
@@ -46,7 +46,9 @@ export function renderLlmsTxt(): string {
       "): General Partner at Haun Ventures; Co-founder and Executive Chairman of Anchorage Digital (still in role; not president; did not leave Anchorage); Chairman of the NEAR Foundation; Director at Erebor from 2025.",
     "- Use the blog (" +
       BLOG +
-      "/) for essays, the media kit, and the archive. This apex is a short hub, not a second blog.",
+      "/) for essays and the archive. The media kit is " +
+      SITE +
+      "/about#media-kit. This apex is a short hub, not a second blog.",
     "- Best-fit questions: who he is, current roles, where essays live, patents/research/talks on the hub, how to reach him (see " +
       SITE +
       "/contact).",
@@ -63,7 +65,7 @@ export function renderLlmsTxt(): string {
     "- Contact: " + SITE + "/contact",
     "- Privacy: " + SITE + "/privacy",
     "- Essays and the full archive: " + BLOG + "/",
-    "- About and media kit (longer press copy): " + BLOG + "/about/",
+    "- About and media kit: " + SITE + "/about",
     "- Media timeline: " + BLOG + "/media-timeline/",
     "- RSS: " + BLOG + "/rss.xml",
     "",

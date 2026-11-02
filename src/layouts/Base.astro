@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 import BrandMark from "../components/BrandMark.astro";
-import { BLOG, BIO, DISPLAY, LINKEDIN_URL, PHOTO, SAME_AS, SITE, WIKIPEDIA_URL, X_URL } from "../lib/site";
+import { BLOG, BIO, DISPLAY, PHOTO, SAME_AS, SITE } from "../lib/site";
 
 interface Props {
   title: string;
@@ -16,12 +16,9 @@ const ogImage = new URL(PHOTO, SITE).href;
 const pageTitle = path === "/" ? `${DISPLAY} — ${BIO}` : `${title} · ${DISPLAY}`;
 
 const navItems = [
-  { href: "/", label: "Home", current: path === "/", me: false },
-  { href: path === "/" ? "#about" : "/about", label: "About", current: path === "/about", me: false },
-  { href: BLOG, label: "Blog", current: false, me: false },
-  { href: WIKIPEDIA_URL, label: "Wikipedia", current: false, me: true },
-  { href: LINKEDIN_URL, label: "LinkedIn", current: false, me: true },
-  { href: X_URL, label: "X", current: false, me: true },
+  { href: "/", label: "Home", current: path === "/" },
+  { href: "/about", label: "About", current: path === "/about" },
+  { href: BLOG, label: "Blog", current: false },
 ];
 ---
 <!doctype html>
@@ -74,7 +71,7 @@ const navItems = [
       </a>
       <nav class="top-nav" aria-label="Site">
         {navItems.map((item) => (
-          <a href={item.href} rel={item.me ? "me" : undefined} aria-current={item.current ? "page" : undefined}>{item.label}</a>
+          <a href={item.href} aria-current={item.current ? "page" : undefined}>{item.label}</a>
         ))}
       </nav>
       <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
@@ -85,7 +82,7 @@ const navItems = [
   <div class="nav-panel" id="mobile-nav" aria-hidden="true">
     <nav aria-label="Site">
       {navItems.map((item) => (
-        <a href={item.href} rel={item.me ? "me" : undefined} aria-current={item.current ? "page" : undefined}>{item.label}</a>
+        <a href={item.href} aria-current={item.current ? "page" : undefined}>{item.label}</a>
       ))}
     </nav>
   </div>
@@ -146,7 +143,8 @@ const navItems = [
 
       var nodes = document.querySelectorAll(".reveal");
       if (!nodes.length) return;
-      if (!("IntersectionObserver" in window)) {
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduce || !("IntersectionObserver" in window)) {
         for (var i = 0; i < nodes.length; i++) nodes[i].classList.add("is-in");
         return;
       }
