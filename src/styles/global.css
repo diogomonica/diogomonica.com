@@ -458,6 +458,32 @@ h2 {
   text-underline-offset: 0.16em;
 }
 .lede a:hover { color: var(--accent-deep); }
+.hero .lede-tiered {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.8em;
+}
+.hero .lede-tiered .lede-line {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.06em;
+}
+.hero .lede-tiered .lede-kicker {
+  font-weight: 650;
+  line-height: 1.25;
+}
+.hero .lede-tiered .lede-conj {
+  font-weight: 450;
+}
+.hero .lede-tiered .lede-org {
+  font-weight: 450;
+  line-height: 1.3;
+}
+.hero .lede-tiered .lede-org a {
+  font-weight: inherit;
+}
 .bio {
   margin: 0;
   max-width: var(--measure);

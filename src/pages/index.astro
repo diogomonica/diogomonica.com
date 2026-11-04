@@ -34,12 +34,23 @@ const outboundLabel = (title: string, href: string) =>
     <div class="hero-text">
       <h1 class="wordmark">Diogo<br />Mónica</h1>
       <div class="hero-copy">
-        <p class="lede">
-          General Partner at <a href={orgUrl("Haun Ventures")}>Haun Ventures</a>,<br />
-          Co-founder and Executive Chairman<br />
-          of <a href={orgUrl("Anchorage Digital")}>Anchorage Digital</a>,<br />
-          Chairman of the <a href={orgUrl("NEAR Foundation")}>NEAR Foundation</a>,<br />
-          and Director at <a href={orgUrl("Erebor")}>Erebor</a>.
+        <p class="lede lede-tiered">
+          <span class="lede-line">
+            <span class="lede-kicker">General Partner</span>
+            <span class="lede-org">at <a href={orgUrl("Haun Ventures")}>Haun Ventures</a>,</span>
+          </span>
+          <span class="lede-line">
+            <span class="lede-kicker">Co-founder and Executive Chairman</span>
+            <span class="lede-org">of <a href={orgUrl("Anchorage Digital")}>Anchorage Digital</a>,</span>
+          </span>
+          <span class="lede-line">
+            <span class="lede-kicker">Chairman</span>
+            <span class="lede-org">of the <a href={orgUrl("NEAR Foundation")}>NEAR Foundation</a>,</span>
+          </span>
+          <span class="lede-line">
+            <span class="lede-kicker"><span class="lede-conj">and </span>Director</span>
+            <span class="lede-org">at <a href={orgUrl("Erebor")}>Erebor</a>.</span>
+          </span>
         </p>
         <p class="bio">
           Previously I led security at Docker and platform security at Square.
