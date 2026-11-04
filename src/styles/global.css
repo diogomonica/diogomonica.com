@@ -458,6 +458,26 @@ h2 {
   text-underline-offset: 0.16em;
 }
 .lede a:hover { color: var(--accent-deep); }
+.hero .lede-divided {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.hero .lede-divided .lede-line {
+  display: block;
+  max-width: 100%;
+  line-height: 1.35;
+  text-wrap: balance;
+}
+.hero .lede-divided .lede-line + .lede-line::before {
+  content: "";
+  display: block;
+  width: 1.75rem;
+  height: 2px;
+  margin: 0.55em 0;
+  border-radius: var(--r-full);
+  background: var(--sage-deep);
+}
 .bio {
   margin: 0;
   max-width: var(--measure);
