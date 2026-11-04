@@ -1,19 +1,23 @@
 ---
 import "../styles/global.css";
 import BrandMark from "../components/BrandMark.astro";
-import { BLOG, BIO, DISPLAY, PHOTO, SAME_AS, SITE } from "../lib/site";
+import { BLOG, DISPLAY, OG_CARD, SAME_AS, SITE } from "../lib/site";
 
 interface Props {
   title: string;
   description: string;
   path: string;
   jsonLd?: object;
+  /** Full <title>. Defaults to "title · Diogo Mónica". */
+  pageTitle?: string;
 }
 
 const { title, description, path, jsonLd } = Astro.props;
 const url = new URL(path, SITE).href;
-const ogImage = new URL(PHOTO, SITE).href;
-const pageTitle = path === "/" ? `${DISPLAY} — ${BIO}` : `${title} · ${DISPLAY}`;
+const ogImage = new URL(OG_CARD.src, SITE).href;
+const pageTitle = Astro.props.pageTitle ?? `${title} · ${DISPLAY}`;
+const markdownHref = path === "/" ? "/index.md" : `${path.replace(/\/$/, "")}.md`;
+const hasMarkdown = ["/", "/about", "/contact", "/privacy"].includes(path);
 
 const navItems = [
   { href: "/", label: "Home", current: path === "/" },
@@ -45,6 +49,8 @@ const navItems = [
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" href="/favicon.png" type="image/png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  {hasMarkdown && <link rel="alternate" type="text/markdown" href={markdownHref} />}
   <meta property="og:site_name" content={DISPLAY} />
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
@@ -52,14 +58,17 @@ const navItems = [
   <meta property="og:description" content={description} />
   <meta property="og:url" content={url} />
   <meta property="og:image" content={ogImage} />
-  <meta property="og:image:alt" content="Portrait of Diogo Mónica" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content={String(OG_CARD.width)} />
+  <meta property="og:image:height" content={String(OG_CARD.height)} />
+  <meta property="og:image:alt" content={OG_CARD.alt} />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@diogomonica" />
   <meta name="twitter:creator" content="@diogomonica" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={ogImage} />
-  <meta name="twitter:image:alt" content="Portrait of Diogo Mónica" />
+  <meta name="twitter:image:alt" content={OG_CARD.alt} />
   {SAME_AS.map((href) => <link rel="me" href={href} />)}
   {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 </head>

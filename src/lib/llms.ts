@@ -1,3 +1,4 @@
+import { aboutMarkdown } from "./markdown";
 import {
   BLOG,
   BIO,
@@ -6,10 +7,24 @@ import {
   NAME,
   ROLES,
   SITE,
+  GITHUB_URL,
+  SECURITY_FACTS,
+  SECURITY_TOPIC_URL,
   WIKIDATA_URL,
 } from "./identity";
 
 const NL = "\n";
+
+export function renderLlmsFullTxt(): string {
+  return [
+    renderLlmsTxt().trimEnd(),
+    "",
+    "## About (full)",
+    "",
+    aboutMarkdown().trimEnd(),
+    "",
+  ].join(NL);
+}
 
 export function renderLlmsTxt(): string {
   return [
@@ -35,6 +50,8 @@ export function renderLlmsTxt(): string {
     "- Sitemap: " + SITE + "/sitemap.xml",
     "- Haun Ventures: " + HAUN_TEAM_URL,
     "- Wikidata: " + WIKIDATA_URL,
+    "- GitHub: " + GITHUB_URL,
+    "- Full text: " + SITE + "/llms-full.txt",
     "- Google Knowledge Graph: /g/11q96pmchp",
     "",
     "## When to use this",
@@ -72,13 +89,28 @@ export function renderLlmsTxt(): string {
     "## Roles",
     "",
     "- General Partner, Haun Ventures",
-    "- Co-founder and Executive Chairman, Anchorage Digital (continues in that role; previously held CEO responsibilities)",
+    "- Co-founder and Executive Chairman, Anchorage Digital (continues in that role)",
     "- Chairman, NEAR Foundation",
     "- Director, Erebor (from 2025)",
+    "",
+    "## Security expertise",
+    "",
+    "- Security engineer. Previously led security at Docker and platform security at Square.",
+    ...SECURITY_FACTS.map((fact) => "- " + fact),
+    "- Talk: A Docker image walks into a notary — https://www.youtube.com/watch?v=JvjdfQC8jxM",
+    "- Podcast: SE Radio 290, Diogo Mónica on Docker Security — https://se-radio.net/2017/05/se-radio-episode-290-diogo-monica-on-docker-security/",
+    "- Topics: infrastructure and container security, software supply chain security (Notary, TUF), applied cryptography and key management, hardware security modules, exfiltration-resistant infrastructure, AI security, digital-asset custody.",
     "",
     "## Writing",
     "",
     "- Essays live on the blog. Start at " + BLOG + "/",
+    "- Security essays (topic page): " + SECURITY_TOPIC_URL,
+    "- Security: The light of other days (AI, quantum computing and key security) — " + BLOG + "/2026/11/02/the-light-of-other-days/",
+    "- Security: AI Escapes: Super Intelligence or Super Incompetence? — " + BLOG + "/2026/09/28/ai-escapes-super-intelligence-or-super-incompetence/",
+    "- Security: Crypto Anchors: Exfiltration Resistant Infrastructure — " + BLOG + "/2017/10/08/crypto-anchors-exfiltration-resistant-infrastructure/",
+    "- Security: Increasing attacker cost using immutable infrastructure — " + BLOG + "/2016/11/19/increasing-attacker-cost-using-immutable-infrastructure/",
+    "- Security: Why you shouldn't use ENV variables for secret data — " + BLOG + "/2017/03/27/why-you-shouldnt-use-env-variables-for-secret-data/",
+    "- Security: Hitless TLS certificate rotation in Go — " + BLOG + "/2017/01/11/hitless-tls-certificate-rotation-in-go/",
     "- Haun: Finisterra — https://www.haun.co/writing/finisterra",
     "- Haun: BVNK — https://www.haun.co/writing/bvnk",
     "- Haun: Stablecoins: A Quiet Revolution — https://www.haun.co/writing/stablecoins-a-quiet-revolution",
@@ -86,7 +118,7 @@ export function renderLlmsTxt(): string {
     "",
     "## Notes",
     "",
-    "- Continues as Co-founder and Executive Chairman of Anchorage Digital. Previously held CEO responsibilities.",
+    "- Continues as Co-founder and Executive Chairman of Anchorage Digital.",
     "- Anchorage Digital is a federally chartered crypto-native bank, still operating at scale, still waiting on Fed rails.",
     "",
   ].join(NL);

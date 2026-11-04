@@ -148,8 +148,16 @@ describe("homepage negotiation", () => {
       expect(existsSync(path.join(DIST, url.slice(1))), url).toBe(true);
     }
 
-    expect(html).toContain("<title>Diogo Mónica — General Partner at Haun Ventures. Co-founder and Executive Chairman of Anchorage Digital. Chairman of the NEAR Foundation. Director at Erebor.</title>");
-    expect(html).toContain('content="General Partner at Haun Ventures. Co-founder and Executive Chairman of Anchorage Digital. Chairman of the NEAR Foundation. Director at Erebor."');
+    expect(html).toContain("<title>Diogo Mónica — Security engineer, investor, Anchorage co-founder</title>");
+    expect(html).toContain(
+      '<meta name="description" content="Security engineer and investor. Led security at Docker and platform security at Square, co-founded Anchorage Digital, and is a General Partner at Haun Ventures."',
+    );
+    expect(html).toContain('<meta property="og:image" content="https://diogomonica.com/og/diogo-monica.png"');
+    expect(html).toContain('<meta property="og:image:width" content="1200"');
+    expect(html).toContain('<meta property="og:image:height" content="630"');
+    expect(html).toContain('<link rel="manifest" href="/site.webmanifest"');
+    expect(html).toContain('<link rel="alternate" type="text/markdown" href="/index.md"');
+    expect(html).not.toMatch(/\bCEO\b/);
 
     const visible = visibleText(html);
     expect(visible).not.toMatch(/BSc,/);
@@ -193,7 +201,7 @@ describe("trust pages", () => {
     expect(res.status).toBe(200);
     const html = await res.text();
     expect(html).toContain('rel="canonical" href="https://diogomonica.com/about"');
-    expect(html).toContain('"@type":"AboutPage"');
+    expect(html).toContain('"@type":"ProfilePage"');
     expect(html).toContain("https://diogomonica.com/media-kit/Diogo_Monica_Founder_Engineer.web.jpg");
     expect(html).toContain('id="media-kit"');
     expect(html).toContain("For press. Credit Diogo Mónica. Do not crop out of context.");
@@ -237,7 +245,76 @@ describe("trust pages", () => {
       const body = await res.text();
       expect(body.length).toBeGreaterThan(500);
       expect(body.startsWith("<!")).toBe(false);
+      expect(res.headers.get("link")).toBe(`<https://diogomonica.com${path}>; rel="canonical"`);
+      expect(res.headers.get("x-robots-tag")).toBe("noindex");
     }
+  });
+
+  it("serves .md files as noindex alternates canonical to the HTML page", async () => {
+    for (const [md, html] of [
+      ["/index.md", "https://diogomonica.com/"],
+      ["/about.md", "https://diogomonica.com/about"],
+      ["/contact.md", "https://diogomonica.com/contact"],
+      ["/privacy.md", "https://diogomonica.com/privacy"],
+    ]) {
+      const res = await previewFetch(md);
+      expect(res.status, md).toBe(200);
+      expect(res.headers.get("link")).toBe(`<${html}>; rel="canonical"`);
+      expect(res.headers.get("x-robots-tag")).toBe("noindex");
+    }
+  });
+
+  it("canonicalizes homepage Markdown to the HTML URL", async () => {
+    const res = await previewFetch("/", { headers: { Accept: "text/markdown" } });
+    expect(res.headers.get("link")).toBe('<https://diogomonica.com/>; rel="canonical"');
+    expect(res.headers.get("x-robots-tag")).toBe("noindex");
+  });
+});
+
+describe("host policy", () => {
+  it("redirects www to the apex with a 301", async () => {
+    const res = await previewFetch("https://www.diogomonica.com/about?x=1");
+    expect(res.status).toBe(301);
+    expect(res.headers.get("location")).toBe("https://diogomonica.com/about?x=1");
+  });
+
+  it("marks pages.dev hosts noindex", async () => {
+    const res = await previewFetch("https://diogomonica-com.pages.dev/");
+    expect(res.status).toBe(200);
+    expect(res.headers.get("x-robots-tag")).toBe("noindex");
+  });
+
+  it("leaves the production host indexable", async () => {
+    const res = await previewFetch("/");
+    expect(res.headers.get("x-robots-tag")).toBeNull();
+  });
+});
+
+describe("structured data", () => {
+  const graphFor = async (path: string) => {
+    const html = await (await previewFetch(path, { headers: { Accept: BROWSER_ACCEPT } })).text();
+    const raw = html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)![1];
+    return JSON.parse(raw)["@graph"] as Record<string, any>[];
+  };
+
+  it("describes the person with security history and no CEO wording", async () => {
+    const graph = await graphFor("/");
+    const person = graph.find((node) => node["@type"] === "Person")!;
+    expect(JSON.stringify(person)).not.toMatch(/\bCEO\b/);
+    expect(person.knowsAbout).toContain("container security");
+    expect(JSON.stringify(person.alumniOf)).toContain("Docker, Inc.");
+    expect(JSON.stringify(person.alumniOf)).toContain("Platform Security Lead");
+    expect(person.sameAs).toContain("https://github.com/diogomonica");
+    expect(JSON.stringify(person.memberOf)).toContain("https://erebor.bank/#organization");
+    const anchorage = graph.find((node) => node.name === "Anchorage Digital")!;
+    expect(anchorage.description).toBe("First federally chartered crypto-native bank.");
+  });
+
+  it("types /about as a ProfilePage about the person", async () => {
+    const graph = await graphFor("/about");
+    const page = graph.find((node) => node["@type"] === "ProfilePage")!;
+    expect(page.mainEntity).toEqual({ "@id": "https://diogomonica.com/#person" });
+    expect(page.dateModified).toMatch(/^\d{4}-\d{2}-\d{2}$/);
   });
 });
 
@@ -261,5 +338,15 @@ describe("protocol extras", () => {
     expect(res.status).toBe(200);
     const body = await res.text();
     expect(body).toContain("## When to use this");
+    expect(body).toContain("## Security expertise");
+    expect(body).not.toMatch(/\bCEO\b/);
+  });
+
+  it("serves llms-full.txt", async () => {
+    const res = await previewFetch("/llms-full.txt");
+    expect(res.status).toBe(200);
+    const body = await res.text();
+    expect(body).toContain("## Security work");
+    expect(body).toContain("### Long bio");
   });
 });

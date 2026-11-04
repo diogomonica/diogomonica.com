@@ -128,7 +128,35 @@ export const MEDIA_KIT_SOURCES = [
   },
 ] as const;
 
+export const GITHUB_URL = "https://github.com/diogomonica";
+export const RESEARCHGATE_URL = "https://www.researchgate.net/profile/Diogo-Monica";
+
 export const SAME_AS = [X_URL, LINKEDIN_URL, WIKIPEDIA_URL, WIKIDATA_URL, BLOG, HAUN_TEAM_URL];
+/** Person.sameAs: the rel=me profiles plus code and research profiles. */
+export const PERSON_SAME_AS = [...SAME_AS, GITHUB_URL, RESEARCHGATE_URL];
+
+export const SECURITY_TOPIC_URL = `${BLOG}/topics/security/`;
+
+/** Search title and description for the homepage. The H1 sub-line keeps all four roles. */
+export const HOME_TITLE = `${DISPLAY} — Security engineer, investor, Anchorage co-founder`;
+export const HOME_DESCRIPTION =
+  "Security engineer and investor. Led security at Docker and platform security at Square, co-founded Anchorage Digital, and is a General Partner at Haun Ventures.";
+
+/** Security record, from the Haun Ventures team bio. */
+export const SECURITY_FACTS = [
+  "Led platform security at Square (now Block), until 2015.",
+  "Led security at Docker, 2015–2017, where he was involved in developing the Notary project (built on The Update Framework, TUF), later accepted by the Cloud Native Computing Foundation.",
+  "Served on the Open Container Initiative (OCI) technical oversight board.",
+  "Former Chair of the IEEE Disruptive Innovations and Public Visibility committees.",
+  "Holds patents in cryptography, payments, and digital-asset custody, and has published research in network and wireless security.",
+] as const;
+
+export const OG_CARD = {
+  src: "/og/diogo-monica.png",
+  width: 1200,
+  height: 630,
+  alt: "Diogo Mónica: security engineer, investor, and Anchorage Digital co-founder",
+} as const;
 
 export const PERSON_ID = `${SITE}/#person`;
 export const WEBSITE_ID = `${SITE}/#website`;
@@ -136,7 +164,7 @@ export const WEBSITE_ID = `${SITE}/#website`;
 export const HAUN_ORG_ID = "https://www.haun.co/#organization";
 export const ANCHORAGE_ORG_ID = "https://www.anchorage.com/#organization";
 export const NEAR_ORG_ID = "https://near.foundation/#organization";
-export const EREBOR_ORG_ID = "https://www.haun.co/writing/erebor#organization";
+export const EREBOR_ORG_ID = "https://erebor.bank/#organization";
 
 export const IST = {
   "@type": "CollegeOrUniversity",
@@ -193,8 +221,7 @@ export const ORGANIZATIONS = [
     "@id": ANCHORAGE_ORG_ID,
     name: "Anchorage Digital",
     url: ANCHORAGE_URL,
-    description:
-      "First federally chartered crypto-native bank, still operating at scale, still waiting on Fed rails.",
+    description: "First federally chartered crypto-native bank.",
   },
   {
     "@type": "Organization",
@@ -206,7 +233,7 @@ export const ORGANIZATIONS = [
     "@type": "Organization",
     "@id": EREBOR_ORG_ID,
     name: "Erebor",
-    url: EREBOR_URL,
+    url: "https://erebor.bank/",
   },
 ];
 
@@ -216,26 +243,82 @@ export const PERSON = {
   name: DISPLAY,
   alternateName: NAME,
   url: SITE,
-  description: BIO,
+  description: `${BIO} Security engineer: led security at Docker and platform security at Square.`,
   jobTitle: ROLES,
   worksFor: [{ "@id": HAUN_ORG_ID }, { "@id": ANCHORAGE_ORG_ID }],
-  memberOf: [{ "@id": NEAR_ORG_ID }, { "@id": EREBOR_ORG_ID }],
-  sameAs: SAME_AS,
+  memberOf: [
+    { "@id": NEAR_ORG_ID },
+    { "@id": EREBOR_ORG_ID },
+    {
+      "@type": "Organization",
+      name: "Open Container Initiative Technical Oversight Board",
+      url: "https://opencontainers.org/",
+    },
+    {
+      "@type": "OrganizationRole",
+      roleName: "Chair, Disruptive Innovations and Public Visibility committees (former)",
+      memberOf: { "@type": "Organization", name: "IEEE", url: "https://www.ieee.org/" },
+    },
+  ],
+  sameAs: PERSON_SAME_AS,
   identifier: {
     "@type": "PropertyValue",
     propertyID: "Google Knowledge Graph ID",
     value: "/g/11q96pmchp",
   },
-  alumniOf: IST,
+  alumniOf: [
+    IST,
+    {
+      "@type": "OrganizationRole",
+      roleName: "Security Lead",
+      startDate: "2015",
+      endDate: "2017",
+      alumniOf: { "@type": "Organization", name: "Docker, Inc.", url: "https://www.docker.com/" },
+    },
+    {
+      "@type": "OrganizationRole",
+      roleName: "Platform Security Lead",
+      endDate: "2015",
+      alumniOf: { "@type": "Organization", name: "Square (now Block)", url: "https://block.xyz/" },
+    },
+  ],
   hasCredential: DEGREES.map((degree) => degree.credential),
   image: new URL(PRESS_PHOTO, SITE).href,
   knowsAbout: [
+    "computer security",
     "security engineering",
+    "infrastructure security",
+    "container security",
+    "software supply chain security",
+    "The Update Framework (TUF)",
+    "Notary",
+    "code signing",
+    "applied cryptography",
+    "cryptographic key management",
+    "hardware security modules",
+    "exfiltration-resistant infrastructure",
+    "network and wireless security",
+    "AI security",
+    "AI agent containment",
     "digital-asset custody",
     "stablecoins",
-    "cryptographic infrastructure",
     "fintech regulation",
     "venture capital",
+  ],
+  subjectOf: [
+    {
+      "@type": "PodcastEpisode",
+      name: "SE Radio 290: Diogo Mónica on Docker Security",
+      url: "https://se-radio.net/2017/05/se-radio-episode-290-diogo-monica-on-docker-security/",
+      partOfSeries: { "@type": "PodcastSeries", name: "Software Engineering Radio", url: "https://se-radio.net/" },
+    },
+    {
+      "@type": "VideoObject",
+      name: "A Docker image walks into a notary",
+      url: "https://www.youtube.com/watch?v=JvjdfQC8jxM",
+      embedUrl: "https://www.youtube.com/embed/JvjdfQC8jxM",
+      thumbnailUrl: "https://i.ytimg.com/vi/JvjdfQC8jxM/hqdefault.jpg",
+    },
   ],
 };
 
@@ -361,7 +444,8 @@ export function webPageJsonLd(
   path: string,
   name: string,
   description: string,
-  type: "WebPage" | "AboutPage" = "WebPage",
+  type: "WebPage" | "ProfilePage" = "WebPage",
+  dates?: { created: string; modified: string },
 ) {
   return {
     "@context": "https://schema.org",
@@ -377,7 +461,10 @@ export function webPageJsonLd(
         isPartOf: { "@id": WEBSITE_ID },
         about: { "@id": PERSON_ID },
         author: { "@id": PERSON_ID },
-        ...(type === "AboutPage" ? { mainEntity: { "@id": PERSON_ID } } : {}),
+        "@id": `${new URL(path, SITE).href}#webpage`,
+        inLanguage: "en",
+        ...(type === "ProfilePage" ? { mainEntity: { "@id": PERSON_ID } } : {}),
+        ...(dates ? { dateCreated: dates.created, dateModified: dates.modified } : {}),
       },
     ],
   };

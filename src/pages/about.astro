@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import { buildLastmod } from "../lib/sitemap";
 import OptimizedImage from "../components/OptimizedImage.astro";
 import ProfileLinks from "../components/ProfileLinks.astro";
 import {
@@ -38,7 +39,7 @@ const description = HEADLINE;
   title="About"
   description={description}
   path="/about"
-  jsonLd={webPageJsonLd("/about", `About ${DISPLAY}`, description, "AboutPage")}
+  jsonLd={webPageJsonLd("/about", `About ${DISPLAY}`, description, "ProfilePage", { created: "2026-08-22", modified: buildLastmod() })}
 >
   <article class="page cv">
     <header class="cv-head">

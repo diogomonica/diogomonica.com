@@ -1,16 +1,17 @@
 User-agent: *
 Allow: /
 
+# AI crawlers and agents are welcome. Named explicitly so intent is unambiguous.
 User-agent: GPTBot
-Allow: /
-
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
 User-agent: ClaudeBot
-Allow: /
-
+User-agent: Claude-SearchBot
+User-agent: Claude-User
 User-agent: PerplexityBot
-Allow: /
-
+User-agent: Perplexity-User
 User-agent: Google-Extended
+User-agent: Applebot-Extended
 Allow: /
 
 Sitemap: https://diogomonica.com/sitemap.xml

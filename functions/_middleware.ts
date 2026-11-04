@@ -1,4 +1,4 @@
-import { handleNegotiation } from "../src/lib/negotiate";
+import { handleRequest } from "../src/lib/negotiate";
 
 interface PagesContext {
   request: Request;
@@ -14,5 +14,5 @@ export async function onRequest(context: PagesContext): Promise<Response> {
     return context.next();
   };
 
-  return handleNegotiation(context.request, fetchAsset);
+  return handleRequest(context.request, fetchAsset);
 }

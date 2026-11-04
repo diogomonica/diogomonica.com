@@ -2,7 +2,7 @@ import { existsSync, statSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { handleNegotiation } from "../../src/lib/negotiate";
+import { handleRequest } from "../../src/lib/negotiate";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 export const DIST = path.join(root, "dist");
@@ -47,7 +47,7 @@ export async function fetchAsset(request: Request): Promise<Response> {
 
 export function previewFetch(input: string, init?: RequestInit): Promise<Response> {
   const request = new Request(new URL(input, "https://diogomonica.com").href, init);
-  return handleNegotiation(request, fetchAsset);
+  return handleRequest(request, fetchAsset);
 }
 
 export function visibleText(html: string): string {

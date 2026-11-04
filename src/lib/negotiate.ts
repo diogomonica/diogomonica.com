@@ -4,6 +4,24 @@ import { markdownResponse, recoveryMarkdown } from "./markdown";
 const STATIC_EXT =
   /\.(?:css|js|mjs|map|png|jpe?g|webp|gif|svg|ico|woff2?|ttf|otf|eot|xml|txt|json|pdf|mp4|webm|mp3|wav|ogg|zip)$/i;
 
+const PRODUCTION_HOST = "diogomonica.com";
+const MARKDOWN_FILE = /^(.*?)(?:\/index)?\.md$/;
+
+/** HTML URL that a Markdown route represents: /index.md → /, /about.md → /about. */
+export function htmlPathFor(pathname: string): string {
+  const match = MARKDOWN_FILE.exec(pathname);
+  const base = match ? match[1] : pathname;
+  const clean = base.replace(/\/$/, "");
+  return clean === "" ? "/" : clean;
+}
+
+/** Markdown is a fetchable alternate: canonical to the HTML page, kept out of the index. */
+function markAsAlternate(headers: Headers, pathname: string): void {
+  const canonical = new URL(htmlPathFor(pathname), `https://${PRODUCTION_HOST}`).href;
+  headers.set("Link", `<${canonical}>; rel="canonical"`);
+  headers.set("X-Robots-Tag", "noindex");
+}
+
 export type AssetFetcher = (request: Request) => Promise<Response>;
 
 function notAcceptable(request: Request, detail: string): Response {
@@ -34,8 +52,7 @@ async function fetchMarkdownSibling(request: Request, fetchAsset: AssetFetcher):
       const body = await mdRes.text();
       const res = markdownResponse(body, 200);
       appendVaryAccept(res.headers);
-      const linkValue = `<${pathname}>; rel="canonical"; type="text/markdown"`;
-      res.headers.set("Link", linkValue);
+      markAsAlternate(res.headers, url.pathname);
       return res;
     }
   }
@@ -47,6 +64,14 @@ export async function handleNegotiation(request: Request, fetchAsset: AssetFetch
 
   if (STATIC_EXT.test(url.pathname)) {
     return fetchAsset(request);
+  }
+
+  if (url.pathname.endsWith(".md")) {
+    const mdRes = await fetchAsset(request);
+    if (mdRes.status !== 200) return mdRes;
+    const res = new Response(mdRes.body, mdRes);
+    markAsAlternate(res.headers, url.pathname);
+    return res;
   }
 
   const accept = request.headers.get("accept");
@@ -91,5 +116,27 @@ export async function handleNegotiation(request: Request, fetchAsset: AssetFetch
     res.headers.set("Link", existing ? `${existing}, ${linkValue}` : linkValue);
   }
 
+  return res;
+}
+
+/**
+ * Host policy in front of negotiation: www → apex (301), and *.pages.dev
+ * deployments (production alias and branch previews) are noindex.
+ */
+export async function handleRequest(request: Request, fetchAsset: AssetFetcher): Promise<Response> {
+  const url = new URL(request.url);
+  const host = url.hostname.toLowerCase();
+
+  if (host === `www.${PRODUCTION_HOST}`) {
+    const target = new URL(url.pathname + url.search, `https://${PRODUCTION_HOST}`);
+    return new Response(null, { status: 301, headers: { Location: target.href, "Cache-Control": "public, max-age=3600" } });
+  }
+
+  const res = await handleNegotiation(request, fetchAsset);
+  if (host.endsWith(".pages.dev")) {
+    const out = new Response(res.body, res);
+    out.headers.set("X-Robots-Tag", "noindex");
+    return out;
+  }
   return res;
 }

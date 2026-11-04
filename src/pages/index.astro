@@ -5,8 +5,9 @@ import OptimizedImage from "../components/OptimizedImage.astro";
 import ProfileLinks from "../components/ProfileLinks.astro";
 import {
   BLOG,
-  BIO,
   DISPLAY,
+  HOME_DESCRIPTION,
+  HOME_TITLE,
   ORGANIZATIONS,
   PATENTS,
   PATENT_ART,
@@ -22,14 +23,29 @@ import {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@graph": [PERSON, WEBSITE, ...ORGANIZATIONS],
+  "@graph": [
+    PERSON,
+    WEBSITE,
+    ...ORGANIZATIONS,
+    {
+      "@type": "WebPage",
+      "@id": "https://diogomonica.com/#webpage",
+      url: "https://diogomonica.com/",
+      name: HOME_TITLE,
+      description: HOME_DESCRIPTION,
+      inLanguage: "en",
+      isPartOf: { "@id": "https://diogomonica.com/#website" },
+      about: { "@id": "https://diogomonica.com/#person" },
+      mainEntity: { "@id": "https://diogomonica.com/#person" },
+    },
+  ],
 };
 
 const orgUrl = (name: string) => ORGANIZATIONS.find((org) => org.name === name)!.url;
 const outboundLabel = (title: string, href: string) =>
   `${title}. Opens ${new URL(href).host.replace(/^www\./, "")} in a new tab.`;
 ---
-<Base title={DISPLAY} description={BIO} path="/" jsonLd={jsonLd}>
+<Base title={DISPLAY} pageTitle={HOME_TITLE} description={HOME_DESCRIPTION} path="/" jsonLd={jsonLd}>
   <section class="hero" id="about">
     <div class="hero-text">
       <h1 class="wordmark">Diogo<br />Mónica</h1>

@@ -1,0 +1,16 @@
+{
+  "name": "Diogo Mónica",
+  "short_name": "Diogo Mónica",
+  "description": "Security engineer and investor. Co-founder of Anchorage Digital, General Partner at Haun Ventures.",
+  "lang": "en",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#f3f2ee",
+  "theme_color": "#f3f2ee",
+  "icons": [
+    { "src": "/favicon.svg", "type": "image/svg+xml", "sizes": "any" },
+    { "src": "/favicon.png", "type": "image/png", "sizes": "32x32" },
+    { "src": "/apple-touch-icon.png", "type": "image/png", "sizes": "180x180" }
+  ]
+}
