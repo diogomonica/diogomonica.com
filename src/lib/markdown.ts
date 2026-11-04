@@ -33,6 +33,8 @@ import {
   WRITING,
   WRITING_TOPICS,
   X_URL,
+  SECURITY_FACTS,
+  SECURITY_TOPIC_URL,
 } from "./identity";
 
 const NL = "\n";
@@ -66,6 +68,7 @@ export function homeMarkdown(): string {
     BIO,
     "",
     "Previously led security at Docker and platform security at Square.",
+    "Security essays: " + SECURITY_TOPIC_URL,
     "",
     "## Current roles",
     "",
@@ -127,6 +130,13 @@ export function aboutMarkdown(): string {
     "## Education",
     "",
     ...DEGREES.map((degree) => "- " + degree.years + " — " + degree.line),
+    "",
+    "## Security work",
+    "",
+    ...SECURITY_FACTS.map((fact) => "- " + fact),
+    "- Talk: A Docker image walks into a notary — https://www.youtube.com/watch?v=JvjdfQC8jxM",
+    "- Podcast: SE Radio 290, Diogo Mónica on Docker Security — https://se-radio.net/2017/05/se-radio-episode-290-diogo-monica-on-docker-security/",
+    "- Security essays: " + SECURITY_TOPIC_URL,
     "",
     "## Media kit",
     "",

@@ -23,6 +23,13 @@ describe("llms.txt", () => {
     expect(text).toContain(SITE + "/contact");
     expect(text).toContain(SITE + "/privacy");
   });
+
+  it("has a security section and no CEO wording", () => {
+    expect(text).toContain("## Security expertise");
+    expect(text).toContain("Docker");
+    expect(text).toContain("https://blog.diogomonica.com/topics/security/");
+    expect(text).not.toMatch(/\bCEO\b/);
+  });
 });
 
 describe("markdown representations", () => {
@@ -75,5 +82,7 @@ describe("sitemap", () => {
     expect(xml).toContain("<loc>https://diogomonica.com/about</loc>");
     expect(xml).toContain("<loc>https://diogomonica.com/contact</loc>");
     expect(xml).toContain("<loc>https://diogomonica.com/privacy</loc>");
+    expect(xml).toMatch(/<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/);
+    expect(xml).not.toContain("<lastmod>2026-08-22</lastmod>");
   });
 });

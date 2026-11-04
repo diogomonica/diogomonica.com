@@ -19,3 +19,13 @@
   Cache-Control: public, max-age=31536000, immutable
   Access-Control-Allow-Origin: *
   X-Content-Type-Options: nosniff
+
+/og/*
+  Cache-Control: public, max-age=86400
+  X-Content-Type-Options: nosniff
+
+/llms-full.txt
+  Content-Type: text/plain; charset=utf-8
+
+/site.webmanifest
+  Content-Type: application/manifest+json
